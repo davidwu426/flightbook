@@ -1,7 +1,5 @@
 package flightbook;
 
-import flightbook.model.Airline;
-import flightbook.dao.AirlineDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,9 +17,5 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-	    AirlineDao dao = new AirlineDao(jdbcTemplate);
-
-	    Airline a = dao.getAirlineById("B6");
-	    System.out.println("found airline: " + a.getName());
     }
 }

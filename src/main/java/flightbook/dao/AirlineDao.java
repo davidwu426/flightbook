@@ -2,6 +2,7 @@ package flightbook.dao;
 
 import flightbook.model.Airline;
 import flightbook.model.AirlineRowMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Slf4j
 @Transactional
 @Repository
 public class AirlineDao implements IAirlineDao {
@@ -41,7 +43,7 @@ public class AirlineDao implements IAirlineDao {
 			RowMapper<Airline> rowMapper = new AirlineRowMapper();
 			return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
 		} catch (DataAccessException e) {
-			// logging
+			log.warn("Attempted to retrieve airline with ID of {0} but returned none", id);
 
 			return null;
 		}
