@@ -1,4 +1,4 @@
-package flightbook.entity;
+package flightbook.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,11 +1,14 @@
 package flightbook.dao;
 
-import flightbook.entity.Airline;
-import flightbook.entity.AirlineRowMapper;
+import flightbook.model.Airline;
+import flightbook.model.AirlineRowMapper;
+import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Transactional
 @Repository
@@ -20,10 +23,11 @@ public class AirlineDao implements IAirlineDao {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void insert(Airline airline) {
-		String sql = "INSERT INTO Airline (Id, Name) VALUES (?, ?)";
+	public List<Airline> getAllAirlines() {
+		String sql = "SELECT * FROM Airline";
 
-		this.jdbcTemplate.update(sql, airline.getId(), airline.getName());
+		RowMapper<Airline> rowMapper = new AirlineRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper);
 	}
 
 	/**
@@ -33,8 +37,23 @@ public class AirlineDao implements IAirlineDao {
 	public Airline getAirlineById(String id) {
 		String sql = "SELECT * FROM Airline WHERE Id = ?";
 
-		RowMapper<Airline> rowMapper = new AirlineRowMapper();
+		try {
+			RowMapper<Airline> rowMapper = new AirlineRowMapper();
+			return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
+		} catch (DataAccessException e) {
+			// logging
 
-		return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
+			return null;
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void insert(Airline airline) {
+		String sql = "INSERT INTO Airline (Id, Name) VALUES (?, ?)";
+
+		this.jdbcTemplate.update(sql, airline.getId(), airline.getName());
 	}
 }

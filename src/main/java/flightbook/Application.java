@@ -1,6 +1,6 @@
 package flightbook;
 
-import flightbook.entity.Airline;
+import flightbook.model.Airline;
 import flightbook.dao.AirlineDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

@@ -1,6 +1,5 @@
-package flightbook.entity;
+package flightbook.model;
 
-import flightbook.entity.Airline;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
