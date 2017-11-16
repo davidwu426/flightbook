@@ -8,17 +8,31 @@ public interface IAirlineDao {
 	/**
 	 * Get all airlines
 	 */
-	public List<Airline> getAllAirlines();
+	 List<Airline> getAllAirlines();
 
 	/**
 	 * Find airline given ID of airline
 	 * @param id    ID of airline
 	 */
-	public Airline getAirlineById(String id);
+	 Airline getAirlineById(String id);
 
 	/**
 	 * Inserts and airline
 	 * @param airline   Airline to insert
 	 */
-    public void insert(Airline airline);
+     void insert(Airline airline);
+
+	/**
+	 * Updates an airline with given ID
+	 *
+	 * @param airline   Airline to update
+	 */
+	 void update(Airline airline);
+
+	/**
+	 * Deletes an airline given an ID
+	 *
+	 * @param id    ID of airline to delete
+	 */
+	 void delete(String id);
 }

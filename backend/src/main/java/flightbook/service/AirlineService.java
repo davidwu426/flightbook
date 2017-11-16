@@ -26,4 +26,14 @@ public class AirlineService implements IAirlineService {
 	public void insertAirline(Airline airline) {
 		airlineDao.insert(airline);
 	}
+
+	@Override
+	public void updateAirline(Airline airline) {
+		airlineDao.update(airline);
+	}
+
+	@Override
+	public void deleteAirline(String id) {
+		airlineDao.delete(id);
+	}
 }

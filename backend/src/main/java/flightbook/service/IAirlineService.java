@@ -10,4 +10,8 @@ public interface IAirlineService {
 	Airline getAirlineById(String id);
 
 	void insertAirline(Airline airline);
+
+	void updateAirline(Airline airline);
+
+	void deleteAirline(String id);
 }
