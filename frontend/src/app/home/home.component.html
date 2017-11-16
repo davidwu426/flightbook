@@ -1,0 +1,37 @@
+<div class="jumbotron">
+  <div class="container text-center">
+    <h1>Book a Flight</h1>
+    <p>This is a paragraph</p>
+
+    <hr>
+
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-9">
+
+        <!-- trip type -->
+        <div class="row justify-content-center mb-3">
+          <div class="col-4">
+            <button class="btn btn-block" (click)="tripType = 'oneway'" [class.btn-primary]="tripType === 'oneway'">
+              One Way
+            </button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-block" (click)="tripType = 'roundtrip'" [class.btn-primary]="tripType === 'roundtrip'">
+              Round Trip
+            </button>
+          </div>
+          <div class="col-4">
+            <button class="btn btn-block" (click)="tripType = 'multicity'" [class.btn-primary]="tripType === 'multicity'">
+              Multi-City
+            </button>
+          </div>
+        </div>
+
+        <app-oneway-search *ngIf="tripType === 'oneway'"></app-oneway-search>
+        <app-roundtrip-search *ngIf="tripType === 'roundtrip'"></app-roundtrip-search>
+        <app-multicity-search *ngIf="tripType === 'multicity'"></app-multicity-search>
+
+      </div>
+    </div>
+  </div>
+</div>

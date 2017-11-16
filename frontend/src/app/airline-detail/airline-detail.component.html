@@ -1,0 +1,24 @@
+<div class="container">
+	<h1>Edit Airline Name</h1>
+
+	<div *ngIf="airline">
+
+		<div class="card">
+			<div class="card-header">
+				<span class="badge">{{airline.id}}</span>
+				{{ airline.name }}
+			</div>
+			<div class="card-body">
+
+				<div class="input-group mb-3">
+					<span class="input-group-addon" id="name-addon">Name</span>
+					<input type="text" class="form-control" [(ngModel)]="airline.name" placeholder="Name" aria-describedby="name-addon">
+				</div>
+
+				<button (click)="goBack()" class="btn">Back</button>
+				<button (click)="save()" class="btn btn-success">Save</button>
+			</div>
+
+		</div>
+	</div>
+</div>

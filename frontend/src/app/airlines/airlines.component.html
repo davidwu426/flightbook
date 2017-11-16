@@ -1,0 +1,36 @@
+<div class="container">
+	<h1>Airlines</h1>
+
+	<div class="card">
+		<div class="card-header">Add an Airline</div>
+		<div class="card-body">
+			<div class="form-inline">
+
+				<div class="form-group">
+					<label for="airlineId">Airline ID</label>
+					<input class="form-control mx-3" id="airlineId" placeholder="Airline ID" #airlineId>
+				</div>
+
+				<div class="form-group mx-3">
+					<label for="airlineName">Airline name</label>
+					<input class="form-control mx-3" id="airlineName" placeholder="Airline Name" #airlineName>
+				</div>
+
+				<button class="btn btn-success" (click)="add(airlineId.value, airlineName.value); airlineId.value=''; airlineName.value=''">
+					Add
+				</button>
+
+			</div>
+		</div>
+
+		<ul class="list-group list-group-flush">
+			<li *ngFor="let airline of airlines" class="list-group-item">
+				<button class="btn btn-outline-danger" (click)="delete(airline)">&#10005;</button>
+
+				<a routerLink="/detail/{{airline.id}}">
+					<span class="badge">{{ airline.id }}</span> {{ airline.name }}
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>
