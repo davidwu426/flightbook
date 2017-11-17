@@ -1,28 +1,39 @@
-<form class="form-group">
+<div class="mb-3" *ngFor="let c of searchService.searchCriteria; let i = index;">
+
+  <h6 class="text-left">Flight {{i + 1}}</h6>
   <!-- airports -->
   <div class="row text-left">
     <div class="col-12 col-sm-6 mb-3">
-      <input type="text" class="form-control" placeholder="Airport">
       <small class="form-text text-muted">Flying from</small>
+      <input type="text" class="form-control" placeholder="Airport" required
+        [(ngModel)]="c.fromAirport" name="fromAirport">
     </div>
-
+    
     <div class="col-12 col-sm-6 mb-3">
-      <input type="text" class="form-control" placeholder="Airport">
-      <small class="form-text text-muted">Flying from</small>
+      <small class="form-text text-muted">Flying to</small>
+      <input type="text" class="form-control" placeholder="Airport" required
+        [(ngModel)]="c.toAirport" name="toAirport">
     </div>
   </div>
-
+  
   <!-- time -->
-  <div class="row text-left mb-3">
-    <div class="col-6">
-      <input type="text" class="form-control" placeholder="MM/DD/YYYY">
+  <div class="row text-left">
+    <div class="col-12">
       <small class="form-text text-muted">Departure Date</small>
-    </div>
-    <div class="col-6">
-      <input type="text" class="form-control" placeholder="MM/DD/YYYY">
-      <small class="form-text text-muted">Returning Date</small>
+      <input type="text" class="form-control" placeholder="MM/DD/YYYY" required
+        [(ngModel)]="c.departureDate" name="departureDate">
     </div>
   </div>
 
-  <a href="" class="btn btn-primary btn-block">Search</a>
-</form>
+  <hr>
+
+</div>
+
+<div class="row no-gutters mb-3">
+  <div class="col" *ngIf="searchService.searchCriteria.length > 2">
+    <button (click)="removeFlight()" class="btn btn-danger btn-block">- Remove Flight</button>
+  </div>
+  <div class="col" *ngIf="searchService.searchCriteria.length < 5">
+    <button (click)="addFlight()" class="btn btn-info btn-block">+ Add Flight</button>
+  </div>
+</div>

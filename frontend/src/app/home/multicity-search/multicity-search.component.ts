@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
+import { SearchCriteria } from '../../models/search-criteria';
+import { SearchService } from '../../services/search/search.service';
 
 @Component({
   selector: 'app-multicity-search',
@@ -6,11 +8,19 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./multicity-search.component.css'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class MulticitySearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(public searchService: SearchService) { }
 
   ngOnInit() {
   }
 
+  addFlight() {
+    this.searchService.addCriteria();
+  }
+
+  removeFlight() {
+    this.searchService.removeCriteria();
+  }
 }

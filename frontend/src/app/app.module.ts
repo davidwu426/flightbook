@@ -15,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { OnewaySearchComponent } from './home/oneway-search/oneway-search.component';
 import { RoundtripSearchComponent } from './home/roundtrip-search/roundtrip-search.component';
 import { MulticitySearchComponent } from './home/multicity-search/multicity-search.component';
+import { SearchComponent } from './search/search.component';
+import { SearchService } from './services/search/search.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { MulticitySearchComponent } from './home/multicity-search/multicity-sear
     HomeComponent,
     OnewaySearchComponent,
     RoundtripSearchComponent,
-    MulticitySearchComponent
+    MulticitySearchComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +39,8 @@ import { MulticitySearchComponent } from './home/multicity-search/multicity-sear
   ],
   providers: [
     AirlineService,
-    MessageService
+    MessageService,
+    SearchService
   ],
   bootstrap: [AppComponent]
 })

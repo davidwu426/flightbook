@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { SearchService } from '../services/search/search.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,11 +9,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-  tripType = 'oneway';
-
-  constructor() { }
+  constructor(
+    public searchService: SearchService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  search() {
+    this.router.navigateByUrl('search');
+  }
 }
