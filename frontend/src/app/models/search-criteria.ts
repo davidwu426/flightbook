@@ -4,5 +4,5 @@ export class SearchCriteria {
   fromAirport: Airport;
   toAirport: Airport;
   departureDate: Date;
-  arrivalDate: Date;
+  returningDate: Date;
 }
