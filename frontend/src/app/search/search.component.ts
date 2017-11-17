@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { SearchService } from '../services/search/search.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -8,9 +10,15 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public searchService: SearchService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
   }
 
+  search() {
+    this.router.navigateByUrl('search-results');
+  }
 }

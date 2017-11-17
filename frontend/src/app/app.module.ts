@@ -12,11 +12,17 @@ import { MessagesComponent } from './messages/messages.component';
 import { MessageService } from './services/message/message.service';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
-import { OnewaySearchComponent } from './home/oneway-search/oneway-search.component';
-import { RoundtripSearchComponent } from './home/roundtrip-search/roundtrip-search.component';
-import { MulticitySearchComponent } from './home/multicity-search/multicity-search.component';
+import { OnewaySearchComponent } from './search/oneway-search/oneway-search.component';
+import { RoundtripSearchComponent } from './search/roundtrip-search/roundtrip-search.component';
+import { MulticitySearchComponent } from './search/multicity-search/multicity-search.component';
 import { SearchComponent } from './search/search.component';
 import { SearchService } from './services/search/search.service';
+import { SearchResultsComponent } from './search-results/search-results.component';
+import { SearchCondensedComponent } from './search-condensed/search-condensed.component';
+import { OnewaySearchCondensedComponent } from './search-condensed/oneway-search-condensed/oneway-search-condensed.component';
+import { MulticitySearchCondensedComponent } from './search-condensed/multicity-search-condensed/multicity-search-condensed.component';
+import { RoundtripSearchCondensedComponent } from './search-condensed/roundtrip-search-condensed/roundtrip-search-condensed.component';
+import { FlightResultsComponent } from './search-results/flight-results/flight-results.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +34,13 @@ import { SearchService } from './services/search/search.service';
     OnewaySearchComponent,
     RoundtripSearchComponent,
     MulticitySearchComponent,
-    SearchComponent
+    SearchComponent,
+    SearchResultsComponent,
+    SearchCondensedComponent,
+    OnewaySearchCondensedComponent,
+    MulticitySearchCondensedComponent,
+    RoundtripSearchCondensedComponent,
+    FlightResultsComponent
   ],
   imports: [
     BrowserModule,

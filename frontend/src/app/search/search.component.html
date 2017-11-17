@@ -1,3 +1,26 @@
-<p>
-  search works!
-</p>
+<!-- trip type -->
+<div class="row justify-content-center mb-3">
+  <div class="col-4">
+    <button class="btn btn-block" (click)="searchService.type = 'oneway'" [class.btn-primary]="searchService.type === 'oneway'">
+      One Way
+    </button>
+  </div>
+  <div class="col-4">
+    <button class="btn btn-block" (click)="searchService.type = 'roundtrip'" [class.btn-primary]="searchService.type === 'roundtrip'">
+      Round Trip
+    </button>
+  </div>
+  <div class="col-4">
+    <button class="btn btn-block" (click)="searchService.type = 'multicity'" [class.btn-primary]="searchService.type === 'multicity'">
+      Multi-City
+    </button>
+  </div>
+</div>
+
+<form class="form-group" (ngSubmit)="search()" ngNativeValidate>
+  <app-oneway-search *ngIf="searchService.type === 'oneway'"></app-oneway-search>
+  <app-roundtrip-search *ngIf="searchService.type === 'roundtrip'"></app-roundtrip-search>
+  <app-multicity-search *ngIf="searchService.type === 'multicity'"></app-multicity-search>
+
+  <input type="submit" class="btn btn-primary btn-block" value="Search">
+</form>

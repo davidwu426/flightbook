@@ -1,5 +1,5 @@
-<!-- airports -->
 <div class="row text-left">
+  <!-- airports -->
   <div class="col-12 col-sm-6 mb-3">
     <small class="form-text text-muted">Flying from</small>
     <input type="text" class="form-control" placeholder="Airport" required
@@ -15,14 +15,9 @@
 
 <!-- time -->
 <div class="row text-left mb-3">
-  <div class="col-6">
+  <div class="col-12">
     <small class="form-text text-muted">Departure Date</small>
     <input type="text" class="form-control" placeholder="MM/DD/YYYY" required
       [(ngModel)]="c.departureDate" name="departureDate">
-  </div>
-  <div class="col-6">
-    <small class="form-text text-muted">Returning Date</small>
-    <input type="text" class="form-control" placeholder="MM/DD/YYYY" required
-      [(ngModel)]="c.arrivalDate" name="arrivalDate">
   </div>
 </div>

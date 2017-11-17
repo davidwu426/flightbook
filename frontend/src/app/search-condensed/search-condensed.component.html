@@ -1,0 +1,28 @@
+<form class="form-group" (ngSubmit)="search()" ngNativeValidate>
+  <!-- trip type -->
+  <div class="row mb-3">
+    <div class="col-3 col-md-2">
+      <button class="btn btn-block" (click)="searchService.type = 'oneway'" [class.btn-primary]="searchService.type === 'oneway'">
+        One Way
+      </button>
+    </div>
+    <div class="col-3 col-md-2">
+      <button class="btn btn-block" (click)="searchService.type = 'roundtrip'" [class.btn-primary]="searchService.type === 'roundtrip'">
+        Round Trip
+      </button>
+    </div>
+    <div class="col-3 col-md-2">
+      <button class="btn btn-block" (click)="searchService.type = 'multicity'" [class.btn-primary]="searchService.type === 'multicity'">
+        Multi-City
+      </button>
+    </div>
+    <div class="col-3 col-md-2 offset-md-4">
+      <input type="submit" class="btn btn-primary btn-block" value="Refresh">
+    </div>
+  </div>
+
+  <app-oneway-search-condensed *ngIf="searchService.type === 'oneway'"></app-oneway-search-condensed>
+  <app-roundtrip-search-condensed *ngIf="searchService.type === 'roundtrip'"></app-roundtrip-search-condensed>
+  <app-multicity-search-condensed *ngIf="searchService.type === 'multicity'"></app-multicity-search-condensed>
+
+</form>

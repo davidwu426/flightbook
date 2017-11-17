@@ -9,15 +9,8 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-  constructor(
-    public searchService: SearchService,
-    private router: Router
-  ) { }
+  constructor( ) { }
 
   ngOnInit() {
-  }
-
-  search() {
-    this.router.navigateByUrl('search');
   }
 }

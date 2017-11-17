@@ -1,0 +1,39 @@
+<div class="mb-3" *ngFor="let c of searchService.searchCriteria; let i = index;">
+  <div class="row text-left">
+    
+    <div class="col-1">
+      <h6 class="text-left">Flight {{i + 1}}</h6>
+    </div>
+    
+    <!-- airports -->
+    <div class="col-3">
+      <small class="form-text text-muted">Flying from</small>
+      <input type="text" class="form-control" placeholder="Airport" required
+        [(ngModel)]="c.fromAirport" name="sfromAirport">
+    </div>
+    
+    <div class="col-3">
+      <small class="form-text text-muted">Flying to</small>
+      <input type="text" class="form-control" placeholder="Airport" required
+        [(ngModel)]="c.toAirport" name="toAirport">
+    </div>
+
+    <!-- time -->
+    <div class="col-3">
+      <small class="form-text text-muted">Departure Date</small>
+      <input type="text" class="form-control" placeholder="MM/DD/YYYY" required
+        [(ngModel)]="c.departureDate" name="departureDate">
+    </div>
+  </div>
+
+  <hr>
+</div>
+
+<div class="row no-gutters mb-3">
+  <div class="col" *ngIf="searchService.searchCriteria.length > 2">
+    <button (click)="removeFlight()" class="btn btn-danger btn-block">- Remove Flight</button>
+  </div>
+  <div class="col" *ngIf="searchService.searchCriteria.length < 5">
+    <button (click)="addFlight()" class="btn btn-info btn-block">+ Add Flight</button>
+  </div>
+</div>
