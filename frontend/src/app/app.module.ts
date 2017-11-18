@@ -23,6 +23,8 @@ import { OnewaySearchCondensedComponent } from './search-condensed/oneway-search
 import { MulticitySearchCondensedComponent } from './search-condensed/multicity-search-condensed/multicity-search-condensed.component';
 import { RoundtripSearchCondensedComponent } from './search-condensed/roundtrip-search-condensed/roundtrip-search-condensed.component';
 import { FlightResultsComponent } from './search-results/flight-results/flight-results.component';
+import { LoginComponent } from './account/login/login.component';
+import { RegisterComponent } from './account/register/register.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { FlightResultsComponent } from './search-results/flight-results/flight-r
     OnewaySearchCondensedComponent,
     MulticitySearchCondensedComponent,
     RoundtripSearchCondensedComponent,
-    FlightResultsComponent
+    FlightResultsComponent,
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

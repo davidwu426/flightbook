@@ -10,14 +10,12 @@ public interface IAirlineService {
 	/**
 	 * Get all airlines
 	 */
-	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
 	List<Airline> getAllAirlines();
 
 	/**
 	 * Find airline given ID of airline
 	 * @param id    ID of airline
 	 */
-	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
 	Airline getAirlineById(String id);
 
 	/**

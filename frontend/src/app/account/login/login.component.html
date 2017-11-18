@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="row justify-content-center text-center">
+    <div class="col-12 col-sm-8">
+
+      <div class="card">
+        <div class="card-header">Log In</div>
+        <div class="card-body">
+          <form class="form-group" (ngSubmit)="login()" ngNativeValidate>
+            <!-- username -->
+            <div class="input-group mb-3">
+              <span class="input-group-addon">
+                <i class="fa fa-user"></i>
+              </span>
+              <input type="text" class="form-control" placeholder="Username" name="username" [(ngModel)]="user.username">
+            </div>
+
+            <!-- password -->
+            <div class="input-group mb-3">
+              <span class="input-group-addon">
+                <i class="fa fa-lock"></i>
+              </span>
+              <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="user.password">
+            </div>
+
+            <button type="submit" class="btn btn-block btn-success">
+              <i class="fa fa-unlock"></i> Log In
+            </button>
+          </form>
+
+        </div>
+
+        <div class="card-footer">
+          Don't have an account?
+          <a routerLink="/register">Register here!</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
