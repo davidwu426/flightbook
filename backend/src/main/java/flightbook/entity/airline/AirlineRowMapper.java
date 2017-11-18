@@ -1,4 +1,4 @@
-package flightbook.model;
+package flightbook.entity.airline;
 
 import org.springframework.jdbc.core.RowMapper;
 

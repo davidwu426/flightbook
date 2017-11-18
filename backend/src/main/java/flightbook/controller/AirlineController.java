@@ -1,7 +1,7 @@
 package flightbook.controller;
 
-import flightbook.model.Airline;
-import flightbook.service.IAirlineService;
+import flightbook.entity.airline.Airline;
+import flightbook.service.airline.IAirlineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;

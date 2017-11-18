@@ -1,7 +1,7 @@
-package flightbook.dao;
+package flightbook.dao.airline;
 
-import flightbook.model.Airline;
-import flightbook.model.AirlineRowMapper;
+import flightbook.entity.airline.Airline;
+import flightbook.entity.airline.AirlineRowMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -20,9 +20,6 @@ public class AirlineDao implements IAirlineDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public List<Airline> getAllAirlines() {
 		String sql = "SELECT * FROM Airline";
@@ -31,9 +28,6 @@ public class AirlineDao implements IAirlineDao {
 		return this.jdbcTemplate.query(sql, rowMapper);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public Airline getAirlineById(String id) {
 		String sql = "SELECT * FROM Airline WHERE Id = ?";
@@ -42,9 +36,6 @@ public class AirlineDao implements IAirlineDao {
 		return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void insert(Airline airline) {
 		String sql = "INSERT INTO Airline (Id, Name) VALUES (?, ?)";
@@ -52,9 +43,6 @@ public class AirlineDao implements IAirlineDao {
 		this.jdbcTemplate.update(sql, airline.getId(), airline.getName());
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public void update(Airline airline) {
 		String sql = "UPDATE Airline " +
