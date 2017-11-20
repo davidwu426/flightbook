@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.Collections;
 
 @Service
-public class UserService implements IUserService, UserDetailsService {
+public class UserService implements IUserService {
 	@Autowired
 	private IUserDao userDao;
 
@@ -55,7 +55,18 @@ public class UserService implements IUserService, UserDetailsService {
 	}
 
 	@Override
-	public void createUser(String username, String password, int id) {
-		userDao.createUser(username, password, id);
+	public void createUser(String username, String plaintextPassword, int id) {
+		userDao.createUser(username, encodePassword(plaintextPassword), id);
+	}
+
+	/**
+	 * Encrypts a password with BCrypt
+	 *
+	 * @param plaintextPassword  Plaintext password to encode
+	 * @return  Encoded password
+	 */
+	private String encodePassword(String plaintextPassword) {
+		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+		return encoder.encode(plaintextPassword);
 	}
 }

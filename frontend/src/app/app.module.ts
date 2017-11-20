@@ -25,6 +25,7 @@ import { RoundtripSearchCondensedComponent } from './search-condensed/roundtrip-
 import { FlightResultsComponent } from './search-results/flight-results/flight-results.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { RegisterComponent } from './account/register/register.component';
   providers: [
     AirlineService,
     MessageService,
-    SearchService
+    SearchService,
+    AuthService
   ],
   bootstrap: [AppComponent]
 })

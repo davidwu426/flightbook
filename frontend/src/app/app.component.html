@@ -22,24 +22,32 @@
             <a routerLink="" class="nav-link disabled">About</a>
           </li>
         </ul>
-    
+
         <!-- right -->
-        <ul class="navbar-nav">
+        <!-- not logged in -->
+        <ul class="navbar-nav" *ngIf="!isLoggedIn">
           <li class="nav-item">
             <a routerLink="/login" class="nav-link">Log In</a>
           </li>
           <li class="nav-item">
             <a routerLink="/register" class="nav-link">Register</a>
           </li>
+        </ul>
+
+        <!-- logged in -->
+        <ul class="navbar-nav" *ngIf="isLoggedIn">
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="dropdown"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{currentUser.username}}
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdown">
-              <a href="" class="dropdown-item">Option 1</a>
-              <a href="" class="dropdown-item">Option 2</a>
-              <a href="" class="dropdown-item">Option 3</a>
+              <a href="" class="dropdown-item">
+                <i class="fa fa-user"></i> Profile
+              </a>
+              <a (click)="logout()" class="dropdown-item">
+                <i class="fa fa-sign-out"></i> Logout
+              </a>
             </div>
           </li>
         </ul>

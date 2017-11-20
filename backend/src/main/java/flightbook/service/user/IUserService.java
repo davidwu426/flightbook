@@ -1,8 +1,9 @@
 package flightbook.service.user;
 
 import flightbook.entity.user.User;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
-public interface IUserService {
+public interface IUserService extends UserDetailsService {
 	/**
 	 * Get user by ID
 	 *

@@ -4,7 +4,6 @@ import flightbook.entity.user.User;
 import flightbook.entity.user.UserRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,13 +33,10 @@ public class UserDao implements IUserDao {
 	}
 
 	@Override
-	public void createUser(String username, String password, int id) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String encryptedPassword = encoder.encode(password);
-
+	public void createUser(String username, String encodedPassword, int id) {
 		String sql = "INSERT INTO User (Username, Password, Id) VALUES (?, ?, ?)";
 
 		RowMapper<User> rowMapper = new UserRowMapper();
-		this.jdbcTemplate.update(sql, rowMapper, username, encryptedPassword, id);
+		this.jdbcTemplate.update(sql, rowMapper, username, encodedPassword, id);
 	}
 }

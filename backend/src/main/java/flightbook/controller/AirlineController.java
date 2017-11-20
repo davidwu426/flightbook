@@ -61,6 +61,6 @@ public class AirlineController {
 	public ResponseEntity<Airline> deleteAirline(@PathVariable String id) {
 		airlineService.deleteAirline(id);
 
-		return new ResponseEntity<>(HttpStatus.OK);
+		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 	}
 }
