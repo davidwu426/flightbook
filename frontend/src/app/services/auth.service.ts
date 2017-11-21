@@ -2,8 +2,14 @@ import { Injectable } from '@angular/core';
 import { UserLogin } from '../models/user-login';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
+import { UserCredentials } from '../models/user-credentials';
+import 'rxjs/add/operator/map';
 
 const CURRENT_USER = 'currentUser';
+
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
 @Injectable()
 export class AuthService {
@@ -11,11 +17,11 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  getCurrentUser(): UserLogin {
+  getCurrentUser(): UserCredentials {
     return JSON.parse(localStorage.getItem(CURRENT_USER));
   }
 
-  setCurrentUser(user: UserLogin): void {
+  setCurrentUser(user: UserCredentials): void {
     localStorage.setItem(CURRENT_USER, JSON.stringify(user));
   }
 
@@ -24,14 +30,7 @@ export class AuthService {
   }
 
   login(user: UserLogin): Observable<any> {
-    const headers = {
-      headers: new HttpHeaders({
-        'Authorization': 'Basic ' + btoa(user.username + ':' + user.password),
-        'X-Requested-With': 'XMLHttpRequest'
-    })};
-
-    this.setCurrentUser(user);
-    return this.http.post(this.loginUrl, user, headers);
+    return this.http.post(this.loginUrl, user, httpOptions);
   }
 
   logout() {

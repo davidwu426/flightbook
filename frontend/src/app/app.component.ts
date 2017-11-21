@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
 import { Router } from '@angular/router';
-import { UserLogin } from './models/user-login';
+import { UserCredentials } from './models/user-credentials';
 
 @Component({
   selector: 'app-root',
@@ -10,16 +10,13 @@ import { UserLogin } from './models/user-login';
 })
 export class AppComponent {
   title = 'Flightbook';
-  currentUser: UserLogin;
+  currentUser: UserCredentials;
   isLoggedIn: boolean;
 
   constructor(
     private authService: AuthService,
     private router: Router
-  ) {
-    this.currentUser = this.authService.getCurrentUser();
-    this.isLoggedIn = this.authService.isLoggedIn();
-  }
+  ) { }
 
   logout() {
     this.authService.logout();

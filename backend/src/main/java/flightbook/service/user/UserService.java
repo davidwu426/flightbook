@@ -30,30 +30,33 @@ public class UserService implements IUserService {
 	}
 
 	/**
-	 * Get role of user with specified username
-	 *  Customer: person that is not an employee
-	 *  Employee: employee that is not a manager
-	 *  Manager: employee that is also a manager
-	 *
-	 * @param username  Username of user to get role of
-	 * @return  Collection of roles of user
+	 * {@inheritDoc}
 	 */
-	private Collection<? extends GrantedAuthority> getGrantedAuthorities(String username) {
-		GrantedAuthority authority = new SimpleGrantedAuthority(Role.CUSTOMER);
+	public Collection<? extends GrantedAuthority> getGrantedAuthorities(String username) {
+		GrantedAuthority authority = new SimpleGrantedAuthority(Role.ADMIN);
 
 		return Collections.singletonList(authority);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public User getUserById(int id) {
 		return userDao.getUserById(id);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public User getUserByUsername(String username) {
 		return userDao.getUserByUsername(username);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void createUser(String username, String plaintextPassword, int id) {
 		userDao.createUser(username, encodePassword(plaintextPassword), id);

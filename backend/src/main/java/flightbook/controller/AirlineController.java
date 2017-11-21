@@ -53,14 +53,18 @@ public class AirlineController {
 
 			return new ResponseEntity<>(airline, HttpStatus.OK);
 		} catch (DataAccessException e) {
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value="/{id}")
 	public ResponseEntity<Airline> deleteAirline(@PathVariable String id) {
-		airlineService.deleteAirline(id);
+		try {
+			airlineService.deleteAirline(id);
 
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} catch (DataAccessException e) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 }

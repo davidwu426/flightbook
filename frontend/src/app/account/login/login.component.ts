@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { UserLogin } from '../../models/user-login';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { UserCredentials } from '../../models/user-credentials';
 
 @Component({
   selector: 'app-login',
@@ -26,10 +27,15 @@ export class LoginComponent implements OnInit {
 
   login() {
     return this.authService.login(this.user)
-      .subscribe(next => {
+      .subscribe(res => {
+        const jwt = res.jwt;
+        const creds = new UserCredentials(this.user.username, jwt);
+
+        this.authService.setCurrentUser(creds);
         this.invalidCredentials = false;
         this.router.navigateByUrl('/');
       }, error => {
+        console.log(error);
         this.invalidCredentials = true;
       });
   }

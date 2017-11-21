@@ -1,9 +1,23 @@
 package flightbook.service.user;
 
 import flightbook.entity.user.User;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import java.util.Collection;
+
 public interface IUserService extends UserDetailsService {
+	/**
+	 * Get role of user with specified username
+	 *  Customer: person that is not an employee
+	 *  Employee: employee that is not a manager
+	 *  Manager: employee that is also a manager
+	 *
+	 * @param username  Username of user to get role of
+	 * @return  Collection of roles of user
+	 */
+	Collection<? extends GrantedAuthority> getGrantedAuthorities(String username);
+
 	/**
 	 * Get user by ID
 	 *
