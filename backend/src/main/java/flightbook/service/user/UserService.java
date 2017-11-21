@@ -33,7 +33,7 @@ public class UserService implements IUserService {
 	 * {@inheritDoc}
 	 */
 	public Collection<? extends GrantedAuthority> getGrantedAuthorities(String username) {
-		GrantedAuthority authority = new SimpleGrantedAuthority(Role.ADMIN);
+		GrantedAuthority authority = new SimpleGrantedAuthority(Role.CUSTOMER);
 
 		return Collections.singletonList(authority);
 	}

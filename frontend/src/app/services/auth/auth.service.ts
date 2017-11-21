@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { UserLogin } from '../models/user-login';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { UserCredentials } from '../models/user-credentials';
+import { UserLogin } from '../../models/user-login';
+import { UserCredentials } from '../../models/user-credentials';
 import 'rxjs/add/operator/map';
 
 const CURRENT_USER = 'currentUser';

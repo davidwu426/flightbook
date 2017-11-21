@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -25,7 +25,8 @@ import { RoundtripSearchCondensedComponent } from './search-condensed/roundtrip-
 import { FlightResultsComponent } from './search-results/flight-results/flight-results.component';
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
-import { AuthService } from './services/auth.service';
+import { AuthService } from './services/auth/auth.service';
+import { TokenIntercepter } from './auth/token-intercepter';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,12 @@ import { AuthService } from './services/auth.service';
     AirlineService,
     MessageService,
     SearchService,
-    AuthService
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenIntercepter,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })
