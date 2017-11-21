@@ -33,7 +33,7 @@ public class AirlineService implements IAirlineService {
 	 */
 	@Override
 	public void insertAirline(Airline airline) {
-		airlineDao.insert(airline);
+		airlineDao.insertAirline(airline);
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class AirlineService implements IAirlineService {
 	 */
 	@Override
 	public void updateAirline(Airline airline) {
-		airlineDao.update(airline);
+		airlineDao.updateAirline(airline);
 	}
 
 	/**
@@ -49,6 +49,6 @@ public class AirlineService implements IAirlineService {
 	 */
 	@Override
 	public void deleteAirline(String id) {
-		airlineDao.delete(id);
+		airlineDao.deleteAirline(id);
 	}
 }

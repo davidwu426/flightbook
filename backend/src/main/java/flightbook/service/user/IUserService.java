@@ -36,9 +36,14 @@ public interface IUserService extends UserDetailsService {
 	/**
 	 * Creates a new user with username, encrypted password, and person ID
 	 *
-	 * @param username  Username of user to create
-	 * @param password  Raw password of user to create
-	 * @param id        ID of user to create (should reference Person ID)
+	 * @param user  User to create
 	 */
-	void createUser(String username, String password, int id);
+	void insertUser(User user);
+
+	/**
+	 * Deletes a user
+	 *
+	 * @param id    ID of user to delete
+	 */
+	void deleteUser(int id);
 }

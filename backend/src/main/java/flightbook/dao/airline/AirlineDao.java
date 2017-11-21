@@ -37,14 +37,14 @@ public class AirlineDao implements IAirlineDao {
 	}
 
 	@Override
-	public void insert(Airline airline) {
+	public void insertAirline(Airline airline) {
 		String sql = "INSERT INTO Airline (Id, Name) VALUES (?, ?)";
 
 		this.jdbcTemplate.update(sql, airline.getId(), airline.getName());
 	}
 
 	@Override
-	public void update(Airline airline) {
+	public void updateAirline(Airline airline) {
 		String sql = "UPDATE Airline " +
 				"SET Name = ? " +
 				"WHERE Id = ?";
@@ -53,8 +53,8 @@ public class AirlineDao implements IAirlineDao {
 	}
 
 	@Override
-	public void delete(String id) {
-		String sql = "DELETE FROM Airline WHERE id = ?";
+	public void deleteAirline(String id) {
+		String sql = "DELETE FROM Airline WHERE Id = ?";
 
 		this.jdbcTemplate.update(sql, id);
 	}

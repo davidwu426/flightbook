@@ -8,4 +8,6 @@ public interface IUserDao {
 	User getUserByUsername(String username);
 
 	void createUser(String username, String password, int id);
+
+	void deleteUser(int id);
 }

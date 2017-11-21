@@ -36,7 +36,13 @@ public class UserDao implements IUserDao {
 	public void createUser(String username, String encodedPassword, int id) {
 		String sql = "INSERT INTO User (Username, Password, Id) VALUES (?, ?, ?)";
 
-		RowMapper<User> rowMapper = new UserRowMapper();
-		this.jdbcTemplate.update(sql, rowMapper, username, encodedPassword, id);
+		this.jdbcTemplate.update(sql, username, encodedPassword, id);
+	}
+
+	@Override
+	public void deleteUser(int id) {
+		String sql = "DELETE FROM User WHERE Id = ?";
+
+		this.jdbcTemplate.update(sql, id);
 	}
 }

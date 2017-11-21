@@ -9,9 +9,9 @@ public interface IAirlineDao {
 
 	 Airline getAirlineById(String id);
 
-     void insert(Airline airline);
+     void insertAirline(Airline airline);
 
-	 void update(Airline airline);
+	 void updateAirline(Airline airline);
 
-	 void delete(String id);
+	 void deleteAirline(String id);
 }

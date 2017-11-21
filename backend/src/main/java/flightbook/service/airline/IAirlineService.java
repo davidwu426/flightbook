@@ -13,13 +13,15 @@ public interface IAirlineService {
 	List<Airline> getAllAirlines();
 
 	/**
-	 * Find airline given ID of airline
+	 * Find airline given ID
+	 *
 	 * @param id    ID of airline
 	 */
 	Airline getAirlineById(String id);
 
 	/**
-	 * Inserts and airline
+	 * Inserts an airline
+	 *
 	 * @param airline   Airline to insert
 	 */
 	@Secured({Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})

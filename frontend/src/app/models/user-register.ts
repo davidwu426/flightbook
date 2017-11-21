@@ -1,3 +1,5 @@
+import { CreateCustomerRequest } from './create-customer-request';
+
 export class UserRegister {
   constructor() {
     this.type = 'customer';
@@ -9,13 +11,14 @@ export class UserRegister {
   lastName: string;
   password: string;
   confirmPassword: string;
-  phone: string;
+  telephone: string;
   address: string;
+  state: string;
   city: string;
-  zip: string;
+  zip: number;
   type: 'customer' | 'employee' | 'manager' | 'admin';
 
-  creditCard: number;
+  creditCard: string;
   email: string;
 
   ssn: string;
@@ -23,4 +26,20 @@ export class UserRegister {
   hourlyWage: number;
 
   admin: boolean;
+
+  convertToCreateCustomerRequest() {
+    return new CreateCustomerRequest(
+      this.username,
+      this.password,
+      this.firstName,
+      this.lastName,
+      this.telephone,
+      this.address,
+      this.city,
+      this.state,
+      this.zip,
+      this.creditCard,
+      this.email
+    );
+  }
 }

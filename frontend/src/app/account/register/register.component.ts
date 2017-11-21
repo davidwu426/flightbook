@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { UserRegister } from '../../models/user-register';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'app-register',
@@ -11,13 +12,26 @@ export class RegisterComponent implements OnInit {
   @Input()
   user: UserRegister;
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.user = new UserRegister();
   }
 
   register() {
-    console.log('register');
+    switch (this.user.type) {
+      case 'customer':
+        this.userService.registerCustomer(this.user.convertToCreateCustomerRequest());
+        break;
+      case 'employee':
+        this.userService.registerEmployee(this.user);
+        break;
+      case 'manager':
+        this.userService.registerManager(this.user);
+        break;
+      case 'admin':
+        this.userService.registerAdmin(this.user);
+        break;
+    }
   }
 }

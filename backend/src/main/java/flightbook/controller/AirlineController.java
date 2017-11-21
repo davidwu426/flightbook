@@ -43,7 +43,7 @@ public class AirlineController {
 		currentAirline.setName(airline.getName());
 
 		airlineService.updateAirline(currentAirline);
-		return new ResponseEntity<Airline>(currentAirline, HttpStatus.OK);
+		return new ResponseEntity<>(currentAirline, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

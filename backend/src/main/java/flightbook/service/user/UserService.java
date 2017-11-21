@@ -33,7 +33,7 @@ public class UserService implements IUserService {
 	 * {@inheritDoc}
 	 */
 	public Collection<? extends GrantedAuthority> getGrantedAuthorities(String username) {
-		GrantedAuthority authority = new SimpleGrantedAuthority(Role.CUSTOMER);
+		GrantedAuthority authority = new SimpleGrantedAuthority(Role.ADMIN);
 
 		return Collections.singletonList(authority);
 	}
@@ -58,8 +58,13 @@ public class UserService implements IUserService {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void createUser(String username, String plaintextPassword, int id) {
-		userDao.createUser(username, encodePassword(plaintextPassword), id);
+	public void insertUser(User user) {
+		userDao.createUser(user.getUsername(), encodePassword(user.getPassword()), user.getId());
+	}
+
+	@Override
+	public void deleteUser(int id) {
+		userDao.deleteUser(id);
 	}
 
 	/**

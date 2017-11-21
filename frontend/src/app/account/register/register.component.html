@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row justify-content-center text-center">
-    <div class="col-12 col-sm-8">
+    <div class="col-12 col-md-8">
 
       <div class="card">
         <div class="card-header">Register</div>
@@ -62,7 +62,7 @@
               <span class="input-group-addon">
                 <i class="fa fa-phone"></i>
               </span>
-              <input type="text" class="form-control" placeholder="Phone Number" name="phone" [(ngModel)]="user.phone" required
+              <input type="text" class="form-control" placeholder="Phone Number" name="telephone" [(ngModel)]="user.telephone" required
                 pattern="[0-9]{10}" oninvalid="this.willValidate ? '' : this.setCustomValidity('Phone Number must be 10 digits')">
             </div>
 
@@ -74,9 +74,9 @@
               <input type="text" class="form-control" placeholder="Address" name="address" [(ngModel)]="user.address" required>
             </div>
 
-            <!-- city/zip -->
+            <!-- city/state/zip -->
             <div class="row">
-              <div class="col-12 col-sm-6">
+              <div class="col-12 col-sm-5">
                 <div class="input-group">
                   <span class="input-group-addon">
                     <i class="fa fa-bicycle"></i>
@@ -84,10 +84,18 @@
                   <input type="text" class="form-control" placeholder="City" name="city" [(ngModel)]="user.city" required>
                 </div>
               </div>
-              <div class="col-12 col-sm-6">
+              <div class="col-4 col-sm-3">
                 <div class="input-group">
                   <span class="input-group-addon">
                     <i class="fa fa-building-o"></i>
+                  </span>
+                  <input type="text" class="form-control" placeholder="State" name="state" [(ngModel)]="user.state" required>
+                </div>
+              </div>
+              <div class="col-8 col-sm-4">
+                <div class="input-group">
+                  <span class="input-group-addon">
+                    <i class="fa fa-home"></i>
                   </span>
                   <input type="text" class="form-control" placeholder="Zip Code" name="zip" [(ngModel)]="user.zip" required
                     pattern="[0-9]{5}" oninvalid="this.willValidate ? '' : this.setCustomValidity('Zip Code must be 5 digits')">

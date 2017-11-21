@@ -27,6 +27,7 @@ import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { AuthService } from './services/auth/auth.service';
 import { TokenIntercepter } from './auth/token-intercepter';
+import { UserService } from './services/user/user.service';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { TokenIntercepter } from './auth/token-intercepter';
     MessageService,
     SearchService,
     AuthService,
+    UserService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenIntercepter,
