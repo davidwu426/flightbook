@@ -26,8 +26,10 @@ import { FlightResultsComponent } from './search-results/flight-results/flight-r
 import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { AuthService } from './services/auth/auth.service';
-import { TokenIntercepter } from './auth/token-intercepter';
+import { TokenInterceptor } from './auth/token.interceptor';
 import { UserService } from './services/user/user.service';
+import { AuthGuard } from './auth/auth.guard';
+import { AuthedGuard } from './auth/authed.guard';
 
 @NgModule({
   declarations: [
@@ -61,10 +63,12 @@ import { UserService } from './services/user/user.service';
     MessageService,
     SearchService,
     AuthService,
+    AuthGuard,
+    AuthedGuard,
     UserService,
     {
       provide: HTTP_INTERCEPTORS,
-      useClass: TokenIntercepter,
+      useClass: TokenInterceptor,
       multi: true
     }
   ],

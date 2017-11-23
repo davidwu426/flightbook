@@ -30,6 +30,6 @@ public class JwtLoginFilter extends AbstractAuthenticationProcessingFilter {
 
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-		(new TokenUtil()).addAuthentication(response, authResult.getName());
+		TokenUtil.addAuthentication(response, authResult.getName());
 	}
 }

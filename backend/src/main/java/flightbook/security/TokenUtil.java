@@ -14,12 +14,12 @@ import java.util.Date;
 
 @Component
 class TokenUtil {
-	private final String SECRET = "flightbooksecret";
-	private final long EXPIRATION_TIME = 864_000_000;
-	private final String TOKEN_PREFIX = "Bearer ";
-	private final String HEADER_STRING = "Authorization";
+	static final String SECRET = "flightbooksecret";
+	static final long EXPIRATION_TIME = 864_000_000;
+	static final String TOKEN_PREFIX = "Bearer ";
+	static final String HEADER_STRING = "Authorization";
 
-	void addAuthentication(HttpServletResponse res, String username) throws IOException {
+	static void addAuthentication(HttpServletResponse res, String username) throws IOException {
 		String jwt = Jwts.builder()
 				.setSubject(username)
 				.setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
@@ -32,7 +32,7 @@ class TokenUtil {
 		res.getWriter().close();
 	}
 
-	Authentication getAuthentication(HttpServletRequest req, IUserService userService) {
+	static Authentication getAuthentication(HttpServletRequest req, IUserService userService) {
 		String token = req.getHeader(HEADER_STRING);
 		if (token != null) {
 			String user = Jwts.parser()
