@@ -11,6 +11,7 @@ import { UserService } from '../../services/user/user.service';
 export class RegisterComponent implements OnInit {
   @Input()
   user: UserRegister;
+  passwordMismatch = false;
 
   constructor(private userService: UserService) { }
 
@@ -18,7 +19,16 @@ export class RegisterComponent implements OnInit {
     this.user = new UserRegister();
   }
 
+  confirmPasswordChange() {
+    this.passwordMismatch = false;
+  }
+
   register() {
+    if (this.user.password !== this.user.confirmPassword) {
+      this.passwordMismatch = true;
+      return;
+    }
+
     switch (this.user.type) {
       case 'customer':
         this.userService.registerCustomer(this.user.convertToCreateCustomerRequest());
