@@ -30,6 +30,8 @@ import { TokenInterceptor } from './auth/token.interceptor';
 import { UserService } from './services/user/user.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthedGuard } from './auth/authed.guard';
+import { NotificationService } from './services/notification/notification.service';
+import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { AuthedGuard } from './auth/authed.guard';
     RoundtripSearchCondensedComponent,
     FlightResultsComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +68,7 @@ import { AuthedGuard } from './auth/authed.guard';
     AuthService,
     AuthGuard,
     AuthedGuard,
+    NotificationService,
     UserService,
     {
       provide: HTTP_INTERCEPTORS,

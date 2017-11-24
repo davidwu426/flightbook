@@ -3,13 +3,15 @@ import { HttpInterceptor, HttpRequest, HttpResponse, HttpErrorResponse, HttpHand
 import { AuthService } from '../services/auth/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { Router } from '@angular/router';
+import { NotificationService } from '../services/notification/notification.service';
 import 'rxjs/add/operator/do';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
   constructor(
     private router: Router,
-    private injector: Injector
+    private injector: Injector,
+    private notificationService: NotificationService
   ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -25,21 +27,22 @@ export class TokenInterceptor implements HttpInterceptor {
 
     return next.handle(req).do((event: HttpEvent<any>) => {
       if (event instanceof HttpResponse) {
-        console.log('success');
       }
     }, (err: any) => {
       if (err instanceof HttpErrorResponse) {
         switch (err.status) {
           case 401:
-            console.log('Unauthorized');
+            this.notificationService.error('You are unauthorized to do this.');
             break;
           case 403:
-            console.log('No permissions');
+            this.notificationService.error('Your account does not have the necessary permissions to complete this action.');
             break;
           case 409:
-            console.log('conflict');
+            this.notificationService.error('An entry already exists in the database.');
             break;
         }
+
+        this.router.navigateByUrl('/');
       }
     });
   }
