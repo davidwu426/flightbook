@@ -5,6 +5,7 @@ import { CreateCustomerRequest } from '../../models/create-customer-request';
 import { NotificationService } from '../notification/notification.service';
 import { CreateEmployeeRequest } from '../../models/create-employee-request';
 import { Router } from '@angular/router';
+import { CreateAdminRequest } from '../../models/create-admin-request';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,6 +16,7 @@ export class UserService {
   createCustomerUrl = 'http://localhost:8080/api/customers';
   createEmployeeUrl = 'http://localhost:8080/api/employees';
   createManagerUrl = 'http://localhost:8080/api/managers';
+  createAdminUrl = 'http://localhost:8080/api/admins';
 
   constructor(
     private http: HttpClient,
@@ -44,7 +46,7 @@ export class UserService {
   }
 
   registerManager(createManagerRequest: CreateEmployeeRequest) {
-    return this.http.post<any>(this.createEmployeeUrl, createManagerRequest, httpOptions)
+    return this.http.post<any>(this.createManagerUrl, createManagerRequest, httpOptions)
       .subscribe(res => {
         this.router.navigateByUrl('/');
         this.notificationService.success('Account successfully created. Please log in.');
@@ -54,7 +56,14 @@ export class UserService {
       });
   }
 
-  registerAdmin(user: UserRegister) {
-    console.log('registerAdmin');
+  registerAdmin(createAdminRequest: CreateAdminRequest) {
+    return this.http.post<any>(this.createAdminUrl, createAdminRequest, httpOptions)
+      .subscribe(res => {
+        this.router.navigateByUrl('/');
+        this.notificationService.success('Account successfully created. Please log in.');
+      }, error => {
+        console.log(error);
+        this.notificationService.error('An error occured while attempting to create account. Account already exists.');
+      });
   }
 }

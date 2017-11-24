@@ -46,7 +46,7 @@ public class CustomerController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Customer> addCustomer(@RequestBody CreateCustomerRequest createCustomerRequest) {
+	public ResponseEntity<Customer> createCustomer(@RequestBody CreateCustomerRequest createCustomerRequest) {
 		int id = personService.getNewId();
 		int accountNo = customerService.getNewAccountNo();
 

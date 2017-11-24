@@ -45,7 +45,7 @@ public class ManagerController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Employee> addManager(@RequestBody CreateEmployeeRequest createManagerRequest) {
+	public ResponseEntity<Employee> createManager(@RequestBody CreateEmployeeRequest createManagerRequest) {
 		int id = personService.getNewId();
 
 		Person person = new Person(

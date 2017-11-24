@@ -1,5 +1,6 @@
 import { CreateCustomerRequest } from './create-customer-request';
 import { CreateEmployeeRequest } from './create-employee-request';
+import { CreateAdminRequest } from './create-admin-request';
 
 export class UserRegister {
   constructor() {
@@ -28,7 +29,7 @@ export class UserRegister {
 
   admin: boolean;
 
-  convertToCreateCustomerRequest() {
+  convertToCreateCustomerRequest(): CreateCustomerRequest {
     return new CreateCustomerRequest(
       this.username,
       this.password,
@@ -44,7 +45,7 @@ export class UserRegister {
     );
   }
 
-  convertToCreateEmployeeRequest() {
+  convertToCreateEmployeeRequest(): CreateEmployeeRequest {
     return new CreateEmployeeRequest(
       this.username,
       this.password,
@@ -58,6 +59,20 @@ export class UserRegister {
       this.ssn,
       this.startDate,
       this.hourlyWage
+    );
+  }
+
+  convertToCreateAdminRequest(): CreateAdminRequest {
+    return new CreateAdminRequest(
+      this.username,
+      this.password,
+      this.firstName,
+      this.lastName,
+      this.telephone,
+      this.address,
+      this.city,
+      this.state,
+      this.zip
     );
   }
 }

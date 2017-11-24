@@ -47,7 +47,7 @@ public class AirlineController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Airline> addAirline(@RequestBody Airline airline) {
+	public ResponseEntity<Airline> createAirline(@RequestBody Airline airline) {
 		try {
 			airlineService.insertAirline(airline);
 

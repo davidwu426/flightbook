@@ -45,7 +45,7 @@ public class EmployeeController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public ResponseEntity<Employee> addEmployee(@RequestBody CreateEmployeeRequest createEmployeeRequest) {
+	public ResponseEntity<Employee> createEmployee(@RequestBody CreateEmployeeRequest createEmployeeRequest) {
 		int id = personService.getNewId();
 
 		Person person = new Person(
