@@ -13,4 +13,7 @@ export class NotificationComponent implements OnInit {
   ngOnInit() {
   }
 
+  dismiss() {
+    this.notificationService.clear();
+  }
 }

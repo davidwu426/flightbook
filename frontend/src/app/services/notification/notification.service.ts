@@ -26,4 +26,8 @@ export class NotificationService {
     this.notification = notification;
     this.type = 'danger';
   }
+
+  clear(): void {
+    this.notification = '';
+  }
 }

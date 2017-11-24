@@ -28,7 +28,7 @@ export class UserService {
         this.router.navigateByUrl('/');
         this.notificationService.success('Account successfully created. Please log in.');
       }, error => {
-        this.notificationService.error('An error occured while attempting to create account.');
+        this.notificationService.error('An error occured while attempting to create account. Account already exists.');
       });
   }
 
@@ -39,7 +39,7 @@ export class UserService {
         this.notificationService.success('Account successfully created. Please log in.');
       }, error => {
         console.log(error);
-        this.notificationService.error('An error occured while attempting to create account.');
+        this.notificationService.error('An error occured while attempting to create account. Account already exists.');
       });
   }
 
@@ -50,7 +50,7 @@ export class UserService {
         this.notificationService.success('Account successfully created. Please log in.');
       }, error => {
         console.log(error);
-        this.notificationService.error('An error occured while attempting to create account.');
+        this.notificationService.error('An error occured while attempting to create account. Account already exists.');
       });
   }
 
