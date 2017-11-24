@@ -73,7 +73,8 @@ public class CustomerController {
 		User user = new User(
 				createCustomerRequest.getUsername(),
 				createCustomerRequest.getPassword(),
-				id);
+				id
+		);
 
 		try {
 			personService.insertPerson(person);

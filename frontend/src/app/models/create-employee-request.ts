@@ -1,4 +1,4 @@
-export class CreateCustomerRequest {
+export class CreateEmployeeRequest {
   constructor(
     private username: string,
     private password: string,
@@ -11,8 +11,9 @@ export class CreateCustomerRequest {
     private state: string,
     private zip: number,
 
-    private creditCardNo: string,
-    private email: string
+    private ssn: number,
+    private startDate: Date,
+    private hourlyWage: number
   ) {
   }
 }

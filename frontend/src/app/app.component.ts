@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from './services/auth/auth.service';
 import { Router } from '@angular/router';
 import { UserCredentials } from './models/user-credentials';
+import { NotificationService } from './services/notification/notification.service';
 
 @Component({
   selector: 'app-root',
@@ -15,11 +16,13 @@ export class AppComponent {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private notificationsService: NotificationService
   ) { }
 
   logout() {
     this.authService.logout();
+    this.notificationsService.success('You have logged out.');
     this.router.navigateByUrl('/');
   }
 }

@@ -24,10 +24,10 @@ export class RegisterComponent implements OnInit {
         this.userService.registerCustomer(this.user.convertToCreateCustomerRequest());
         break;
       case 'employee':
-        this.userService.registerEmployee(this.user);
+        this.userService.registerEmployee(this.user.convertToCreateEmployeeRequest());
         break;
       case 'manager':
-        this.userService.registerManager(this.user);
+        this.userService.registerManager(this.user.convertToCreateEmployeeRequest());
         break;
       case 'admin':
         this.userService.registerAdmin(this.user);

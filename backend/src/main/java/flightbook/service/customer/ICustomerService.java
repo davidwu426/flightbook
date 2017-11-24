@@ -8,13 +8,14 @@ import java.util.List;
 
 public interface ICustomerService {
 	/**
-	 * Get all customer
+	 * Get all customers
 	 */
 	@Secured({Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
 	List<Customer> getAllCustomers();
 
 	/**
 	 * Find customer given account number of customer
+	 *
 	 * @param accountNo    Account number of customer
 	 */
 	@Secured({Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})

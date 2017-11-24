@@ -1,4 +1,5 @@
 import { CreateCustomerRequest } from './create-customer-request';
+import { CreateEmployeeRequest } from './create-employee-request';
 
 export class UserRegister {
   constructor() {
@@ -21,7 +22,7 @@ export class UserRegister {
   creditCard: string;
   email: string;
 
-  ssn: string;
+  ssn: number;
   startDate: Date;
   hourlyWage: number;
 
@@ -40,6 +41,23 @@ export class UserRegister {
       this.zip,
       this.creditCard,
       this.email
+    );
+  }
+
+  convertToCreateEmployeeRequest() {
+    return new CreateEmployeeRequest(
+      this.username,
+      this.password,
+      this.firstName,
+      this.lastName,
+      this.telephone,
+      this.address,
+      this.city,
+      this.state,
+      this.zip,
+      this.ssn,
+      this.startDate,
+      this.hourlyWage
     );
   }
 }
