@@ -31,18 +31,16 @@ export class TokenInterceptor implements HttpInterceptor {
     }, (err: any) => {
       if (err instanceof HttpErrorResponse) {
         switch (err.status) {
-          case 401:
-            this.notificationService.error('You are unauthorized to do this.');
-            break;
           case 403:
             this.notificationService.error('Your account does not have the necessary permissions to complete this action.');
+            this.router.navigateByUrl('/');
             break;
           case 409:
             this.notificationService.error('An entry already exists in the database.');
+            this.router.navigateByUrl('/');
             break;
         }
 
-        this.router.navigateByUrl('/');
       }
     });
   }

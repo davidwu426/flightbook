@@ -37,6 +37,14 @@ public class CustomerDao implements ICustomerDao {
 	}
 
 	@Override
+	public Customer getCustomerById(int id) {
+		String sql = "SELECT * FROM Customer WHERE Id = ?";
+
+		RowMapper<Customer> rowMapper = new CustomerRowMapper();
+		return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
+	}
+
+	@Override
 	public void insertCustomer(Customer customer) {
 		String sql = "INSERT INTO Customer (Id, AccountNo, CreditCardNo, Email, CreationDate, Rating) VALUES (?, ?, ?, ?, ?, ?)";
 

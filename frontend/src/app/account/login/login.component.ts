@@ -3,6 +3,7 @@ import { UserLogin } from '../../models/user-login';
 import { AuthService } from '../../services/auth/auth.service';
 import { Router } from '@angular/router';
 import { UserCredentials } from '../../models/user-credentials';
+import { NotificationService } from '../../services/notification/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -14,15 +15,14 @@ export class LoginComponent implements OnInit {
   @Input()
   user: UserLogin;
 
-  invalidCredentials = false;
-
   constructor(
     private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private notificationService: NotificationService
+  ) { }
 
   ngOnInit() {
     this.user = new UserLogin();
-    this.invalidCredentials = false;
   }
 
   login() {
@@ -32,11 +32,9 @@ export class LoginComponent implements OnInit {
         const creds = new UserCredentials(this.user.username, jwt);
 
         this.authService.setCurrentUser(creds);
-        this.invalidCredentials = false;
         this.router.navigateByUrl('/');
       }, error => {
-        console.log(error);
-        this.invalidCredentials = true;
+        this.notificationService.error('Invalid username or password.');
       });
   }
 }

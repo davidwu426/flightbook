@@ -1,5 +1,6 @@
 package flightbook.dao.user;
 
+import flightbook.Role;
 import flightbook.entity.user.User;
 import flightbook.entity.user.UserRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;

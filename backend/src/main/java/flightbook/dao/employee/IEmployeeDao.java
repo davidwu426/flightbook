@@ -9,6 +9,8 @@ public interface IEmployeeDao {
 
 	Employee getEmployeeBySSN(int ssn);
 
+	Employee getEmployeeOrManagerById(int id);
+
 	void insertEmployee(Employee employee);
 
 	void deleteEmployee(int ssn);

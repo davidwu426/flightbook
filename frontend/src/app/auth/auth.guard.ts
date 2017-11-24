@@ -2,7 +2,7 @@ import { Router, CanActivate } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 
-// Guard to prevent a page from being accessed without loggin in
+// Guard to prevent a page from being accessed without logging in
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(

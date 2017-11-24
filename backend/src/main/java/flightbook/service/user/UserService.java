@@ -1,9 +1,14 @@
 package flightbook.service.user;
 
 import flightbook.Role;
+import flightbook.dao.customer.ICustomerDao;
+import flightbook.dao.employee.IEmployeeDao;
 import flightbook.dao.user.IUserDao;
+import flightbook.entity.employee.Employee;
 import flightbook.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,6 +23,10 @@ import java.util.Collections;
 public class UserService implements IUserService {
 	@Autowired
 	private IUserDao userDao;
+	@Autowired
+	private ICustomerDao customerDao;
+	@Autowired
+	private IEmployeeDao employeeDao;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -33,7 +42,29 @@ public class UserService implements IUserService {
 	 * {@inheritDoc}
 	 */
 	public Collection<? extends GrantedAuthority> getGrantedAuthorities(String username) {
-		GrantedAuthority authority = new SimpleGrantedAuthority(Role.ADMIN);
+		User user = userDao.getUserByUsername(username);
+		int id = user.getId();
+		String role;
+
+		try {
+			// customer
+			customerDao.getCustomerById(id);
+			role = Role.CUSTOMER;
+		} catch (DataAccessException  e1) {
+			try {
+				// employee
+				Employee employee = employeeDao.getEmployeeOrManagerById(id);
+				if (!employee.isManager()) {
+					role = Role.EMPLOYEE;
+				} else {
+					role = Role.MANAGER;
+				}
+			} catch (DataAccessException e2) {
+				role = Role.ADMIN;
+			}
+		}
+
+		GrantedAuthority authority = new SimpleGrantedAuthority(role);
 
 		return Collections.singletonList(authority);
 	}

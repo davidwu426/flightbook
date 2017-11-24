@@ -37,6 +37,14 @@ public class EmployeeDao implements IEmployeeDao {
 	}
 
 	@Override
+	public Employee getEmployeeOrManagerById(int id) {
+		String sql = "SELECT * FROM Employee WHERE Id = ?";
+
+		RowMapper<Employee> rowMapper = new EmployeeRowMapper();
+		return this.jdbcTemplate.queryForObject(sql, rowMapper, id);
+	}
+
+	@Override
 	public void insertEmployee(Employee employee) {
 		String sql = "INSERT INTO Employee (Id, SSN, IsManager, StartDate, HourlyRate) VALUES (?, ?, 0, ?, ?)";
 
