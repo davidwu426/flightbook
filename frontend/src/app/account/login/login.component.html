@@ -22,7 +22,7 @@
               <input type="password" class="form-control" placeholder="Password" name="password" [(ngModel)]="user.password">
             </div>
 
-            <button type="submit" class="btn btn-block btn-success">
+            <button type="submit" class="btn btn-block btn-success" [ladda]="isLoading">
               <i class="fa fa-unlock"></i> Log In
             </button>
           </form>

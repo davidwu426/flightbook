@@ -1,3 +1,19 @@
 body {
   margin-top: 3.5rem;
 }
+
+/* ladda style */
+
+.ladda-button {
+  position: relative;
+}
+
+.ladda-button .ladda-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.ladda-button[data-loading] .ladda-label {
+  opacity: 0;
+}

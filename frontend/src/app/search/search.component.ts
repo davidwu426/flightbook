@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class SearchComponent implements OnInit {
+  isLoading = false;
 
   constructor(
     public searchService: SearchService,
@@ -19,6 +20,8 @@ export class SearchComponent implements OnInit {
   }
 
   search() {
+    this.isLoading = true;
+
     this.router.navigateByUrl('search-results');
   }
 }

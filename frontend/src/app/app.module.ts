@@ -5,34 +5,40 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AppComponent } from './app.component';
-import { AirlinesComponent } from './airlines/airlines.component';
-import { AirlineDetailComponent } from './airline-detail/airline-detail.component';
-import { AirlineService } from './services/airline/airline.service';
-import { MessagesComponent } from './messages/messages.component';
-import { MessageService } from './services/message/message.service';
+import { LaddaModule } from 'angular2-ladda';
+
 import { AppRoutingModule } from './app-routing.module';
+
+import { AppComponent } from './app.component';
+import { NotificationComponent } from './notification/notification.component';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './account/login/login.component';
+import { RegisterComponent } from './account/register/register.component';
+import { SearchComponent } from './search/search.component';
 import { OnewaySearchComponent } from './search/oneway-search/oneway-search.component';
 import { RoundtripSearchComponent } from './search/roundtrip-search/roundtrip-search.component';
 import { MulticitySearchComponent } from './search/multicity-search/multicity-search.component';
-import { SearchComponent } from './search/search.component';
-import { SearchService } from './services/search/search.service';
-import { SearchResultsComponent } from './search-results/search-results.component';
 import { SearchCondensedComponent } from './search-condensed/search-condensed.component';
 import { OnewaySearchCondensedComponent } from './search-condensed/oneway-search-condensed/oneway-search-condensed.component';
 import { MulticitySearchCondensedComponent } from './search-condensed/multicity-search-condensed/multicity-search-condensed.component';
 import { RoundtripSearchCondensedComponent } from './search-condensed/roundtrip-search-condensed/roundtrip-search-condensed.component';
+import { SearchResultsComponent } from './search-results/search-results.component';
 import { FlightResultsComponent } from './search-results/flight-results/flight-results.component';
-import { LoginComponent } from './account/login/login.component';
-import { RegisterComponent } from './account/register/register.component';
+import { MessagesComponent } from './messages/messages.component';
+import { AirlinesComponent } from './airlines/airlines.component';
+import { AirlineDetailComponent } from './airline-detail/airline-detail.component';
+
 import { AuthService } from './services/auth/auth.service';
-import { TokenInterceptor } from './auth/token.interceptor';
 import { UserService } from './services/user/user.service';
+import { SearchService } from './services/search/search.service';
+import { NotificationService } from './services/notification/notification.service';
+import { AirlineService } from './services/airline/airline.service';
+import { MessageService } from './services/message/message.service';
+
+import { TokenInterceptor } from './auth/token.interceptor';
+
 import { AuthGuard } from './auth/auth.guard';
 import { AuthedGuard } from './auth/authed.guard';
-import { NotificationService } from './services/notification/notification.service';
-import { NotificationComponent } from './notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +67,8 @@ import { NotificationComponent } from './notification/notification.component';
     AppRoutingModule,
     HttpClientModule,
     NgbModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    LaddaModule
   ],
   providers: [
     AirlineService,

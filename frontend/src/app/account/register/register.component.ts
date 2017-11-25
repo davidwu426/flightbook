@@ -12,6 +12,7 @@ export class RegisterComponent implements OnInit {
   @Input()
   user: UserRegister;
   passwordMismatch = false;
+  isLoading = false;
 
   constructor(private userService: UserService) { }
 
@@ -28,6 +29,8 @@ export class RegisterComponent implements OnInit {
       this.passwordMismatch = true;
       return;
     }
+
+    this.isLoading = true;
 
     switch (this.user.type) {
       case 'customer':

@@ -15,6 +15,8 @@ export class LoginComponent implements OnInit {
   @Input()
   user: UserLogin;
 
+  private isLoading = false;
+
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -26,6 +28,8 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.isLoading = true;
+
     return this.authService.login(this.user)
       .subscribe(res => {
         const jwt = res.jwt;

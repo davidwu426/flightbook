@@ -22,5 +22,5 @@
   <app-roundtrip-search *ngIf="searchService.type === 'roundtrip'"></app-roundtrip-search>
   <app-multicity-search *ngIf="searchService.type === 'multicity'"></app-multicity-search>
 
-  <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-search"></i> Search</button>
+  <button type="submit" class="btn btn-primary btn-block" [ladda]="isLoading"><i class="fa fa-search"></i> Search</button>
 </form>
