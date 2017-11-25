@@ -1,14 +1,23 @@
 package flightbook.service.customer;
 
 import flightbook.dao.customer.ICustomerDao;
+import flightbook.dao.person.IPersonDao;
+import flightbook.dao.user.IUserDao;
 import flightbook.entity.customer.Customer;
+import flightbook.entity.person.Person;
+import flightbook.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
 public class CustomerService implements ICustomerService {
+	@Autowired
+	private IUserDao userDao;
+	@Autowired
+	private IPersonDao personDao;
 	@Autowired
 	private ICustomerDao customerDao;
 
@@ -23,7 +32,10 @@ public class CustomerService implements ICustomerService {
 	}
 
 	@Override
-	public void insertCustomer(Customer customer) {
+	@Transactional
+	public void insertCustomer(User user, Person person, Customer customer) {
+		userDao.insertUser(user);
+		personDao.insertPerson(person);
 		customerDao.insertCustomer(customer);
 	}
 

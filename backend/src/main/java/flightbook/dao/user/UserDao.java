@@ -1,16 +1,18 @@
 package flightbook.dao.user;
 
-import flightbook.Role;
 import flightbook.entity.user.User;
 import flightbook.entity.user.UserRowMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-@Transactional
 @Repository
 public class UserDao implements IUserDao {
+	@Autowired
+	BCryptPasswordEncoder encoder;
+
 	JdbcTemplate jdbcTemplate;
 
 	public UserDao(JdbcTemplate jdbcTemplate) {
@@ -34,10 +36,10 @@ public class UserDao implements IUserDao {
 	}
 
 	@Override
-	public void createUser(String username, String encodedPassword, int id) {
+	public void insertUser(User user) {
 		String sql = "INSERT INTO User (Username, Password, Id) VALUES (?, ?, ?)";
 
-		this.jdbcTemplate.update(sql, username, encodedPassword, id);
+		this.jdbcTemplate.update(sql, user.getUsername(), encoder.encode(user.getPassword()), user.getId());
 	}
 
 	@Override

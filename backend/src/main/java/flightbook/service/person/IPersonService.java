@@ -2,6 +2,7 @@ package flightbook.service.person;
 
 import flightbook.Role;
 import flightbook.entity.person.Person;
+import flightbook.entity.user.User;
 import org.springframework.security.access.annotation.Secured;
 
 import java.util.List;
@@ -27,9 +28,10 @@ public interface IPersonService {
 	/**
 	 * Creates a new person
 	 *
-	 * @param person    Person to create
+	 * @param user      User entity to insert
+	 * @param person    Person entity to insert
 	 */
-	void insertPerson(Person person);
+	void insertPerson(User user, Person person);
 
 	/**
 	 * Deletes a person

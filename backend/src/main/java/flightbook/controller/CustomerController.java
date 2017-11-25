@@ -77,9 +77,7 @@ public class CustomerController {
 		);
 
 		try {
-			personService.insertPerson(person);
-			customerService.insertCustomer(customer);
-			userService.insertUser(user);
+			customerService.insertCustomer(user, person, customer);
 
 			return new ResponseEntity<>(customer, HttpStatus.OK);
 		} catch (DataAccessException e) {

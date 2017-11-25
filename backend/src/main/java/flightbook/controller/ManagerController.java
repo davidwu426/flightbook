@@ -74,9 +74,7 @@ public class ManagerController {
 		);
 
 		try {
-			personService.insertPerson(person);
-			managerService.insertManager(manager);
-			userService.insertUser(user);
+			managerService.insertManager(user, person, manager);
 
 			return new ResponseEntity<>(manager, HttpStatus.OK);
 		} catch (DataAccessException e) {

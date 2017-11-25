@@ -7,7 +7,7 @@ public interface IUserDao {
 
 	User getUserByUsername(String username);
 
-	void createUser(String username, String password, int id);
+	void insertUser(User user);
 
 	void deleteUser(int id);
 }

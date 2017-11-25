@@ -45,8 +45,7 @@ public class AdminController {
 		);
 
 		try {
-			personService.insertPerson(person);
-			userService.insertUser(user);
+			personService.insertPerson(user, person);
 
 			return new ResponseEntity<>(person, HttpStatus.OK);
 		} catch (DataAccessException e) {

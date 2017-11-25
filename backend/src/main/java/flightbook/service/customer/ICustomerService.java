@@ -2,6 +2,8 @@ package flightbook.service.customer;
 
 import flightbook.Role;
 import flightbook.entity.customer.Customer;
+import flightbook.entity.person.Person;
+import flightbook.entity.user.User;
 import org.springframework.security.access.annotation.Secured;
 
 import java.util.List;
@@ -24,9 +26,11 @@ public interface ICustomerService {
 	/**
 	 * Inserts a customer
 	 *
-	 * @param customer  Customer to insert
+	 * @param user      User entity to insert
+	 * @param person    Person entity to insert
+	 * @param customer  Customer entity to insert
 	 */
-	void insertCustomer(Customer customer);
+	void insertCustomer(User user, Person person, Customer customer);
 
 	/**
 	 * Deletes a customer given an account number

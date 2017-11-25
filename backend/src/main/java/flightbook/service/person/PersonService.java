@@ -1,7 +1,9 @@
 package flightbook.service.person;
 
 import flightbook.dao.person.IPersonDao;
+import flightbook.dao.user.IUserDao;
 import flightbook.entity.person.Person;
+import flightbook.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,8 @@ import java.util.List;
 
 @Service
 public class PersonService implements IPersonService {
+	@Autowired
+	private IUserDao userDao;
 	@Autowired
 	private IPersonDao personDao;
 
@@ -23,7 +27,8 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
-	public void insertPerson(Person person) {
+	public void insertPerson(User user, Person person) {
+		userDao.insertUser(user);
 		personDao.insertPerson(person);
 	}
 

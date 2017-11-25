@@ -27,6 +27,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private IUserService userService;
 
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
 		return super.authenticationManagerBean();
@@ -51,6 +56,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.cors();
 	}
 
+	@Autowired
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(userService).passwordEncoder(bCryptPasswordEncoder());
+	}
+
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		final CorsConfiguration configuration = new CorsConfiguration();
@@ -64,11 +74,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		source.registerCorsConfiguration("/api/**", configuration);
 
 		return source;
-	}
-
-	@Autowired
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		auth.userDetailsService(userService).passwordEncoder(encoder);
 	}
 }

@@ -74,9 +74,7 @@ public class EmployeeController {
 		);
 
 		try {
-			personService.insertPerson(person);
-			employeeService.insertEmployee(employee);
-			userService.insertUser(user);
+			employeeService.insertEmployee(user, person, employee);
 
 			return new ResponseEntity<>(employee, HttpStatus.OK);
 		} catch (DataAccessException e) {

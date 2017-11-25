@@ -2,6 +2,8 @@ package flightbook.service.manager;
 
 import flightbook.Role;
 import flightbook.entity.employee.Employee;
+import flightbook.entity.person.Person;
+import flightbook.entity.user.User;
 import org.springframework.security.access.annotation.Secured;
 
 import java.util.List;
@@ -22,11 +24,13 @@ public interface IManagerService {
 	Employee getManagerBySSN(int ssn);
 
 	/**
-	 * Inserts an manager
+	 * Inserts a manager
 	 *
-	 * @param  manager Manager to insert
+	 * @param user      User entity to insert
+	 * @param person    Person entity to insert
+	 * @param manager   Manager entity to insert
 	 */
-	void insertManager(Employee manager);
+	void insertManager(User user, Person person, Employee manager);
 
 	/**
 	 * Deletes a manager given an account number

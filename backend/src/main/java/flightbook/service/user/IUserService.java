@@ -34,7 +34,7 @@ public interface IUserService extends UserDetailsService {
 	User getUserByUsername(String username);
 
 	/**
-	 * Creates a new user with username, encrypted password, and person ID
+	 * Creates a new user with an unencrypted password.
 	 *
 	 * @param user  User to create
 	 */

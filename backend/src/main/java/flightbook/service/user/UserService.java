@@ -8,12 +8,10 @@ import flightbook.entity.employee.Employee;
 import flightbook.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -90,7 +88,7 @@ public class UserService implements IUserService {
 	 */
 	@Override
 	public void insertUser(User user) {
-		userDao.createUser(user.getUsername(), encodePassword(user.getPassword()), user.getId());
+		userDao.insertUser(user);
 	}
 
 	@Override
@@ -104,8 +102,8 @@ public class UserService implements IUserService {
 	 * @param plaintextPassword  Plaintext password to encode
 	 * @return  Encoded password
 	 */
-	private String encodePassword(String plaintextPassword) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		return encoder.encode(plaintextPassword);
-	}
+//	public static String encodePassword(String plaintextPassword) {
+//		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+//		return encoder.encode(plaintextPassword);
+//	}
 }
