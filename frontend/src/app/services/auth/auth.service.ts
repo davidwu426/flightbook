@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { UserLogin } from '../../models/user-login';
 import { UserCredentials } from '../../models/user-credentials';
-import 'rxjs/add/operator/map';
 
 const CURRENT_USER = 'currentUser';
 

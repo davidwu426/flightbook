@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class HomeComponent implements OnInit {
-  constructor( ) { }
+  constructor() { }
 
   ngOnInit() {
   }

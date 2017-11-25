@@ -1,7 +1,9 @@
-<div class="alert alert-dismissible fade show mb-0 rounded-0 text-center" role="alert" [ngClass]="'alert-' + notificationService.type"
+<div class="alert alert-dismissible fade show mb-0 rounded-0 text-center" role="alert"
+  [@fadeInOut] [ngClass]="'alert-' + notificationService.type"
   *ngIf="notificationService.notification.length">
   {{notificationService.notification}}
   <button type="button" class="close" (click)="dismiss()">
     <span aria-hidden="true">&times;</span>
   </button>
+  <div class="alert-timer" [ngClass]="'border-' + notificationService.type"></div>
 </div>
