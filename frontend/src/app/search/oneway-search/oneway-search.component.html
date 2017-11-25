@@ -2,14 +2,16 @@
   <!-- airports -->
   <div class="col-12 col-sm-6 mb-3">
     <small class="form-text text-muted">Flying from</small>
-    <input type="text" class="form-control" placeholder="Airport" required
-      [(ngModel)]="c.fromAirport" name="fromAirport">
+    <select name="fromAirport" [(ngModel)]="c.fromAirport" class="custom-select" required>
+      <option *ngFor="let a of airports" [ngValue]="a.name">{{a.name}}</option>
+    </select>
   </div>
 
   <div class="col-12 col-sm-6 mb-3">
     <small class="form-text text-muted">Flying to</small>
-    <input type="text" class="form-control" placeholder="Airport" required
-      [(ngModel)]="c.toAirport" name="toAirport">
+    <select name="toAirport" [(ngModel)]="c.toAirport" class="custom-select" required>
+      <option *ngFor="let a of airports" [ngValue]="a.name">{{a.name}}</option>
+    </select>
   </div>
 </div>
 

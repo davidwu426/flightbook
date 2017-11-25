@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { SearchCriteria } from '../../models/search-criteria';
 import { SearchService } from '../../services/search/search.service';
+import { Airport } from '../../models/airport';
 
 @Component({
   selector: 'app-multicity-search',
@@ -10,6 +11,8 @@ import { SearchService } from '../../services/search/search.service';
 })
 
 export class MulticitySearchComponent implements OnInit {
+  @Input()
+  airports: Airport[];
 
   constructor(public searchService: SearchService) { }
 

@@ -33,6 +33,7 @@ import { UserService } from './services/user/user.service';
 import { SearchService } from './services/search/search.service';
 import { NotificationService } from './services/notification/notification.service';
 import { AirlineService } from './services/airline/airline.service';
+import { AirportService } from './services/airport/airport.service';
 import { MessageService } from './services/message/message.service';
 
 import { TokenInterceptor } from './auth/token.interceptor';
@@ -72,6 +73,7 @@ import { AuthedGuard } from './auth/authed.guard';
   ],
   providers: [
     AirlineService,
+    AirportService,
     MessageService,
     SearchService,
     AuthService,

@@ -6,14 +6,11 @@ import { MessageService } from '../message/message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap } from 'rxjs/operators';
 import { UserCredentials } from '../../models/user-credentials';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { Constants } from '../../constants';
 
 @Injectable()
 export class AirlineService {
-  private airlineUrl = 'http://localhost:8080/api/airlines';
+  private airlineUrl = Constants.API_URL + '/airlines';
 
   constructor(
     private messageService: MessageService,
@@ -40,7 +37,7 @@ export class AirlineService {
   updateAirline(airline: Airline): Observable<any> {
     const url = `${this.airlineUrl}/${airline.id}`;
 
-    return this.http.put(url, airline, httpOptions)
+    return this.http.put(url, airline, Constants.HTTP_OPTIONS)
       .pipe(
         tap(_ => this.log(`updated airline id=${airline.id}`)),
         catchError(this.handleError<any>('updateAirline'))
@@ -48,7 +45,7 @@ export class AirlineService {
   }
 
   addAirline(airline: Airline): Observable<Airline> {
-    return this.http.post<Airline>(this.airlineUrl, airline, httpOptions)
+    return this.http.post<Airline>(this.airlineUrl, airline, Constants.HTTP_OPTIONS)
       .pipe(
         tap((a: Airline) => this.log(`added airline with id=${a.id}`)),
         catchError(this.handleError<Airline>('addAirline'))
@@ -59,7 +56,7 @@ export class AirlineService {
     const id = airline.id;
     const url = `${this.airlineUrl}/${id}`;
 
-    return this.http.delete<Airline>(url, httpOptions)
+    return this.http.delete<Airline>(url, Constants.HTTP_OPTIONS)
       .pipe(
         tap(_ => this.log(`deleted airline id=${id}`)),
         catchError(this.handleError<Airline>('deleteAirline'))

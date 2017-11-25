@@ -6,17 +6,14 @@ import { NotificationService } from '../notification/notification.service';
 import { CreateEmployeeRequest } from '../../models/create-employee-request';
 import { Router } from '@angular/router';
 import { CreateAdminRequest } from '../../models/create-admin-request';
-
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+import { Constants } from '../../constants';
 
 @Injectable()
 export class UserService {
-  createCustomerUrl = 'http://localhost:8080/api/customers';
-  createEmployeeUrl = 'http://localhost:8080/api/employees';
-  createManagerUrl = 'http://localhost:8080/api/managers';
-  createAdminUrl = 'http://localhost:8080/api/admins';
+  createCustomerUrl = Constants.API_URL + '/customers';
+  createEmployeeUrl = Constants.API_URL + '/employees';
+  createManagerUrl = Constants.API_URL + '/managers';
+  createAdminUrl = Constants.API_URL + '/admins';
 
   constructor(
     private http: HttpClient,
@@ -25,7 +22,7 @@ export class UserService {
   ) { }
 
   registerCustomer(createCustomerRequest: CreateCustomerRequest) {
-    return this.http.post<any>(this.createCustomerUrl, createCustomerRequest, httpOptions)
+    return this.http.post<any>(this.createCustomerUrl, createCustomerRequest, Constants.HTTP_OPTIONS)
       .subscribe(res => {
         this.router.navigateByUrl('/');
         this.notificationService.success('Account successfully created. Please log in.');
@@ -35,7 +32,7 @@ export class UserService {
   }
 
   registerEmployee(createEmployeeRequest: CreateEmployeeRequest) {
-    return this.http.post<any>(this.createEmployeeUrl, createEmployeeRequest, httpOptions)
+    return this.http.post<any>(this.createEmployeeUrl, createEmployeeRequest, Constants.HTTP_OPTIONS)
       .subscribe(res => {
         this.router.navigateByUrl('/');
         this.notificationService.success('Account successfully created. Please log in.');
@@ -46,7 +43,7 @@ export class UserService {
   }
 
   registerManager(createManagerRequest: CreateEmployeeRequest) {
-    return this.http.post<any>(this.createManagerUrl, createManagerRequest, httpOptions)
+    return this.http.post<any>(this.createManagerUrl, createManagerRequest, Constants.HTTP_OPTIONS)
       .subscribe(res => {
         this.router.navigateByUrl('/');
         this.notificationService.success('Account successfully created. Please log in.');
@@ -57,7 +54,7 @@ export class UserService {
   }
 
   registerAdmin(createAdminRequest: CreateAdminRequest) {
-    return this.http.post<any>(this.createAdminUrl, createAdminRequest, httpOptions)
+    return this.http.post<any>(this.createAdminUrl, createAdminRequest, Constants.HTTP_OPTIONS)
       .subscribe(res => {
         this.router.navigateByUrl('/');
         this.notificationService.success('Account successfully created. Please log in.');
