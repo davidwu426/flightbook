@@ -20,8 +20,16 @@ public interface ICustomerService {
 	 *
 	 * @param accountNo    Account number of customer
 	 */
-	@Secured({Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
 	Customer getCustomerByAccountNo(int accountNo);
+
+	/**
+	 * Find customer given username
+	 *
+	 * @param username    Username of customer
+	 */
+	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	Customer getCustomerByUsername(String username);
 
 	/**
 	 * Inserts a customer

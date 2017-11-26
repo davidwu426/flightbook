@@ -7,6 +7,7 @@ import flightbook.entity.customer.Customer;
 import flightbook.entity.person.Person;
 import flightbook.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,16 @@ public class CustomerService implements ICustomerService {
 	@Override
 	public Customer getCustomerByAccountNo(int accountNo) {
 		return customerDao.getCustomerByAccountNo(accountNo);
+	}
+
+	@Override
+	public Customer getCustomerByUsername(String username) {
+		try {
+			return customerDao.getCustomerByUsername(username);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

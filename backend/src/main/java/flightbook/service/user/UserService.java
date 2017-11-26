@@ -13,9 +13,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Service
 public class UserService implements IUserService {
@@ -40,8 +42,23 @@ public class UserService implements IUserService {
 	 * {@inheritDoc}
 	 */
 	public Collection<? extends GrantedAuthority> getGrantedAuthorities(String username) {
+		GrantedAuthority authority = new SimpleGrantedAuthority(getRoleByUsername(username));
+
+		return Collections.singletonList(authority);
+	}
+
+	@Override
+	@Transactional
+	public String getRoleByUsername(String username) {
 		User user = userDao.getUserByUsername(username);
 		int id = user.getId();
+
+		return getRoleById(id);
+	}
+
+	@Override
+	@Transactional
+	public String getRoleById(int id) {
 		String role;
 
 		try {
@@ -62,9 +79,12 @@ public class UserService implements IUserService {
 			}
 		}
 
-		GrantedAuthority authority = new SimpleGrantedAuthority(role);
+		return role;
+	}
 
-		return Collections.singletonList(authority);
+	@Override
+	public List<User> getAllUsers() {
+		return userDao.getAllUsers();
 	}
 
 	/**
@@ -95,15 +115,4 @@ public class UserService implements IUserService {
 	public void deleteUser(int id) {
 		userDao.deleteUser(id);
 	}
-
-	/**
-	 * Encrypts a password with BCrypt
-	 *
-	 * @param plaintextPassword  Plaintext password to encode
-	 * @return  Encoded password
-	 */
-//	public static String encodePassword(String plaintextPassword) {
-//		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-//		return encoder.encode(plaintextPassword);
-//	}
 }

@@ -27,6 +27,11 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
+	public Person getPersonByUsername(String username) {
+		return personDao.getPersonByUsername(username);
+	}
+
+	@Override
 	public void insertPerson(User user, Person person) {
 		userDao.insertUser(user);
 		personDao.insertPerson(person);

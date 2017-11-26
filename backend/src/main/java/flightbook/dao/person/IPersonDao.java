@@ -9,6 +9,8 @@ public interface IPersonDao {
 
 	Person getPersonById(int id);
 
+	Person getPersonByUsername(String username);
+
 	void insertPerson(Person person);
 
 	void deletePerson(int id);

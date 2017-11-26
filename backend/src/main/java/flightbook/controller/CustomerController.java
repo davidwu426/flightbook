@@ -45,6 +45,16 @@ public class CustomerController {
 		return new ResponseEntity<>(customer, HttpStatus.OK);
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value="/username/{username}")
+	public ResponseEntity<Customer> getCustomerByUsername(@PathVariable String username) {
+		Customer customer = customerService.getCustomerByUsername(username);
+		if (customer == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		return new ResponseEntity<>(customer, HttpStatus.OK);
+	}
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Customer> createCustomer(@RequestBody CreateCustomerRequest createCustomerRequest) {
 		int id = personService.getNewId();

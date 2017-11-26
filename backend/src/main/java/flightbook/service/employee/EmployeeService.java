@@ -7,6 +7,7 @@ import flightbook.entity.employee.Employee;
 import flightbook.entity.person.Person;
 import flightbook.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,6 +30,16 @@ public class EmployeeService implements IEmployeeService {
 	@Override
 	public Employee getEmployeeBySSN(int ssn) {
 		return employeeDao.getEmployeeBySSN(ssn);
+	}
+
+	@Override
+	public Employee getEmployeeByUsername(String username) {
+		try {
+			return employeeDao.getEmployeeByUsername(username);
+		} catch (DataAccessException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 	@Override

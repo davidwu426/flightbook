@@ -8,6 +8,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class UserDao implements IUserDao {
 	@Autowired
@@ -17,6 +19,14 @@ public class UserDao implements IUserDao {
 
 	public UserDao(JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = jdbcTemplate;
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		String sql = "SELECT * FROM User";
+
+		RowMapper<User> rowMapper = new UserRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper);
 	}
 
 	@Override

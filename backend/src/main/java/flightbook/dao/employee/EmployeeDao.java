@@ -35,6 +35,18 @@ public class EmployeeDao implements IEmployeeDao {
 	}
 
 	@Override
+	public Employee getEmployeeByUsername(String username) {
+		String sql = "SELECT e.* " +
+				"FROM Employee e, User u " +
+				"WHERE u.Username = ? " +
+				"AND e.Id = u.Id " +
+				"AND e.IsManager = 0";
+
+		RowMapper<Employee> rowMapper = new EmployeeRowMapper();
+		return this.jdbcTemplate.queryForObject(sql, rowMapper, username);
+	}
+
+	@Override
 	public Employee getEmployeeOrManagerById(int id) {
 		String sql = "SELECT * FROM Employee WHERE Id = ?";
 

@@ -20,8 +20,16 @@ public interface IEmployeeService {
 	 *
 	 * @param ssn    SSN of employee
 	 */
-	@Secured({Role.MANAGER, Role.ADMIN})
+	@Secured({Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
 	Employee getEmployeeBySSN(int ssn);
+
+	/**
+	 * Find employee given username
+	 *
+	 * @param username    Username of employee
+	 */
+	@Secured({Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	Employee getEmployeeByUsername(String username);
 
 	/**
 	 * Inserts an employee

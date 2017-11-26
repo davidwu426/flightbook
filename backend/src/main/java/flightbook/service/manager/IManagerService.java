@@ -24,6 +24,14 @@ public interface IManagerService {
 	Employee getManagerBySSN(int ssn);
 
 	/**
+	 * Find manager given username
+	 *
+	 * @param username    Username of manager
+	 */
+	@Secured({Role.MANAGER, Role.ADMIN})
+	Employee getManagerByUsername(String username);
+
+	/**
 	 * Inserts a manager
 	 *
 	 * @param user      User entity to insert

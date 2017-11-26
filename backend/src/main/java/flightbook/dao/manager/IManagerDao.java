@@ -9,6 +9,8 @@ public interface IManagerDao {
 
 	Employee getManagerBySSN(int ssn);
 
+	Employee getManagerByUsername(String username);
+
 	void insertManager(Employee manager);
 
 	void deleteManager(int ssn);

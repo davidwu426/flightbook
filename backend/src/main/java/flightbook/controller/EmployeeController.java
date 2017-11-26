@@ -44,6 +44,16 @@ public class EmployeeController {
 		return new ResponseEntity<>(employee, HttpStatus.OK);
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value="/username/{username}")
+	public ResponseEntity<Employee> getEmployeeByUsername(@PathVariable String username) {
+		Employee employee = employeeService.getEmployeeByUsername(username);
+		if (employee == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		return new ResponseEntity<>(employee, HttpStatus.OK);
+	}
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Employee> createEmployee(@RequestBody CreateEmployeeRequest createEmployeeRequest) {
 		int id = personService.getNewId();

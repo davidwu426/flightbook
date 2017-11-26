@@ -1,0 +1,48 @@
+<div class="container">
+  
+  <!-- personal info -->
+  <div class="row">
+    <div class="col-12 col-sm-8 col-md-6">
+      <div class="card">
+        <div class="card-header">
+          Personal Information
+        </div>
+
+        <div class="card-body">
+          <h1>
+            <span class="badge" [ngClass]="'badge-' + roleConst.COLORS[role]">
+              {{role?.charAt(5)}}
+            </span>
+            {{user.username}}
+          </h1>
+
+          <hr>
+
+          <b>User ID:</b> {{personEntity?.id}}
+          <br>
+          <b>First Name:</b> {{personEntity?.firstName}}
+          <br>
+          <b>Last Name:</b> {{personEntity?.lastName}}
+          <br>
+          <b>Telephone:</b> {{personEntity?.telephone}}
+          <br>
+          <b>Address:</b> {{personEntity?.address}}
+          <br>
+          {{personEntity?.city}},
+          {{personEntity?.state}}
+          {{personEntity?.zip}}
+          
+          <hr>
+
+          <app-profile-information-customer *ngIf="role == roleConst.CUSTOMER"></app-profile-information-customer>
+          <app-profile-information-employee *ngIf="role == roleConst.EMPLOYEE"></app-profile-information-employee>
+          <app-profile-information-manager *ngIf="role == roleConst.MANAGER"></app-profile-information-manager>
+          <app-profile-information-admin *ngIf="role == roleConst.ADMIN"></app-profile-information-admin>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>

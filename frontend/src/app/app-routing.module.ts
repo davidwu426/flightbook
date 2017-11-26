@@ -8,11 +8,13 @@ import { LoginComponent } from './account/login/login.component';
 import { RegisterComponent } from './account/register/register.component';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthedGuard } from './auth/authed.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent, canActivate: [AuthedGuard] },
   { path: 'register', component: RegisterComponent, canActivate: [AuthedGuard] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'search-results', component: SearchResultsComponent },
   { path: 'airlines', component: AirlinesComponent },
   { path: 'detail/:id', component: AirlineDetailComponent }

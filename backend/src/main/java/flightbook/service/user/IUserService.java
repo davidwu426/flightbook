@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.Collection;
+import java.util.List;
 
 public interface IUserService extends UserDetailsService {
 	/**
@@ -17,6 +18,29 @@ public interface IUserService extends UserDetailsService {
 	 * @return  Collection of roles of user
 	 */
 	Collection<? extends GrantedAuthority> getGrantedAuthorities(String username);
+
+	/**
+	 * Returns the role of a user
+	 *
+	 * @param username  Username of user to get role of
+	 * @return  Role of user
+	 */
+	String getRoleByUsername(String username);
+
+	/**
+	 * Returns the role of a user given ID of user
+	 *
+	 * @param id    ID of user to get role of
+	 * @return  Role of user
+	 */
+	String getRoleById(int id);
+
+	/**
+	 * Get all users
+	 *
+	 * @return  List of all users
+	 */
+	List<User> getAllUsers();
 
 	/**
 	 * Get user by ID

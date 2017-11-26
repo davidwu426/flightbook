@@ -40,10 +40,11 @@
           <li class="nav-item dropdown">
             <a href="#" class="nav-link dropdown-toggle" id="dropdown"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fa fa-user-circle-o" aria-hidden="true"></i> {{authService.getCurrentUser().username}}
+              <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+              Logged in as <b>{{authService.getCurrentUser().username}}</b>
             </a>
             <div class="dropdown-menu" aria-labelledby="dropdown">
-              <a href="" class="dropdown-item">
+              <a routerLink="/profile" class="dropdown-item">
                 <i class="fa fa-user"></i> Profile
               </a>
               <a (click)="logout()" class="dropdown-item">

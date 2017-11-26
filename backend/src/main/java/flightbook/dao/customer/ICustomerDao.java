@@ -11,6 +11,8 @@ public interface ICustomerDao {
 
 	Customer getCustomerById(int id);
 
+	Customer getCustomerByUsername(String username);
+
 	void insertCustomer(Customer customer);
 
 	void deleteCustomer(int accountNo);

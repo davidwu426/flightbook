@@ -35,6 +35,17 @@ public class PersonDao implements IPersonDao {
 	}
 
 	@Override
+	public Person getPersonByUsername(String username) {
+		String sql = "SELECT p.* " +
+				"FROM Person p, User u " +
+				"WHERE u.Username = ? " +
+				"AND p.Id = u.Id;";
+
+		RowMapper<Person> rowMapper = new PersonRowMapper();
+		return this.jdbcTemplate.queryForObject(sql, rowMapper, username);
+	}
+
+	@Override
 	public void insertPerson(Person person) {
 		String sql = "INSERT INTO Person (Id, FirstName, LastName, Telephone, Address, City, State, ZipCode) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 

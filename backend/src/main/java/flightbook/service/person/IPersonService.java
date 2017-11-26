@@ -17,13 +17,22 @@ public interface IPersonService {
 	List<Person> getAllPeople();
 
 	/**
-	 * Get person by id
+	 * Get person by ID
 	 *
 	 * @param id  ID of person to get
-	 * @return  Person with specified id
+	 * @return  Person with specified ID
 	 */
-	@Secured({Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
 	Person getPersonById(int id);
+
+	/**
+	 * Get person by username
+	 *
+	 * @param username  Username of person to get
+	 * @return  Person with specified username
+	 */
+	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	Person getPersonByUsername(String username);
 
 	/**
 	 * Creates a new person

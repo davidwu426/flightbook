@@ -32,6 +32,11 @@ public class ManagerService implements IManagerService {
 	}
 
 	@Override
+	public Employee getManagerByUsername(String username) {
+		return managerDao.getManagerByUsername(username);
+	}
+
+	@Override
 	@Transactional
 	public void insertManager(User user, Person person, Employee manager) {
 		userDao.insertUser(user);

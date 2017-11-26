@@ -16,7 +16,7 @@ public class PersonRowMapper implements RowMapper<Person> {
 				rs.getString("Address"),
 				rs.getString("City"),
 				rs.getString("State"),
-				rs.getInt("Zip")
+				rs.getInt("ZipCode")
 		);
 	}
 }

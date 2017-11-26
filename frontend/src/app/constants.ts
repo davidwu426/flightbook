@@ -15,6 +15,12 @@ export class Constants {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  // HTTP options for setting response type to text
+  public static HTTP_OPTIONS_TEXT = {
+    headers: new HttpHeaders({ 'Content-Type': 'text/plain' }),
+    responseType: 'text' as 'json'
+  };
+
   // current user key in local storage
   public static CURRENT_USER_KEY = 'currentUser';
 }

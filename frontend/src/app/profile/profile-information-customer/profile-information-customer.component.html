@@ -1,0 +1,19 @@
+<b>Account Number:</b> {{customerEntity?.accountNo}}
+<br>
+<b>Credit Card Number:</b> {{customerEntity?.creditCardNo}}
+<br>
+<b>Email:</b> {{customerEntity?.email}}
+<br>
+<b>Rating:</b>
+
+<ng-container *ngFor="let i of stars">
+  <i class="text-warning fa fa-star" *ngIf="i == 1"></i>
+  <i class="text-warning fa fa-star-half-o" *ngIf="i == 0"></i>
+  <i class="text-warning fa fa-star-o" *ngIf="i == -1"></i>
+</ng-container>
+
+<br>
+
+<hr>
+
+<div class="text-muted">Customer since {{customerEntity?.creationDate | date}}</div>

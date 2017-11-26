@@ -35,6 +35,18 @@ public class ManagerDao implements IManagerDao {
 	}
 
 	@Override
+	public Employee getManagerByUsername(String username) {
+		String sql = "SELECT e.* " +
+				"FROM Employee e, User u " +
+				"WHERE u.Username = ? " +
+				"AND e.Id = u.Id " +
+				"AND e.IsManager = 1";
+
+		RowMapper<Employee> rowMapper = new EmployeeRowMapper();
+		return this.jdbcTemplate.queryForObject(sql, rowMapper, username);
+	}
+
+	@Override
 	public void insertManager(Employee manager) {
 		String sql = "INSERT INTO Employee (Id, SSN, IsManager, StartDate, HourlyRate) VALUES (?, ?, 1, ?, ?)";
 

@@ -27,6 +27,11 @@ import { FlightResultsComponent } from './search-results/flight-results/flight-r
 import { MessagesComponent } from './messages/messages.component';
 import { AirlinesComponent } from './airlines/airlines.component';
 import { AirlineDetailComponent } from './airline-detail/airline-detail.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileInformationManagerComponent } from './profile/profile-information-manager/profile-information-manager.component';
+import { ProfileInformationEmployeeComponent } from './profile/profile-information-employee/profile-information-employee.component';
+import { ProfileInformationCustomerComponent } from './profile/profile-information-customer/profile-information-customer.component';
+import { ProfileInformationAdminComponent } from './profile/profile-information-admin/profile-information-admin.component';
 
 import { AuthService } from './services/auth/auth.service';
 import { UserService } from './services/user/user.service';
@@ -60,7 +65,12 @@ import { AuthedGuard } from './auth/authed.guard';
     FlightResultsComponent,
     LoginComponent,
     RegisterComponent,
-    NotificationComponent
+    NotificationComponent,
+    ProfileComponent,
+    ProfileInformationManagerComponent,
+    ProfileInformationEmployeeComponent,
+    ProfileInformationCustomerComponent,
+    ProfileInformationAdminComponent
   ],
   imports: [
     BrowserModule,
