@@ -28,6 +28,11 @@ public class AirportService implements IAirportService {
 	}
 
 	@Override
+	public void updateAirport(Airport airport) {
+		airportDao.updateAirport(airport);
+	}
+
+	@Override
 	public void deleteAirport(String id) {
 		airportDao.deleteAirport(id);
 	}

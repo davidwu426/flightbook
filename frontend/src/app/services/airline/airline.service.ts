@@ -10,69 +10,31 @@ import { Constants } from '../../constants';
 
 @Injectable()
 export class AirlineService {
-  private airlineUrl = Constants.API_URL + '/airlines';
-
-  constructor(
-    private messageService: MessageService,
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) { }
 
   getAirlines(): Observable<Airline[]> {
-    return this.http.get<Airline[]>(this.airlineUrl)
-      .pipe(
-        tap(_ => this.log('fetched airlines')),
-        catchError(this.handleError('getAirlines', []))
-      );
+    return this.http.get<Airline[]>(Constants.API_AIRLINES_URL);
   }
 
   getAirline(id: string): Observable<Airline> {
-    const url = `${this.airlineUrl}/${id}`;
+    const url = `${Constants.API_AIRLINES_URL}/${id}`;
 
-    return this.http.get<Airline>(url).pipe(
-      tap(_ => this.log(`fetched airline id=${id}`)),
-      catchError(this.handleError<Airline>(`getAirline id=${id}`))
-    );
-  }
-
-  updateAirline(airline: Airline): Observable<any> {
-    const url = `${this.airlineUrl}/${airline.id}`;
-
-    return this.http.put(url, airline, Constants.HTTP_OPTIONS)
-      .pipe(
-        tap(_ => this.log(`updated airline id=${airline.id}`)),
-        catchError(this.handleError<any>('updateAirline'))
-      );
+    return this.http.get<Airline>(url);
   }
 
   addAirline(airline: Airline): Observable<Airline> {
-    return this.http.post<Airline>(this.airlineUrl, airline, Constants.HTTP_OPTIONS)
-      .pipe(
-        tap((a: Airline) => this.log(`added airline with id=${a.id}`)),
-        catchError(this.handleError<Airline>('addAirline'))
-      );
+    return this.http.post<Airline>(Constants.API_AIRLINES_URL, airline, Constants.HTTP_OPTIONS);
   }
 
-  deleteAirline(airline: Airline): Observable<Airline> {
-    const id = airline.id;
-    const url = `${this.airlineUrl}/${id}`;
+  updateAirline(airline: Airline): Observable<any> {
+    const url = `${Constants.API_AIRLINES_URL}/${airline.id}`;
 
-    return this.http.delete<Airline>(url, Constants.HTTP_OPTIONS)
-      .pipe(
-        tap(_ => this.log(`deleted airline id=${id}`)),
-        catchError(this.handleError<Airline>('deleteAirline'))
-      );
+    return this.http.put(url, airline, Constants.HTTP_OPTIONS);
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      this.log(`${operation} failed: ${error.message}`);
+  deleteAirline(id: string): Observable<Airline> {
+    const url = `${Constants.API_AIRLINES_URL}/${id}`;
 
-      return of(result as T);
-    };
-  }
-
-  private log(message: string) {
-    this.messageService.add('AirlineService: ' + message);
+    return this.http.delete<Airline>(url, Constants.HTTP_OPTIONS);
   }
 }

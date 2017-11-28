@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Dashboard</h1>
+  
+  <app-dashboard-customer *ngIf="role == roleConst.CUSTOMER"></app-dashboard-customer>
+  <app-dashboard-employee *ngIf="role == roleConst.EMPLOYEE"></app-dashboard-employee>
+  <app-dashboard-manager *ngIf="role == roleConst.MANAGER"></app-dashboard-manager>
+  <app-dashboard-admin *ngIf="role == roleConst.ADMIN"></app-dashboard-admin>
+</div>

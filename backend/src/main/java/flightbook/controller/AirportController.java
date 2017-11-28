@@ -44,6 +44,21 @@ public class AirportController {
 		}
 	}
 
+	@RequestMapping(method = RequestMethod.PUT, value="/{id}")
+	public ResponseEntity<Airport> updateAirport(@PathVariable String id, @RequestBody Airport airport) {
+		Airport currentAirport = airportService.getAirportById(id);
+		if (currentAirport == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		currentAirport.setName(airport.getName());
+		currentAirport.setCity(airport.getCity());
+		currentAirport.setCountry(airport.getCountry());
+
+		airportService.updateAirport(currentAirport);
+		return new ResponseEntity<>(currentAirport, HttpStatus.OK);
+	}
+
 	@RequestMapping(method = RequestMethod.DELETE, value="/{id}")
 	public ResponseEntity<Airport> deleteAirport(@PathVariable String id) {
 		try {

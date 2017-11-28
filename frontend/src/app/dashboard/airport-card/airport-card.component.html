@@ -1,0 +1,94 @@
+<div class="card">
+  <div class="card-header">
+    Airports
+  </div>
+  <div class="card-body">
+      
+    <table class="table table-hover table-sm table-responsive-sm">
+      <thead>
+        <tr>
+          <th></th>
+          <th>ID</th>
+          <th>Name</th>
+          <th>City</th>
+          <th>Country</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of airports">
+          <td>
+            <button type="button" class="close float-left" (click)="open(editAirport, a.id)"
+              data-toggle="modal" data-target="#edit-airport-modal">
+              <i class="fa fa-pencil"></i>
+            </button>
+          </td>
+          <td>{{a.id}}</td>
+          <td>{{a.name}}</td>
+          <td>{{a.city}}</td>
+          <td>{{a.country}}</td>
+          <td>
+            <button type="button" class="close" aria-label="Close" (click)="deleteAirport(a.id)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="card-footer">
+    <form class="form" (ngSubmit)="addAirport()">
+      <div class="row mb-3">
+        <div class="col-6">
+          <input class="form-control" type="text" placeholder="ID" [(ngModel)]="airport.id" name="add-airport-id">
+        </div>
+        <div class="col-6">
+          <input class="form-control" type="text" placeholder="Name" [(ngModel)]="airport.name" name="add-airport-name">
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <input class="form-control" type="text" placeholder="City" [(ngModel)]="airport.city" name="add-airport-city">
+        </div>
+        <div class="col-6">
+          <input class="form-control" type="text" placeholder="Country" [(ngModel)]="airport.country" name="add-airport-country">
+        </div>
+      </div>
+      <button class="btn btn-success btn-block" type="submit">Add Airport</button>
+    </form>
+  </div>
+</div>
+    
+<ng-template #editAirport>
+  <div class="modal-header">
+    Edit Airport
+    <button class="close" type="button" (click)="d()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <form (ngSubmit)="updateAirport(editingAirport)">
+    
+    <div class="modal-body">
+      <div class="mb-3">
+        <b>Airport ID:</b> {{editingAirport.id}}
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Airport Name:</label>
+        <input type="text" class="form-control" [(ngModel)]="editingAirport.name" name="edit-airport-name">
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Airport City:</label>
+        <input type="text" class="form-control" [(ngModel)]="editingAirport.city" name="edit-airport-city">
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Airport Country:</label>
+        <input type="text" class="form-control" [(ngModel)]="editingAirport.country" name="edit-airport-country">
+      </div>
+    </div>
+      
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Update Airport</button>
+    </div>
+  </form>
+</ng-template>

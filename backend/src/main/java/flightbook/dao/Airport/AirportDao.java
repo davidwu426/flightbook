@@ -36,13 +36,28 @@ public class AirportDao implements IAirportDao {
 
 	@Override
 	public void insertAirport(Airport airport) {
-		String sql = "INSERT INTO Airport (Id, Name) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO Airport (Id, Name, City, Country) VALUES (?, ?, ?, ?)";
 
 		this.jdbcTemplate.update(sql,
 				airport.getId(),
 				airport.getName(),
 				airport.getCity(),
 				airport.getCountry());
+	}
+
+	@Override
+	public void updateAirport(Airport airport) {
+		String sql = "UPDATE Airport " +
+				"SET Name = ?, " +
+				"City = ?, " +
+				"Country = ? " +
+				"WHERE Id = ?";
+
+		this.jdbcTemplate.update(sql,
+				airport.getName(),
+				airport.getCity(),
+				airport.getCountry(),
+				airport.getId());
 	}
 
 	@Override

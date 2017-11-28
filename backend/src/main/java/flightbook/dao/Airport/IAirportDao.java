@@ -11,5 +11,7 @@ public interface IAirportDao {
 
 	void insertAirport(Airport airport);
 
+	void updateAirport(Airport airport);
+
 	void deleteAirport(String id);
 }

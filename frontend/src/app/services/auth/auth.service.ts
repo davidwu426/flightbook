@@ -10,16 +10,6 @@ import { EmployeeEntity } from '../../models/employee-entity';
 
 @Injectable()
 export class AuthService {
-  private loginUrl = Constants.API_URL + '/login';
-
-  private userIdUrl = Constants.API_URL + '/users/id';
-  private userUsernameUrl = Constants.API_URL + '/users/username';
-
-  private personUsernameUrl = Constants.API_URL + '/people/username';
-  private customerUsernameUrl = Constants.API_URL + '/customers/username';
-  private employeeUsernameUrl = Constants.API_URL + '/employees/username';
-  private managerUsernameUrl = Constants.API_URL + '/managers/username';
-
   constructor(private http: HttpClient) { }
 
   getCurrentUser(): UserCredentials {
@@ -35,37 +25,37 @@ export class AuthService {
   }
 
   getRole(): Observable<string> {
-    const getRoleUrl = this.userUsernameUrl + `/${this.getCurrentUser().username}/role`;
+    const getRoleUrl = Constants.API_USER_USERNAME_URL + `/${this.getCurrentUser().username}/role`;
 
     return this.http.get<string>(getRoleUrl, Constants.HTTP_OPTIONS_TEXT);
   }
 
   getPersonEntity(): Observable<PersonEntity> {
-    const getPersonUrl = this.personUsernameUrl + `/${this.getCurrentUser().username}`;
+    const getPersonUrl = Constants.API_PERSON_USERNAME_URL + `/${this.getCurrentUser().username}`;
 
     return this.http.get<PersonEntity>(getPersonUrl, Constants.HTTP_OPTIONS);
   }
 
   getCustomerEntity(): Observable<CustomerEntity> {
-    const getCustomerUrl = this.customerUsernameUrl + `/${this.getCurrentUser().username}`;
+    const getCustomerUrl = Constants.API_CUSTOMER_USERNAME_URL + `/${this.getCurrentUser().username}`;
 
     return this.http.get<CustomerEntity>(getCustomerUrl, Constants.HTTP_OPTIONS);
   }
 
   getEmployeeEntity(): Observable<EmployeeEntity> {
-    const getEmployeeUrl = this.employeeUsernameUrl + `/${this.getCurrentUser().username}`;
+    const getEmployeeUrl = Constants.API_EMPLOYEE_USERNAME_URL + `/${this.getCurrentUser().username}`;
 
     return this.http.get<EmployeeEntity>(getEmployeeUrl, Constants.HTTP_OPTIONS);
   }
 
   getManagerEntity(): Observable<EmployeeEntity> {
-    const getManagerUrl = this.managerUsernameUrl + `/${this.getCurrentUser().username}`;
+    const getManagerUrl = Constants.API_MANAGER_USERNAME_URL + `/${this.getCurrentUser().username}`;
 
     return this.http.get<EmployeeEntity>(getManagerUrl, Constants.HTTP_OPTIONS);
   }
 
   login(user: UserLogin): Observable<any> {
-    return this.http.post(this.loginUrl, user, Constants.HTTP_OPTIONS);
+    return this.http.post(Constants.API_LOGIN_URL, user, Constants.HTTP_OPTIONS);
   }
 
   logout() {

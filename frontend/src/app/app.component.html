@@ -17,9 +17,6 @@
         <!-- left -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a routerLink="/airlines" class="nav-link">Airlines</a>
-          </li>
-          <li class="nav-item">
             <a routerLink="" class="nav-link disabled">About</a>
           </li>
         </ul>
@@ -46,6 +43,9 @@
             <div class="dropdown-menu" aria-labelledby="dropdown">
               <a routerLink="/profile" class="dropdown-item">
                 <i class="fa fa-user"></i> Profile
+              </a>
+              <a routerLink="/dashboard" class="dropdown-item">
+                <i class="fa fa-dashboard"></i> Dashboard
               </a>
               <a (click)="logout()" class="dropdown-item">
                 <i class="fa fa-sign-out"></i> Logout

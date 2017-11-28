@@ -1,0 +1,74 @@
+<div class="card">
+  <div class="card-header">
+    Airlines
+  </div>
+  <div class="card-body">
+      
+    <table class="table table-hover table-sm table-responsive-sm">
+      <thead>
+        <tr>
+          <th></th>
+          <th>ID</th>
+          <th>Name</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of airlines">
+          <td>
+            <button type="button" class="close float-left" (click)="open(editAirline, a.id)"
+              data-toggle="modal" data-target="#edit-airline-modal">
+              <i class="fa fa-pencil"></i>
+            </button>
+          </td>
+          <td>{{a.id}}</td>
+          <td>{{a.name}}</td>
+          <td>
+            <button type="button" class="close" aria-label="Close" (click)="deleteAirline(a.id)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="card-footer">
+    <form class="form" (ngSubmit)="addAirline()">
+      <div class="row mb-3">
+        <div class="col-6">
+          <input class="form-control" type="text" placeholder="ID" [(ngModel)]="airline.id" name="add-airline-id">
+        </div>
+        <div class="col-6">
+          <input class="form-control" type="text" placeholder="Name" [(ngModel)]="airline.name" name="add-airline-name">
+        </div>
+      </div>
+      <button class="btn btn-success btn-block" type="submit">Add Airline</button>
+    </form>
+  </div>
+</div>
+  
+<ng-template #editAirline>
+  <div class="modal-header">
+    Edit Airline
+    <button class="close" type="button" (click)="d()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <form (ngSubmit)="updateAirline(editingAirline)">
+    
+    <div class="modal-body">
+      <div class="mb-3">
+        <b>Airline ID:</b> {{editingAirline.id}}
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Airline Name:</label>
+        <input type="text" class="form-control" [(ngModel)]="editingAirline.name" name="edit-airline-name">
+      </div>
+    </div>
+      
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Update Airline</button>
+    </div>
+  </form>
+</ng-template>

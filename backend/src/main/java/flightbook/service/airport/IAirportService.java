@@ -28,6 +28,14 @@ public interface IAirportService {
 	void insertAirport(Airport airport);
 
 	/**
+	 * Updates an airport
+	 *
+	 * @param airport   Airport to update
+	 */
+	@Secured({Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	void updateAirport(Airport airport);
+
+	/**
 	 * Deletes an airport given an ID
 	 *
 	 * @param id    ID of airport to delete

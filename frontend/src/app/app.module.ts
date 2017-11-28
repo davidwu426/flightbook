@@ -9,6 +9,19 @@ import { LaddaModule } from 'angular2-ladda';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { TokenInterceptor } from './auth/token.interceptor';
+
+import { AuthGuard } from './auth/auth.guard';
+import { AuthedGuard } from './auth/authed.guard';
+
+import { AuthService } from './services/auth/auth.service';
+import { UserService } from './services/user/user.service';
+import { SearchService } from './services/search/search.service';
+import { NotificationService } from './services/notification/notification.service';
+import { AirlineService } from './services/airline/airline.service';
+import { AirportService } from './services/airport/airport.service';
+import { MessageService } from './services/message/message.service';
+
 import { AppComponent } from './app.component';
 import { NotificationComponent } from './notification/notification.component';
 import { HomeComponent } from './home/home.component';
@@ -25,32 +38,22 @@ import { RoundtripSearchCondensedComponent } from './search-condensed/roundtrip-
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { FlightResultsComponent } from './search-results/flight-results/flight-results.component';
 import { MessagesComponent } from './messages/messages.component';
-import { AirlinesComponent } from './airlines/airlines.component';
-import { AirlineDetailComponent } from './airline-detail/airline-detail.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileInformationManagerComponent } from './profile/profile-information-manager/profile-information-manager.component';
 import { ProfileInformationEmployeeComponent } from './profile/profile-information-employee/profile-information-employee.component';
 import { ProfileInformationCustomerComponent } from './profile/profile-information-customer/profile-information-customer.component';
 import { ProfileInformationAdminComponent } from './profile/profile-information-admin/profile-information-admin.component';
-
-import { AuthService } from './services/auth/auth.service';
-import { UserService } from './services/user/user.service';
-import { SearchService } from './services/search/search.service';
-import { NotificationService } from './services/notification/notification.service';
-import { AirlineService } from './services/airline/airline.service';
-import { AirportService } from './services/airport/airport.service';
-import { MessageService } from './services/message/message.service';
-
-import { TokenInterceptor } from './auth/token.interceptor';
-
-import { AuthGuard } from './auth/auth.guard';
-import { AuthedGuard } from './auth/authed.guard';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardCustomerComponent } from './dashboard/dashboard-customer/dashboard-customer.component';
+import { DashboardEmployeeComponent } from './dashboard/dashboard-employee/dashboard-employee.component';
+import { DashboardManagerComponent } from './dashboard/dashboard-manager/dashboard-manager.component';
+import { DashboardAdminComponent } from './dashboard/dashboard-admin/dashboard-admin.component';
+import { AirlineCardComponent } from './dashboard/airline-card/airline-card.component';
+import { AirportCardComponent } from './dashboard/airport-card/airport-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AirlinesComponent,
-    AirlineDetailComponent,
     MessagesComponent,
     HomeComponent,
     OnewaySearchComponent,
@@ -70,7 +73,14 @@ import { AuthedGuard } from './auth/authed.guard';
     ProfileInformationManagerComponent,
     ProfileInformationEmployeeComponent,
     ProfileInformationCustomerComponent,
-    ProfileInformationAdminComponent
+    ProfileInformationAdminComponent,
+    DashboardComponent,
+    DashboardCustomerComponent,
+    DashboardEmployeeComponent,
+    DashboardManagerComponent,
+    DashboardAdminComponent,
+    AirlineCardComponent,
+    AirportCardComponent
   ],
   imports: [
     BrowserModule,

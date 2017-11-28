@@ -7,13 +7,11 @@ import { CreateEmployeeRequest } from '../../models/create-employee-request';
 import { Router } from '@angular/router';
 import { CreateAdminRequest } from '../../models/create-admin-request';
 import { Constants } from '../../constants';
+import { UserEntity } from '../../models/user-entity';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
-  createCustomerUrl = Constants.API_URL + '/customers';
-  createEmployeeUrl = Constants.API_URL + '/employees';
-  createManagerUrl = Constants.API_URL + '/managers';
-  createAdminUrl = Constants.API_URL + '/admins';
 
   constructor(
     private http: HttpClient,
@@ -22,7 +20,7 @@ export class UserService {
   ) { }
 
   registerCustomer(createCustomerRequest: CreateCustomerRequest) {
-    return this.http.post<any>(this.createCustomerUrl, createCustomerRequest, Constants.HTTP_OPTIONS)
+    return this.http.post<any>(Constants.API_CUSTOMERS_URL, createCustomerRequest, Constants.HTTP_OPTIONS)
       .subscribe(res => {
         this.router.navigateByUrl('/');
         this.notificationService.success('Account successfully created. Please log in.');
@@ -32,7 +30,7 @@ export class UserService {
   }
 
   registerEmployee(createEmployeeRequest: CreateEmployeeRequest) {
-    return this.http.post<any>(this.createEmployeeUrl, createEmployeeRequest, Constants.HTTP_OPTIONS)
+    return this.http.post<any>(Constants.API_EMPLOYEES_URL, createEmployeeRequest, Constants.HTTP_OPTIONS)
       .subscribe(res => {
         this.router.navigateByUrl('/');
         this.notificationService.success('Account successfully created. Please log in.');
@@ -43,7 +41,7 @@ export class UserService {
   }
 
   registerManager(createManagerRequest: CreateEmployeeRequest) {
-    return this.http.post<any>(this.createManagerUrl, createManagerRequest, Constants.HTTP_OPTIONS)
+    return this.http.post<any>(Constants.API_MANAGERS_URL, createManagerRequest, Constants.HTTP_OPTIONS)
       .subscribe(res => {
         this.router.navigateByUrl('/');
         this.notificationService.success('Account successfully created. Please log in.');
@@ -54,7 +52,7 @@ export class UserService {
   }
 
   registerAdmin(createAdminRequest: CreateAdminRequest) {
-    return this.http.post<any>(this.createAdminUrl, createAdminRequest, Constants.HTTP_OPTIONS)
+    return this.http.post<any>(Constants.API_ADMINS_URL, createAdminRequest, Constants.HTTP_OPTIONS)
       .subscribe(res => {
         this.router.navigateByUrl('/');
         this.notificationService.success('Account successfully created. Please log in.');
@@ -62,5 +60,9 @@ export class UserService {
         console.log(error);
         this.notificationService.error('An error occured while attempting to create account. Account already exists.');
       });
+  }
+
+  getUsers(): Observable<UserEntity[]> {
+    return this.http.get<UserEntity[]>(Constants.API_USERS_URL, Constants.HTTP_OPTIONS);
   }
 }
