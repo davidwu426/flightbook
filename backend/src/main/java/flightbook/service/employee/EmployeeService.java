@@ -45,8 +45,8 @@ public class EmployeeService implements IEmployeeService {
 	@Override
 	@Transactional
 	public void insertEmployee(User user, Person person, Employee employee) {
-		userDao.insertUser(user);
 		personDao.insertPerson(person);
+		userDao.insertUser(user);
 		employeeDao.insertEmployee(employee);
 	}
 
