@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AirportService } from '../../services/airport/airport.service';
-import { Airport } from '../../models/airport';
+import { AirportService } from '../../../services/airport/airport.service';
+import { Airport } from '../../../models/airport';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

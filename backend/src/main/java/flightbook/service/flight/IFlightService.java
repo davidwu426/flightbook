@@ -31,6 +31,11 @@ public interface IFlightService {
 	Flight getFlight(String airlineId, int flightNo);
 
 	/**
+	 * Get all legs
+	 */
+	List<Leg> getAllLegs();
+
+	/**
 	 * Get all legs of an airline
 	 *
 	 * @param airlineId AirlineID of airline to get legs of
@@ -63,6 +68,14 @@ public interface IFlightService {
 	 */
 	@Secured({Role.MANAGER, Role.ADMIN})
 	void insertFlight(Flight flight);
+
+	/**
+	 * Inserts a flight leg
+	 *
+	 * @param leg  Leg to insert
+	 */
+	@Secured({Role.MANAGER, Role.ADMIN})
+	void insertLeg(Leg leg);
 
 	/**
 	 * Updates a flight, excluding airlineId and flightNo

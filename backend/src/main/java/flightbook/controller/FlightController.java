@@ -25,7 +25,7 @@ public class FlightController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{airlineId}")
-	public ResponseEntity<List<Flight>> getFlightsByAIrline(@PathVariable String airlineId) {
+	public ResponseEntity<List<Flight>> getFlightsByAirline(@PathVariable String airlineId) {
 		List<Flight> flights = flightService.getFlightsByAirline(airlineId);
 
 		return new ResponseEntity<>(flights, HttpStatus.OK);
@@ -39,6 +39,13 @@ public class FlightController {
 		}
 
 		return new ResponseEntity<>(flight, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/legs")
+	public ResponseEntity<List<Leg>> getAllLegs() {
+		List<Leg> legs = flightService.getAllLegs();
+
+		return new ResponseEntity<List<Leg>>(legs, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/{airlineId}/legs")
@@ -68,6 +75,17 @@ public class FlightController {
 			flightService.insertFlight(flight);
 
 			return new ResponseEntity<>(flight, HttpStatus.OK);
+		} catch (DataAccessException e) {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value = "/legs")
+	public ResponseEntity<Leg> createLeg(@RequestBody Leg leg) {
+		try {
+			flightService.insertLeg(leg);
+
+			return new ResponseEntity<>(leg, HttpStatus.OK);
 		} catch (DataAccessException e) {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { AirlineService } from '../../services/airline/airline.service';
-import { Airline } from '../../models/airline';
+import { AirlineService } from '../../../services/airline/airline.service';
+import { Airline } from '../../../models/airline';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({

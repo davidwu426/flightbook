@@ -1,0 +1,127 @@
+<div class="card">
+  <div class="card-header">
+    Flights
+  </div>
+  <div class="card-body">
+      
+    <table class="table table-sm table-responsive-sm">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Airline ID</th>
+          <th>Flight No</th>
+          <th>Number of Seats</th>
+          <th>Days Operating</th>
+          <th>Min Length of Stay</th>
+          <th>Max Length of Stay</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let f of flights">
+          <tr>
+            <td>
+              <button type="button" class="close float-left" data-toggle="collapse" [attr.data-target]="'#leg-collapse-' + f.airlineId + '-' + f.flightNo">
+                <i class="fa fa-plus"></i>
+              </button>
+            </td>
+            <td>
+              <button type="button" class="close float-left" (click)="open(editFlight, f.airlineId, f.flightNo)"
+                data-toggle="modal" data-target="#edit-flight-modal">
+                <i class="fa fa-pencil"></i>
+              </button>
+            </td>
+            <td>{{f.airlineId}}</td>
+            <td>{{f.flightNo}}</td>
+            <td>{{f.noOfSeats}}</td>
+            <td>{{f.daysOperating}}</td>
+            <td>{{f.minLengthOfStay}}</td>
+            <td>{{f.maxLengthOfStay}}</td>
+            <td>
+              <button type="button" class="close" aria-label="Close" (click)="deleteFlight(f.airlineId, f.flightNo)">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </td>
+          </tr>
+          <tr [attr.id]="'leg-collapse-' + f.airlineId + '-' + f.flightNo" class="collapse">
+            <td colspan="2"></td>
+            <td colspan="7">
+              <app-leg-table [airlineId]="f.airlineId" [flightNo]="f.flightNo"></app-leg-table>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="card-footer">
+    <form class="form" (ngSubmit)="addFlight()">
+      <div class="row mb-3">
+        <div class="col-6">
+          <input class="form-control" type="text" placeholder="Airline ID" [(ngModel)]="flight.airlineId" name="add-airline-id" required>
+        </div>
+        <div class="col-6">
+          <input class="form-control" type="text" placeholder="Flight Number" [(ngModel)]="flight.flightNo" name="add-flight-no" required>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <input class="form-control" type="text" placeholder="Number of Seats" [(ngModel)]="flight.numberOfSeats" name="add-no-of-seats" required>
+        </div>
+        <div class="col-6">
+          <input class="form-control" type="text" placeholder="Days Operating" [(ngModel)]="flight.daysOperating" name="add-flight-days-operting" required>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-6">
+          <input class="form-control" type="text" placeholder="Minimum Length of Stay" [(ngModel)]="flight.minLengthOfStay" name="add-flight-min" required>
+        </div>
+        <div class="col-6">
+          <input class="form-control" type="text" placeholder="Maximum Length of Stay" [(ngModel)]="flight.maxLengthOfStay" name="add-flight-max" required>
+        </div>
+      </div>
+      <button class="btn btn-success btn-block" type="submit">Add Flight</button>
+    </form>
+  </div>
+</div>
+    
+<ng-template #editFlight let-d="dismiss">
+  <div class="modal-header">
+    Edit Flight
+    <button class="close" type="button" (click)="d()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <form (ngSubmit)="updateFlight(editingFlight)">
+    
+    <div class="modal-body">
+      <div class="mb-3">
+        <b>Airline ID:</b> {{editingFlight.airlineId}}
+      </div>
+      <div class="mb-3">
+        <b>Flight Number:</b> {{editingFlight.flightNo}}
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Number of Seats:</label>
+        <input type="text" class="form-control" [(ngModel)]="editingFlight.noOfSeats" name="edit-no-of-seats" required>
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Days Operating:</label>
+        <input type="text" class="form-control" [(ngModel)]="editingFlight.daysOperating" name="edit-days-operating" required>
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Minimum Length of Stay:</label>
+        <input type="text" class="form-control" [(ngModel)]="editingFlight.minLengthOfStay" name="edit-min-length-of-stay" required>
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Maximum Length of Stay:</label>
+        <input type="text" class="form-control" [(ngModel)]="editingFlight.maxLengthOfStay" name="edit-max-length-of-stay" required>
+      </div>
+    </div>
+      
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Update Flight</button>
+    </div>
+  </form>
+</ng-template>

@@ -21,6 +21,8 @@ import { NotificationService } from './services/notification/notification.servic
 import { AirlineService } from './services/airline/airline.service';
 import { AirportService } from './services/airport/airport.service';
 import { MessageService } from './services/message/message.service';
+import { FlightService } from './services/flight/flight.service';
+import { LegService } from './services/leg/leg.service';
 
 import { AppComponent } from './app.component';
 import { NotificationComponent } from './notification/notification.component';
@@ -48,8 +50,10 @@ import { DashboardCustomerComponent } from './dashboard/dashboard-customer/dashb
 import { DashboardEmployeeComponent } from './dashboard/dashboard-employee/dashboard-employee.component';
 import { DashboardManagerComponent } from './dashboard/dashboard-manager/dashboard-manager.component';
 import { DashboardAdminComponent } from './dashboard/dashboard-admin/dashboard-admin.component';
-import { AirlineCardComponent } from './dashboard/airline-card/airline-card.component';
-import { AirportCardComponent } from './dashboard/airport-card/airport-card.component';
+import { AirlineCardComponent } from './dashboard/cards/airline-card/airline-card.component';
+import { AirportCardComponent } from './dashboard/cards/airport-card/airport-card.component';
+import { FlightCardComponent } from './dashboard/cards/flight-card/flight-card.component';
+import { LegTableComponent } from './dashboard/cards/flight-card/leg-table/leg-table.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +84,9 @@ import { AirportCardComponent } from './dashboard/airport-card/airport-card.comp
     DashboardManagerComponent,
     DashboardAdminComponent,
     AirlineCardComponent,
-    AirportCardComponent
+    AirportCardComponent,
+    FlightCardComponent,
+    LegTableComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +100,7 @@ import { AirportCardComponent } from './dashboard/airport-card/airport-card.comp
   providers: [
     AirlineService,
     AirportService,
+    FlightService,
     MessageService,
     SearchService,
     AuthService,
@@ -101,10 +108,11 @@ import { AirportCardComponent } from './dashboard/airport-card/airport-card.comp
     AuthedGuard,
     NotificationService,
     UserService,
+    LegService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
-      multi: true
+      multi: true,
     }
   ],
   bootstrap: [AppComponent]

@@ -61,7 +61,7 @@ public class FlightDao implements IFlightDao {
 		String sql = "UPDATE Flight " +
 				"SET NoOfSeats = ?, " +
 				"DaysOperating = ?, " +
-				"MinLengthOfStay = ? " +
+				"MinLengthOfStay = ?, " +
 				"MaxLengthOfStay = ? " +
 				"WHERE AirlineID = ? " +
 				"AND FlightNo = ?";
@@ -77,7 +77,7 @@ public class FlightDao implements IFlightDao {
 
 	@Override
 	public void deleteFlight(String airlineId, int flightNo) {
-		String sql = "DELETE FROM Airport WHERE AirlineID = ? AND FlightNo = ?";
+		String sql = "DELETE FROM Flight WHERE AirlineID = ? AND FlightNo = ?";
 
 		this.jdbcTemplate.update(sql, airlineId, flightNo);
 	}

@@ -28,7 +28,7 @@ public class LegDao implements ILegDao {
 
 	@Override
 	public List<Leg> getLegsByAirline(String airlineId) {
-		String sql = "SELECT * FROM LEG WHERE AirlineID = ?";
+		String sql = "SELECT * FROM Leg WHERE AirlineID = ?";
 
 		RowMapper<Leg> rowMapper = new LegRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, airlineId);
@@ -36,7 +36,7 @@ public class LegDao implements ILegDao {
 
 	@Override
 	public List<Leg> getLegsByFlight(String airlineId, int flightNo) {
-		String sql = "SELECT * FROM LEG WHERE AirlineID = ? AND FlightNo = ?";
+		String sql = "SELECT * FROM Leg WHERE AirlineID = ? AND FlightNo = ?";
 
 		RowMapper<Leg> rowMapper = new LegRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, airlineId, flightNo);
@@ -44,7 +44,7 @@ public class LegDao implements ILegDao {
 
 	@Override
 	public Leg getLeg(String airlineId, int flightNo, int legNo) {
-		String sql = "SELECT * FROM LEG WHERE AirlineID = ? AND FlightNo = ? AND LegNo = ?";
+		String sql = "SELECT * FROM Leg WHERE AirlineID = ? AND FlightNo = ? AND LegNo = ?";
 
 		RowMapper<Leg> rowMapper = new LegRowMapper();
 		return this.jdbcTemplate.queryForObject(sql, rowMapper, airlineId, flightNo, legNo);
@@ -68,9 +68,9 @@ public class LegDao implements ILegDao {
 	@Override
 	public void updateLeg(Leg leg) {
 		String sql = "UPDATE Leg " +
-				"SET DepAirportId = ?, " +
-				"ArrAirportId = ?, " +
-				"ArrTime = ? " +
+				"SET DepAirportID = ?, " +
+				"ArrAirportID = ?, " +
+				"ArrTime = ?, " +
 				"DepTime = ? " +
 				"WHERE AirlineID = ? " +
 				"AND FlightNo = ? " +

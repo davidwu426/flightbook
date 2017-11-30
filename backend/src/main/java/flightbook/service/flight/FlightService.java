@@ -47,8 +47,18 @@ public class FlightService implements IFlightService {
 	}
 
 	@Override
+	public List<Leg> getAllLegs() {
+		return legDao.getAllLegs();
+	}
+
+	@Override
 	public void insertFlight(Flight flight) {
 		flightDao.insertFlight(flight);
+	}
+
+	@Override
+	public void insertLeg(Leg leg) {
+		legDao.insertLeg(leg);
 	}
 
 	@Override
