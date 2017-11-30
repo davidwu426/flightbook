@@ -1,4 +1,4 @@
-package flightbook.dao.Airport;
+package flightbook.dao.airport;
 
 import flightbook.entity.airport.Airport;
 import flightbook.entity.airport.AirportRowMapper;
