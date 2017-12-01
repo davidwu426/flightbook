@@ -23,7 +23,7 @@ public class UserDao implements IUserDao {
 
 	@Override
 	public List<User> getAllUsers() {
-		String sql = "SELECT * FROM User";
+		String sql = "SELECT * FROM User ORDER BY Id";
 
 		RowMapper<User> rowMapper = new UserRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);

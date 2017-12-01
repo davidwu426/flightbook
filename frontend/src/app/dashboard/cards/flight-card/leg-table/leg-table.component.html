@@ -8,6 +8,7 @@
         <th>Arrival Airport ID</th>
         <th>Arrival Time</th>
         <th>Departure Time</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +24,11 @@
         <td>{{l.arrAirportId}}</td>
         <td>{{l.arrTime}}</td>
         <td>{{l.depTime}}</td>
+        <td>
+          <button type="button" class="close" aria-label="Close" (click)="deleteLeg(l.airlineId, l.flightNo, l.legNo)">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </td>
       </tr>
     </tbody>
   </ng-container>

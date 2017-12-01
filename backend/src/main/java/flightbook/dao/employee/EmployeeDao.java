@@ -20,7 +20,7 @@ public class EmployeeDao implements IEmployeeDao {
 
 	@Override
 	public List<Employee> getAllEmployees() {
-		String sql = "SELECT * FROM Employee WHERE IsManager = 0";
+		String sql = "SELECT * FROM Employee WHERE IsManager = 0 ORDER BY Id";
 
 		RowMapper<Employee> rowMapper = new EmployeeRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);

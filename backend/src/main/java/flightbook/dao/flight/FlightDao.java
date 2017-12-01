@@ -20,7 +20,7 @@ public class FlightDao implements IFlightDao {
 
 	@Override
 	public List<Flight> getAllFlights() {
-		String sql = "SELECT * FROM Flight";
+		String sql = "SELECT * FROM Flight ORDER BY AirlineId";
 
 		RowMapper<Flight> rowMapper = new FlightRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
@@ -28,7 +28,7 @@ public class FlightDao implements IFlightDao {
 
 	@Override
 	public List<Flight> getFlightsByAirline(String airlineId) {
-		String sql = "SELECT * FROM Flight WHERE AirlineID = ?";
+		String sql = "SELECT * FROM Flight WHERE AirlineId = ?";
 
 		RowMapper<Flight> rowMapper = new FlightRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, airlineId);
@@ -36,7 +36,7 @@ public class FlightDao implements IFlightDao {
 
 	@Override
 	public Flight getFlight(String airlineId, int flightNo) {
-		String sql = "SELECT * FROM Flight WHERE AirlineID = ? AND FlightNo = ?";
+		String sql = "SELECT * FROM Flight WHERE AirlineId = ? AND FlightNo = ?";
 
 		RowMapper<Flight> rowMapper = new FlightRowMapper();
 		return this.jdbcTemplate.queryForObject(sql, rowMapper, airlineId, flightNo);
@@ -44,7 +44,7 @@ public class FlightDao implements IFlightDao {
 
 	@Override
 	public void insertFlight(Flight flight) {
-		String sql = "INSERT INTO Flight (AirlineID, FlightNo, NoOfSeats, DaysOperating, MinLengthOfStay, MaxLengthOfStay) " +
+		String sql = "INSERT INTO Flight (AirlineId, FlightNo, NoOfSeats, DaysOperating, MinLengthOfStay, MaxLengthOfStay) " +
 				"VALUES (?, ?, ?, ?, ?, ?)";
 
 		this.jdbcTemplate.update(sql,
@@ -63,7 +63,7 @@ public class FlightDao implements IFlightDao {
 				"DaysOperating = ?, " +
 				"MinLengthOfStay = ?, " +
 				"MaxLengthOfStay = ? " +
-				"WHERE AirlineID = ? " +
+				"WHERE AirlineId = ? " +
 				"AND FlightNo = ?";
 
 		jdbcTemplate.update(sql,
@@ -77,7 +77,7 @@ public class FlightDao implements IFlightDao {
 
 	@Override
 	public void deleteFlight(String airlineId, int flightNo) {
-		String sql = "DELETE FROM Flight WHERE AirlineID = ? AND FlightNo = ?";
+		String sql = "DELETE FROM Flight WHERE AirlineId = ? AND FlightNo = ?";
 
 		this.jdbcTemplate.update(sql, airlineId, flightNo);
 	}

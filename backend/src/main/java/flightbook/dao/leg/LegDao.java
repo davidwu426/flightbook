@@ -20,7 +20,7 @@ public class LegDao implements ILegDao {
 
 	@Override
 	public List<Leg> getAllLegs() {
-		String sql = "SELECT * FROM Leg";
+		String sql = "SELECT * FROM Leg ORDER BY AirlineId";
 
 		RowMapper<Leg> rowMapper = new LegRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
@@ -28,7 +28,7 @@ public class LegDao implements ILegDao {
 
 	@Override
 	public List<Leg> getLegsByAirline(String airlineId) {
-		String sql = "SELECT * FROM Leg WHERE AirlineID = ?";
+		String sql = "SELECT * FROM Leg WHERE AirlineId = ? ORDER BY FlightNo, LegNo";
 
 		RowMapper<Leg> rowMapper = new LegRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, airlineId);
@@ -36,7 +36,7 @@ public class LegDao implements ILegDao {
 
 	@Override
 	public List<Leg> getLegsByFlight(String airlineId, int flightNo) {
-		String sql = "SELECT * FROM Leg WHERE AirlineID = ? AND FlightNo = ?";
+		String sql = "SELECT * FROM Leg WHERE AirlineId = ? AND FlightNo = ? ORDER BY LegNo";
 
 		RowMapper<Leg> rowMapper = new LegRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, airlineId, flightNo);
@@ -44,7 +44,7 @@ public class LegDao implements ILegDao {
 
 	@Override
 	public Leg getLeg(String airlineId, int flightNo, int legNo) {
-		String sql = "SELECT * FROM Leg WHERE AirlineID = ? AND FlightNo = ? AND LegNo = ?";
+		String sql = "SELECT * FROM Leg WHERE AirlineId = ? AND FlightNo = ? AND LegNo = ?";
 
 		RowMapper<Leg> rowMapper = new LegRowMapper();
 		return this.jdbcTemplate.queryForObject(sql, rowMapper, airlineId, flightNo, legNo);
@@ -52,7 +52,7 @@ public class LegDao implements ILegDao {
 
 	@Override
 	public void insertLeg(Leg leg) {
-		String sql = "INSERT INTO Leg (AirlineID, FlightNo, LegNo, DepAirportID, ArrAirportID, ArrTime, DepTime) " +
+		String sql = "INSERT INTO Leg (AirlineId, FlightNo, LegNo, DepAirportId, ArrAirportId, ArrTime, DepTime) " +
 				"VALUES (?, ?, ?, ?, ?, ?, ?)";
 
 		this.jdbcTemplate.update(sql,
@@ -68,11 +68,11 @@ public class LegDao implements ILegDao {
 	@Override
 	public void updateLeg(Leg leg) {
 		String sql = "UPDATE Leg " +
-				"SET DepAirportID = ?, " +
-				"ArrAirportID = ?, " +
+				"SET DepAirportId = ?, " +
+				"ArrAirportId = ?, " +
 				"ArrTime = ?, " +
 				"DepTime = ? " +
-				"WHERE AirlineID = ? " +
+				"WHERE AirlineId = ? " +
 				"AND FlightNo = ? " +
 				"AND LegNo = ?";
 
@@ -88,7 +88,7 @@ public class LegDao implements ILegDao {
 
 	@Override
 	public void deleteLeg(String airlineId, int flightNo, int legNo) {
-		String sql = "DELETE FROM Leg WHERE AirlineID = ? AND FlightNo = ? AND LegNo = ?";
+		String sql = "DELETE FROM Leg WHERE AirlineId = ? AND FlightNo = ? AND LegNo = ?";
 
 		this.jdbcTemplate.update(sql, airlineId, flightNo, legNo);
 	}

@@ -38,7 +38,7 @@ public interface IFlightService {
 	/**
 	 * Get all legs of an airline
 	 *
-	 * @param airlineId AirlineID of airline to get legs of
+	 * @param airlineId AirlineId of airline to get legs of
 	 * @return  List of legs of an airline
 	 */
 	List<Leg> getLegsByAirline(String airlineId);
@@ -46,7 +46,7 @@ public interface IFlightService {
 	/**
 	 * Get all legs of a flight by flight number
 	 *
-	 * @param airlineId AirlineID of airline to get legs of
+	 * @param airlineId AirlineId of airline to get legs of
 	 * @param flightNo  Flight number of flight to get legs of
 	 * @return  List of legs of a flight by flight number
 	 */
@@ -54,7 +54,7 @@ public interface IFlightService {
 
 	/**
 	 * Get a specific leg of a flight
-	 * @param airlineId AirlineID of airline to get leg of
+	 * @param airlineId AirlineId of airline to get leg of
 	 * @param flightNo  Flight number of flight to get leg of
 	 * @param legNo     Leg number of leg to get
 	 * @return  Leg of a flight
@@ -105,7 +105,7 @@ public interface IFlightService {
 	/**
 	 * Delete a leg
 	 *
-	 * @param airlineId AirlineID of flight to delete
+	 * @param airlineId AirlineId of flight to delete
 	 * @param flightNo  Flight number of leg to delete
 	 * @param legNo     Leg number of leg to delete
 	 */

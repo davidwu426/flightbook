@@ -9,7 +9,7 @@ public class FlightRowMapper implements RowMapper<Flight>{
 	@Override
 	public Flight mapRow(ResultSet rs, int rowNum) throws SQLException {
 		return new Flight(
-				rs.getString("AirlineID"),
+				rs.getString("AirlineId"),
 				rs.getInt("FlightNo"),
 				rs.getInt("NoOfSeats"),
 				rs.getString("DaysOperating"),
