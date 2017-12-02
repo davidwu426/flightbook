@@ -56,7 +56,7 @@
 
   </div>
   <div class="card-footer">
-    <form class="form" (ngSubmit)="addFlight()">
+    <form class="form" (ngSubmit)="addFlight()" ngNativeValidate>
       <div class="row mb-3">
         <div class="col-6">
           <input class="form-control" type="text" placeholder="Airline ID" [(ngModel)]="flight.airlineId" name="add-airline-id" required>
@@ -93,7 +93,7 @@
       <span>&times;</span>
     </button>
   </div>
-  <form (ngSubmit)="updateFlight(editingFlight)">
+  <form (ngSubmit)="updateFlight(editingFlight)" ngNativeValidate>
     
     <div class="modal-body">
       <div class="mb-3">

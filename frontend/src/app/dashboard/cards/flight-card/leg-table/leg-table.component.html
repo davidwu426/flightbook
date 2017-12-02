@@ -42,7 +42,7 @@
   <tfoot>
     <tr>
       <td colspan="6">
-          <form class="form" (ngSubmit)="addLeg()">
+          <form class="form" (ngSubmit)="addLeg()" ngNativeValidate>
             <div class="row mb-3">
               <div class="col-4">
                 <input class="form-control" type="text" placeholder="Leg Number" [(ngModel)]="leg.legNo" name="add-leg-no" required>
@@ -78,7 +78,7 @@
         <span>&times;</span>
       </button>
     </div>
-    <form (ngSubmit)="updateLeg(editingLeg)">
+    <form (ngSubmit)="updateLeg(editingLeg)" ngNativeValidate>
 
       <div class="modal-body">
         <div class="mb-3">

@@ -1,8 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { UserEntity } from '../../models/user-entity';
-import { UserService } from '../../services/user/user.service';
-import { AirlineService } from '../../services/airline/airline.service';
-import { Airline } from '../../models/airline';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -10,13 +6,8 @@ import { Airline } from '../../models/airline';
   styleUrls: ['./dashboard-admin.component.css']
 })
 export class DashboardAdminComponent implements OnInit {
-  users: UserEntity[];
-
-  constructor(
-    private userService: UserService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.userService.getUsers().subscribe(u => this.users = u);
   }
 }

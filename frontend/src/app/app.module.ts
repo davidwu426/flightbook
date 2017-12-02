@@ -55,6 +55,7 @@ import { AirportCardComponent } from './dashboard/cards/airport-card/airport-car
 import { FlightCardComponent } from './dashboard/cards/flight-card/flight-card.component';
 import { LegTableComponent } from './dashboard/cards/flight-card/leg-table/leg-table.component';
 import { AirportSelectComponent } from './airport-select/airport-select.component';
+import { UserCardComponent } from './dashboard/cards/user-card/user-card.component';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { AirportSelectComponent } from './airport-select/airport-select.componen
     AirportCardComponent,
     FlightCardComponent,
     LegTableComponent,
-    AirportSelectComponent
+    AirportSelectComponent,
+    UserCardComponent
   ],
   imports: [
     BrowserModule,
