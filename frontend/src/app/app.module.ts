@@ -24,6 +24,7 @@ import { MessageService } from './services/message/message.service';
 import { FlightService } from './services/flight/flight.service';
 import { LegService } from './services/leg/leg.service';
 import { EmployeeService } from './services/employee/employee.service';
+import { ManagerService } from './services/manager/manager.service';
 
 import { AppComponent } from './app.component';
 import { NotificationComponent } from './notification/notification.component';
@@ -58,6 +59,7 @@ import { LegTableComponent } from './dashboard/cards/flight-card/leg-table/leg-t
 import { AirportSelectComponent } from './airport-select/airport-select.component';
 import { UserCardComponent } from './dashboard/cards/user-card/user-card.component';
 import { EmployeeCardComponent } from './dashboard/cards/employee-card/employee-card.component';
+import { ManagerCardComponent } from './dashboard/cards/manager-card/manager-card.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +95,8 @@ import { EmployeeCardComponent } from './dashboard/cards/employee-card/employee-
     LegTableComponent,
     AirportSelectComponent,
     UserCardComponent,
-    EmployeeCardComponent
+    EmployeeCardComponent,
+    ManagerCardComponent
   ],
   imports: [
     BrowserModule,
@@ -108,6 +111,7 @@ import { EmployeeCardComponent } from './dashboard/cards/employee-card/employee-
     AirlineService,
     AirportService,
     FlightService,
+    LegService,
     MessageService,
     SearchService,
     AuthService,
@@ -115,8 +119,8 @@ import { EmployeeCardComponent } from './dashboard/cards/employee-card/employee-
     AuthedGuard,
     NotificationService,
     UserService,
-    LegService,
     EmployeeService,
+    ManagerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
