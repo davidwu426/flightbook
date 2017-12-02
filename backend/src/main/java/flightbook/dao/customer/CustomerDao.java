@@ -20,7 +20,7 @@ public class CustomerDao implements ICustomerDao {
 
 	@Override
 	public List<Customer> getAllCustomers() {
-		String sql = "SELECT * FROM Customer";
+		String sql = "SELECT * FROM Customer ORDER BY Id";
 
 		RowMapper<Customer> rowMapper = new CustomerRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);

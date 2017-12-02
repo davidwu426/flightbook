@@ -24,9 +24,6 @@ public class EmployeeController {
 	@Autowired
 	IPersonService personService;
 
-	@Autowired
-	IUserService userService;
-
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Employee>> getAllEmployees() {
 		List<Employee> employees = employeeService.getAllEmployees();

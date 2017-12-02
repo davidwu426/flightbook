@@ -25,9 +25,6 @@ public class CustomerController {
 	@Autowired
 	IPersonService personService;
 
-	@Autowired
-	IUserService userService;
-
 	@RequestMapping(method = RequestMethod.GET)
 	public ResponseEntity<List<Customer>> getAllCustomers() {
 		List<Customer> customers = customerService.getAllCustomers();

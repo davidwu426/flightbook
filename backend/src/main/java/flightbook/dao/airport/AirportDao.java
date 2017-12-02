@@ -1,4 +1,4 @@
-package flightbook.dao.Airport;
+package flightbook.dao.airport;
 
 import flightbook.entity.airport.Airport;
 import flightbook.entity.airport.AirportRowMapper;
@@ -20,7 +20,7 @@ public class AirportDao implements IAirportDao {
 
 	@Override
 	public List<Airport> getAllAirports() {
-		String sql = "SELECT * FROM Airport";
+		String sql = "SELECT * FROM Airport ORDER BY Id";
 
 		RowMapper<Airport> rowMapper = new AirportRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);

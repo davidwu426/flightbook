@@ -48,7 +48,7 @@
   </div>
 </div>
   
-<ng-template #editAirline>
+<ng-template #editAirline let-d="dismiss">
   <div class="modal-header">
     Edit Airline
     <button class="close" type="button" (click)="d()">

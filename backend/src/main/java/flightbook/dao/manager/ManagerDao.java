@@ -20,7 +20,7 @@ public class ManagerDao implements IManagerDao {
 
 	@Override
 	public List<Employee> getAllManagers() {
-		String sql = "SELECT * FROM Employee WHERE IsManager = 1";
+		String sql = "SELECT * FROM Employee WHERE IsManager = 1 ORDER BY Id";
 
 		RowMapper<Employee> rowMapper = new EmployeeRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);

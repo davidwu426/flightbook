@@ -20,9 +20,6 @@ public class AdminController {
 	@Autowired
 	IPersonService personService;
 
-	@Autowired
-	IUserService userService;
-
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Person> createAdmin(@RequestBody CreateAdminRequest createAdminRequest) {
 		int id = personService.getNewId();

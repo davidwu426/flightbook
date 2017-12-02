@@ -43,4 +43,7 @@ export class Constants {
   public static API_CUSTOMER_USERNAME_URL = Constants.API_CUSTOMERS_URL + '/username';
   public static API_EMPLOYEE_USERNAME_URL = Constants.API_EMPLOYEES_URL + '/username';
   public static API_MANAGER_USERNAME_URL = Constants.API_MANAGERS_URL + '/username';
+
+  public static API_FLIGHTS_URL = Constants.API_URL + '/flights';
+  public static API_LEGS = '/legs';
 }
