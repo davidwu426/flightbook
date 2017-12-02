@@ -18,9 +18,9 @@
 </div>
 
 <form class="form-group" (ngSubmit)="search()" ngNativeValidate>
-  <app-oneway-search *ngIf="searchService.type === 'oneway'" [airports]="airports"></app-oneway-search>
-  <app-roundtrip-search *ngIf="searchService.type === 'roundtrip'" [airports]="airports"></app-roundtrip-search>
-  <app-multicity-search *ngIf="searchService.type === 'multicity'" [airports]="airports"></app-multicity-search>
+  <app-oneway-search *ngIf="searchService.type === 'oneway'"></app-oneway-search>
+  <app-roundtrip-search *ngIf="searchService.type === 'roundtrip'"></app-roundtrip-search>
+  <app-multicity-search *ngIf="searchService.type === 'multicity'"></app-multicity-search>
 
   <button type="submit" class="btn btn-primary btn-block" [ladda]="isLoading"><i class="fa fa-search"></i> Search</button>
 </form>

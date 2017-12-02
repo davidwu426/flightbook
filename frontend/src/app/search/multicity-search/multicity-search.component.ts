@@ -11,9 +11,6 @@ import { Airport } from '../../models/airport';
 })
 
 export class MulticitySearchComponent implements OnInit {
-  @Input()
-  airports: Airport[];
-
   constructor(public searchService: SearchService) { }
 
   ngOnInit() {
