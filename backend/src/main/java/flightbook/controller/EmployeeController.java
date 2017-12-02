@@ -6,7 +6,6 @@ import flightbook.entity.person.Person;
 import flightbook.entity.user.User;
 import flightbook.service.employee.IEmployeeService;
 import flightbook.service.person.IPersonService;
-import flightbook.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -71,7 +70,7 @@ public class EmployeeController {
 				createEmployeeRequest.getSSN(),
 				false,
 				createEmployeeRequest.getStartDate(),
-				createEmployeeRequest.getHourlyWage()
+				createEmployeeRequest.getHourlyRate()
 		);
 
 		User user = new User(

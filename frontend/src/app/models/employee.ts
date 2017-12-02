@@ -1,4 +1,4 @@
-export class EmployeeEntity {
+export class Employee {
   id: number;
   ssn: number;
   isManager: boolean;

@@ -67,7 +67,10 @@ public class EmployeeDao implements IEmployeeDao {
 
 	@Override
 	public void deleteEmployee(int ssn) {
-		String sql = "DELETE FROM Employee WHERE SSN = ? AND IsManager = 0";
+		String sql = "DELETE Person " +
+				"FROM Person " +
+				"INNER JOIN Employee ON Employee.Id = Person.Id " +
+				"WHERE Employee.SSN = ? AND Employee.IsManager = 0";
 
 		this.jdbcTemplate.update(sql, ssn);
 	}

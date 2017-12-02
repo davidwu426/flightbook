@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserEntity } from '../../../models/user-entity';
+import { User } from '../../../models/user';
 import { UserService } from '../../../services/user/user.service';
 
 @Component({
@@ -8,11 +8,15 @@ import { UserService } from '../../../services/user/user.service';
   styleUrls: ['./user-card.component.css']
 })
 export class UserCardComponent implements OnInit {
-  users: UserEntity[];
+  users: User[];
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    this.loadUsers();
+  }
+
+  loadUsers() {
     this.userService.getUsers().subscribe(u => this.users = u);
   }
 }

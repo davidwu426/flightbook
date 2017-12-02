@@ -20,59 +20,62 @@ export class UserRegister {
   zip: number;
   type: 'customer' | 'employee' | 'manager' | 'admin';
 
-  creditCard: string;
+  creditCardNo: string;
   email: string;
 
   ssn: number;
   startDate: Date;
-  hourlyWage: number;
+  hourlyRate: number;
 
   admin: boolean;
 
   convertToCreateCustomerRequest(): CreateCustomerRequest {
-    return new CreateCustomerRequest(
-      this.username,
-      this.password,
-      this.firstName,
-      this.lastName,
-      this.telephone,
-      this.address,
-      this.city,
-      this.state,
-      this.zip,
-      this.creditCard,
-      this.email
-    );
+    const c = new CreateCustomerRequest();
+    c.username = this.username;
+    c.password = this.password;
+    c.firstName = this.firstName;
+    c.lastName = this.lastName;
+    c.telephone = this.telephone;
+    c.address = this.address;
+    c.city = this.city;
+    c.state = this.state;
+    c.zip = this.zip;
+    c.creditCardNo = this.creditCardNo;
+    c.email = this.email;
+
+    return c;
   }
 
   convertToCreateEmployeeRequest(): CreateEmployeeRequest {
-    return new CreateEmployeeRequest(
-      this.username,
-      this.password,
-      this.firstName,
-      this.lastName,
-      this.telephone,
-      this.address,
-      this.city,
-      this.state,
-      this.zip,
-      this.ssn,
-      this.startDate,
-      this.hourlyWage
-    );
+    const e = new CreateEmployeeRequest();
+    e.username = this.username;
+    e.password = this.password;
+    e.firstName = this.firstName;
+    e.lastName = this.lastName;
+    e.telephone = this.telephone;
+    e.address = this.address;
+    e.city = this.city;
+    e.state = this.state;
+    e.zip = this.zip;
+    e.ssn = this.ssn;
+    e.startDate = this.startDate;
+    e.hourlyRate = this.hourlyRate;
+
+    return e;
   }
 
   convertToCreateAdminRequest(): CreateAdminRequest {
-    return new CreateAdminRequest(
-      this.username,
-      this.password,
-      this.firstName,
-      this.lastName,
-      this.telephone,
-      this.address,
-      this.city,
-      this.state,
-      this.zip
-    );
+    const c = new CreateAdminRequest();
+    c.username = this.username;
+    c.password = this.password;
+    c.firstName = this.firstName;
+    c.lastName = this.lastName;
+    c.telephone = this.telephone;
+    c.address = this.address;
+    c.city = this.city;
+    c.state = this.state;
+    c.zip = this.zip;
+
+    return c;
   }
 }

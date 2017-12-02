@@ -68,7 +68,10 @@ public class CustomerDao implements ICustomerDao {
 
 	@Override
 	public void deleteCustomer(int accountNo) {
-		String sql = "DELETE FROM Customer WHERE AccountNo = ?";
+		String sql = "DELETE Person " +
+				"FROM Person " +
+				"INNER JOIN Customer ON Customer.Id = Person.Id " +
+				"WHERE Customer.AccountNo = ?";
 
 		this.jdbcTemplate.update(sql, accountNo);
 	}

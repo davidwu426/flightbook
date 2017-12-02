@@ -39,8 +39,8 @@ public class ManagerService implements IManagerService {
 	@Override
 	@Transactional
 	public void insertManager(User user, Person person, Employee manager) {
-		userDao.insertUser(user);
 		personDao.insertPerson(person);
+		userDao.insertUser(user);
 		managerDao.insertManager(manager);
 	}
 

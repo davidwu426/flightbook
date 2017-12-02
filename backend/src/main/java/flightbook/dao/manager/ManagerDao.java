@@ -59,7 +59,10 @@ public class ManagerDao implements IManagerDao {
 
 	@Override
 	public void deleteManager(int ssn) {
-		String sql = "DELETE FROM Employee WHERE SSN = ? AND IsManager = 1";
+		String sql = "DELETE Person " +
+				"FROM Person " +
+				"INNER JOIN Employee ON Employee.Id = Person.Id " +
+				"WHERE Employee.SSN = ? AND Employee.IsManager = 1";
 
 		this.jdbcTemplate.update(sql, ssn);
 	}

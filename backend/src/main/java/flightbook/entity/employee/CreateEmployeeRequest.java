@@ -19,5 +19,5 @@ public class CreateEmployeeRequest {
 
 	private int SSN;
 	private Date startDate;
-	private double hourlyWage;
+	private double hourlyRate;
 }

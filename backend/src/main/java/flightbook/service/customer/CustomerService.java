@@ -45,8 +45,8 @@ public class CustomerService implements ICustomerService {
 	@Override
 	@Transactional
 	public void insertCustomer(User user, Person person, Customer customer) {
-		userDao.insertUser(user);
 		personDao.insertPerson(person);
+		userDao.insertUser(user);
 		customerDao.insertCustomer(customer);
 	}
 
