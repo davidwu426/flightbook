@@ -89,6 +89,20 @@ public class ManagerController {
 		}
 	}
 
+	@RequestMapping(method = RequestMethod.PUT, value="/{ssn}")
+	public ResponseEntity<Employee> updateManager(@PathVariable int ssn, @RequestBody Employee manager) {
+		Employee currentManager = managerService.getManagerBySSN(ssn);
+		if (currentManager == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		currentManager.setStartDate(manager.getStartDate());
+		currentManager.setHourlyRate(manager.getHourlyRate());
+
+		managerService.updateManager(currentManager);
+		return new ResponseEntity<>(currentManager, HttpStatus.OK);
+	}
+
 	@RequestMapping(method = RequestMethod.DELETE, value="/{ssn}")
 	public ResponseEntity<Employee> deleteManager(@PathVariable int ssn) {
 		try {

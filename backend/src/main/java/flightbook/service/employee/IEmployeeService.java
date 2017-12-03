@@ -41,6 +41,13 @@ public interface IEmployeeService {
 	void insertEmployee(User user, Person person, Employee employee);
 
 	/**
+	 * Updates an employee
+	 *
+	 * @param employee  Employee to update
+	 */
+	void updateEmployee(Employee employee);
+
+	/**
 	 * Deletes a employee given an account number
 	 *
 	 * @param ssn    SSN of employee to delete

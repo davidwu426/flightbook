@@ -67,6 +67,23 @@ public class CustomerDao implements ICustomerDao {
 	}
 
 	@Override
+	public void updateCustomer(Customer customer) {
+		String sql = "UPDATE Customer " +
+				"SET CreditCardNo = ?, " +
+				"Email = ?, " +
+				"CreationDate = ?, " +
+				"Rating = ? " +
+				"WHERE AccountNo = ?";
+
+		this.jdbcTemplate.update(sql,
+				customer.getCreditCardNo(),
+				customer.getEmail(),
+				customer.getCreationDate(),
+				customer.getRating(),
+				customer.getAccountNo());
+	}
+
+	@Override
 	public void deleteCustomer(int accountNo) {
 		String sql = "DELETE Person " +
 				"FROM Person " +

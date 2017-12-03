@@ -15,6 +15,8 @@ public interface ICustomerDao {
 
 	void insertCustomer(Customer customer);
 
+	void updateCustomer(Customer customer);
+
 	void deleteCustomer(int accountNo);
 
 	int getNewAccountNo();

@@ -13,5 +13,7 @@ public interface IManagerDao {
 
 	void insertManager(Employee manager);
 
+	void updateManager(Employee manager);
+
 	void deleteManager(int ssn);
 }

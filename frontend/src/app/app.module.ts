@@ -25,6 +25,7 @@ import { FlightService } from './services/flight/flight.service';
 import { LegService } from './services/leg/leg.service';
 import { EmployeeService } from './services/employee/employee.service';
 import { ManagerService } from './services/manager/manager.service';
+import { CustomerService } from './services/customer/customer.service';
 
 import { AppComponent } from './app.component';
 import { NotificationComponent } from './notification/notification.component';
@@ -60,6 +61,7 @@ import { AirportSelectComponent } from './airport-select/airport-select.componen
 import { UserCardComponent } from './dashboard/cards/user-card/user-card.component';
 import { EmployeeCardComponent } from './dashboard/cards/employee-card/employee-card.component';
 import { ManagerCardComponent } from './dashboard/cards/manager-card/manager-card.component';
+import { CustomerCardComponent } from './dashboard/cards/customer-card/customer-card.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +98,8 @@ import { ManagerCardComponent } from './dashboard/cards/manager-card/manager-car
     AirportSelectComponent,
     UserCardComponent,
     EmployeeCardComponent,
-    ManagerCardComponent
+    ManagerCardComponent,
+    CustomerCardComponent
   ],
   imports: [
     BrowserModule,
@@ -121,6 +124,7 @@ import { ManagerCardComponent } from './dashboard/cards/manager-card/manager-car
     UserService,
     EmployeeService,
     ManagerService,
+    CustomerService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

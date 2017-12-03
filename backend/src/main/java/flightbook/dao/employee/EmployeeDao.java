@@ -66,6 +66,20 @@ public class EmployeeDao implements IEmployeeDao {
 	}
 
 	@Override
+	public void updateEmployee(Employee employee) {
+		String sql = "UPDATE Employee " +
+				"SET StartDate = ?, " +
+				"HourlyRate = ? " +
+				"WHERE SSN = ? " +
+				"AND IsManager = 0";
+
+		this.jdbcTemplate.update(sql,
+				employee.getStartDate(),
+				employee.getHourlyRate(),
+				employee.getSSN());
+	}
+
+	@Override
 	public void deleteEmployee(int ssn) {
 		String sql = "DELETE Person " +
 				"FROM Person " +

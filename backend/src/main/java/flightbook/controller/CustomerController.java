@@ -92,6 +92,22 @@ public class CustomerController {
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
 	}
+	
+	@RequestMapping(method = RequestMethod.PUT, value="/{accountNo}")
+	public ResponseEntity<Customer> updateCustomer(@PathVariable int accountNo, @RequestBody Customer customer) {
+		Customer currentCustomer = customerService.getCustomerByAccountNo(accountNo);
+		if (currentCustomer == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		currentCustomer.setCreditCardNo(customer.getCreditCardNo());
+		currentCustomer.setEmail(customer.getEmail());
+		currentCustomer.setCreationDate(customer.getCreationDate());
+		currentCustomer.setRating(customer.getRating());
+
+		customerService.updateCustomer(currentCustomer);
+		return new ResponseEntity<>(currentCustomer, HttpStatus.OK);
+	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value="/{accountNo}")
 	public ResponseEntity<Customer> deleteCustomer(@PathVariable int accountNo) {

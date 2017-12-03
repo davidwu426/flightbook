@@ -61,11 +61,11 @@
         </div>
         <div class="form-group">
           <label class="font-weight-bold">Start Date:</label>
-          <input type="text" class="form-control" [(ngModel)]="editingManager.startDate" name="edit-start-date" required>
+          <input type="date" class="form-control" [(ngModel)]="editingManager.startDate" name="edit-start-date" required>
         </div>
         <div class="form-group">
           <label class="font-weight-bold">Hourly Rate:</label>
-          <input type="text" class="form-control" [(ngModel)]="editingManager.hourlyRate" name="edit-hourly-rate" required>
+          <input type="number" min="0" step="0.01" class="form-control" placeholder="Hourly Rate" name="create-hourly-rate" [(ngModel)]="editingManager.hourlyRate" required>
         </div>
       </div>
         
@@ -160,7 +160,7 @@
             <div class="col-4">
               <div class="form-group">
                 <label class="font-weight-bold">Hourly Rate:</label>
-                <input type="number" min="0" step="0.01" class="form-control" placeholder="Hourly Wage" name="create-hourly-wage" [(ngModel)]="createManagerRequest.hourlyRate" required>
+                <input type="number" min="0" step="0.01" class="form-control" placeholder="Hourly Rate" name="create-hourly-rate" [(ngModel)]="createManagerRequest.hourlyRate" required>
               </div>
             </div>
           </div>

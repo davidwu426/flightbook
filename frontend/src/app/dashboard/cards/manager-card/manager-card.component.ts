@@ -36,18 +36,6 @@ export class ManagerCardComponent implements OnInit {
     this.createModalRef = this.modalService.open(content);
 
     this.createManagerRequest = new CreateEmployeeRequest();
-    this.createManagerRequest.username = 'manager2';
-    this.createManagerRequest.password = 'password';
-    this.createManagerRequest.firstName = 'mana';
-    this.createManagerRequest.lastName = 'ger';
-    this.createManagerRequest.address = '123 Address';
-    this.createManagerRequest.city = 'Stony Brook';
-    this.createManagerRequest.state = 'New York';
-    this.createManagerRequest.zip = 11790;
-    this.createManagerRequest.telephone = '1234567890';
-    this.createManagerRequest.ssn = 1231231245;
-    this.createManagerRequest.startDate = new Date();
-    this.createManagerRequest.hourlyRate = 42.0;
   }
 
   addManager() {

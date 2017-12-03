@@ -15,5 +15,7 @@ public interface IEmployeeDao {
 
 	void insertEmployee(Employee employee);
 
+	void updateEmployee(Employee employee);
+
 	void deleteEmployee(int ssn);
 }

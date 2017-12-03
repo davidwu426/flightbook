@@ -89,6 +89,20 @@ public class EmployeeController {
 		}
 	}
 
+	@RequestMapping(method = RequestMethod.PUT, value="/{ssn}")
+	public ResponseEntity<Employee> updateEmployee(@PathVariable int ssn, @RequestBody Employee employee) {
+		Employee currentEmployee = employeeService.getEmployeeBySSN(ssn);
+		if (currentEmployee == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		currentEmployee.setStartDate(employee.getStartDate());
+		currentEmployee.setHourlyRate(employee.getHourlyRate());
+
+		employeeService.updateEmployee(currentEmployee);
+		return new ResponseEntity<>(currentEmployee, HttpStatus.OK);
+	}
+
 	@RequestMapping(method = RequestMethod.DELETE, value="/{ssn}")
 	public ResponseEntity<Employee> deleteEmployee(@PathVariable int ssn) {
 		try {
