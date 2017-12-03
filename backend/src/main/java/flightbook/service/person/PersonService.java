@@ -33,8 +33,8 @@ public class PersonService implements IPersonService {
 
 	@Override
 	public void insertPerson(User user, Person person) {
-		userDao.insertUser(user);
 		personDao.insertPerson(person);
+		userDao.insertUser(user);
 	}
 
 	@Override
