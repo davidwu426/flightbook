@@ -21,6 +21,8 @@ export class CustomerCardComponent implements OnInit {
   editModalRef: NgbModalRef;
   createModalRef: NgbModalRef;
 
+  showEditPersonalInfo = false;
+
   constructor(
     private customerService: CustomerService,
     private modalService: NgbModal
@@ -49,6 +51,8 @@ export class CustomerCardComponent implements OnInit {
   }
 
   openEdit(content, accountNo: number) {
+    this.showEditPersonalInfo = false;
+
     this.editModalRef = this.modalService.open(content);
 
     this.editingCustomer = new Customer();

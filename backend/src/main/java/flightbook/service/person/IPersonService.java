@@ -43,6 +43,14 @@ public interface IPersonService {
 	void insertPerson(User user, Person person);
 
 	/**
+	 * Updates a person
+	 *
+	 * @param person    Person to update
+	 */
+	@Secured({Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	void updatePerson(Person person);
+
+	/**
 	 * Deletes a person
 	 *
 	 * @param id    ID of person to delete

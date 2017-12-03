@@ -21,6 +21,8 @@ export class EmployeeCardComponent implements OnInit {
   editModalRef: NgbModalRef;
   createModalRef: NgbModalRef;
 
+  showEditPersonalInfo = false;
+
   constructor(
     private employeeService: EmployeeService,
     private modalService: NgbModal
@@ -49,6 +51,8 @@ export class EmployeeCardComponent implements OnInit {
   }
 
   openEdit(content, ssn: number) {
+    this.showEditPersonalInfo = false;
+
     this.editModalRef = this.modalService.open(content);
 
     this.editingEmployee = new Employee();

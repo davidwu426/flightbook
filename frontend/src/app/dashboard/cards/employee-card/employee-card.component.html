@@ -50,7 +50,7 @@
       <span>&times;</span>
     </button>
   </div>
-  <form (ngSubmit)="updateEmployee(editingEmployee)" ngNativeValidate>
+  <form (ngSubmit)="updateEmployee(editingEmployee)" *ngIf="!showEditPersonalInfo" ngNativeValidate>
     
     <div class="modal-body">
       <div class="mb-3">
@@ -70,9 +70,12 @@
     </div>
       
     <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="showEditPersonalInfo = true">Edit Personal Information</button>
       <button type="submit" class="btn btn-success">Update Employee</button>
     </div>
   </form>
+
+  <app-person-info-edit [id]="editingEmployee.id" [(show)]="showEditPersonalInfo"></app-person-info-edit>
 </ng-template>
 
 <!-- create employee -->

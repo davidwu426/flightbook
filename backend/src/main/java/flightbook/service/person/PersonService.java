@@ -38,6 +38,11 @@ public class PersonService implements IPersonService {
 	}
 
 	@Override
+	public void updatePerson(Person person) {
+		personDao.updatePerson(person);
+	}
+
+	@Override
 	public void deletePerson(int id) {
 		personDao.deletePerson(id);
 	}

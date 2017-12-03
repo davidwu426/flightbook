@@ -1,182 +1,186 @@
 <div class="card">
-    <div class="card-header">
-      Customers
-    </div>
-    <div class="card-body">
-        
-      <table class="table table-hover table-sm table-responsive-sm">
-        <thead>
-          <tr>
-            <th></th>
-            <th>ID</th>
-            <th>Account Number</th>
-            <th>Credit Card Number</th>
-            <th>Email</th>
-            <th>Creation Date</th>
-            <th>Rating</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let c of customers">
-            <td>
-              <button type="button" class="close float-left" (click)="openEdit(editCustomer, c.accountNo)"
-                data-toggle="modal" data-target="#edit-customer-modal">
-                <i class="fa fa-pencil"></i>
-              </button>
-            </td>
-            <td>{{c.id}}</td>
-            <td>{{c.accountNo}}</td>
-            <td>{{c.creditCardNo}}</td>
-            <td>{{c.email}}</td>
-            <td>{{c.creationDate}}</td>
-            <td>{{c.rating}}</td>
-            <td>
-              <button type="button" class="close" aria-label="Close" (click)="deleteCustomer(c.accountNo)">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-  
-    </div>
-    <div class="card-footer">
-      <button class="btn btn-success pull-right" (click)="openCreate(createCustomer)">Create Customer</button>
-    </div>
+  <div class="card-header">
+    Customers
   </div>
-  
-  <!-- edit customer -->
-  <ng-template #editCustomer let-d="dismiss">
-    <div class="modal-header">
-      Edit Customer
-      <button class="close" type="button" (click)="d()">
-        <span>&times;</span>
-      </button>
-    </div>
-    <form (ngSubmit)="updateCustomer(editingCustomer)" ngNativeValidate>
+  <div class="card-body">
       
-      <div class="modal-body">
-        <div class="mb-3">
-          <b>Customer ID:</b> {{editingCustomer.id}}
-        </div>
-        <div class="mb-3">
-          <b>Account Number:</b> {{editingCustomer.accountNo}}
-        </div>
-        <div class="form-group">
-          <label class="font-weight-bold">Credit Card Number:</label>
-          <input type="number" class="form-control" [(ngModel)]="editingCustomer.creditCardNo" name="edit-credit-card-no" required>
-        </div>
-        <div class="form-group">
-          <label class="font-weight-bold">Email:</label>
-          <input type="text" class="form-control" [(ngModel)]="editingCustomer.email" name="edit-email" required>
-        </div>
-        <div class="form-group">
-          <label class="font-weight-bold">Creation Date:</label>
-          <input type="date" class="form-control" [(ngModel)]="editingCustomer.creationDate" name="edit-creation-date" required>
-        </div>
-        <div class="form-group">
-          <label class="font-weight-bold">Rating:</label>
-          <input type="number" class="form-control" [(ngModel)]="editingCustomer.rating" name="edit-rating" required>
-        </div>
-      </div>
-        
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-success">Update Customer</button>
-      </div>
-    </form>
-  </ng-template>
+    <table class="table table-hover table-sm table-responsive-sm">
+      <thead>
+        <tr>
+          <th></th>
+          <th>ID</th>
+          <th>Account Number</th>
+          <th>Credit Card Number</th>
+          <th>Email</th>
+          <th>Creation Date</th>
+          <th>Rating</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let c of customers">
+          <td>
+            <button type="button" class="close float-left" (click)="openEdit(editCustomer, c.accountNo)"
+              data-toggle="modal" data-target="#edit-customer-modal">
+              <i class="fa fa-pencil"></i>
+            </button>
+          </td>
+          <td>{{c.id}}</td>
+          <td>{{c.accountNo}}</td>
+          <td>{{c.creditCardNo}}</td>
+          <td>{{c.email}}</td>
+          <td>{{c.creationDate}}</td>
+          <td>{{c.rating}}</td>
+          <td>
+            <button type="button" class="close" aria-label="Close" (click)="deleteCustomer(c.accountNo)">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="card-footer">
+    <button class="btn btn-success pull-right" (click)="openCreate(createCustomer)">Create Customer</button>
+  </div>
+</div>
   
-  <!-- create customer -->
-  <ng-template #createCustomer let-d="dismiss">
-      <div class="modal-header">
-        Create Customer
-        <button class="close" type="button" (click)="d()">
-          <span>&times;</span>
-        </button>
-      </div>
-      <form (ngSubmit)="addCustomer()" ngNativeValidate>
-        
-        <div class="modal-body">
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label class="font-weight-bold">Username:</label>
-                <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.username" name="create-username" required>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label class="font-weight-bold">Password:</label>
-                <input type="password" class="form-control" [(ngModel)]="createCustomerRequest.password" name="create-password" required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label class="font-weight-bold">First Name:</label>
-                <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.firstName" name="create-first-name" required>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label class="font-weight-bold">Last Name:</label>
-                <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.lastName" name="create-last-name" required>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="font-weight-bold">Address:</label>
-            <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.address" name="create-address" required>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label class="font-weight-bold">City:</label>
-                <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.city" name="create-city" required>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label class="font-weight-bold">State:</label>
-                <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.state" name="create-state" required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-6">
-              <div class="form-group">
-                <label class="font-weight-bold">Zip:</label>
-                <input type="number" class="form-control" [(ngModel)]="createCustomerRequest.zip" name="create-zip" required>
-              </div>
-            </div>
-            <div class="col-6">
-              <div class="form-group">
-                <label class="font-weight-bold">Telephone:</label>
-                <input type="number" class="form-control" [(ngModel)]="createCustomerRequest.telephone" name="create-telephone" required>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-8">
-              <div class="form-group">
-                <label class="font-weight-bold">Credit Card Number:</label>
-                <input type="date" class="form-control" [(ngModel)]="createCustomerRequest.creditCardNo" name="create-credit-card-no" required>
-              </div>
-            </div>
-            <div class="col-4">
-              <div class="form-group">
-                <label class="font-weight-bold">Email:</label>
-                <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.email" name="create-email" required>
-              </div>
-            </div>
-          </div>
-        </div>
-          
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-success">Create Customer</button>
-        </div>
-      </form>
-    </ng-template>
+<!-- edit customer -->
+<ng-template #editCustomer let-d="dismiss">
+  <div class="modal-header">
+    Edit Customer
+    <button class="close" type="button" (click)="d()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <form (ngSubmit)="updateCustomer(editingCustomer)" *ngIf="!showEditPersonalInfo" ngNativeValidate>
     
+    <div class="modal-body">
+      <div class="mb-3">
+        <b>Customer ID:</b> {{editingCustomer.id}}
+      </div>
+      <div class="mb-3">
+        <b>Account Number:</b> {{editingCustomer.accountNo}}
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Credit Card Number:</label>
+        <input type="number" class="form-control" [(ngModel)]="editingCustomer.creditCardNo" name="edit-credit-card-no" required>
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Email:</label>
+        <input type="text" class="form-control" [(ngModel)]="editingCustomer.email" name="edit-email" required>
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Creation Date:</label>
+        <input type="date" class="form-control" [(ngModel)]="editingCustomer.creationDate" name="edit-creation-date" required>
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Rating:</label>
+        <input type="number" class="form-control" [(ngModel)]="editingCustomer.rating" name="edit-rating" required>
+      </div>
+
+      <app-person-info-edit [id]="editingCustomer.id"></app-person-info-edit>
+    </div>
+      
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="showEditPersonalInfo = true">Edit Personal Information</button>
+      <button type="submit" class="btn btn-success">Update Customer</button>
+    </div>
+  </form>
+
+  <app-person-info-edit [id]="editingCustomer.id" [(show)]="showEditPersonalInfo" [(modalRef)]="editModalRef"></app-person-info-edit>
+</ng-template>
+
+<!-- create customer -->
+<ng-template #createCustomer let-d="dismiss">
+  <div class="modal-header">
+    Create Customer
+    <button class="close" type="button" (click)="d()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <form (ngSubmit)="addCustomer()" ngNativeValidate>
+    
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="font-weight-bold">Username:</label>
+            <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.username" name="create-username" required>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="font-weight-bold">Password:</label>
+            <input type="password" class="form-control" [(ngModel)]="createCustomerRequest.password" name="create-password" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="font-weight-bold">First Name:</label>
+            <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.firstName" name="create-first-name" required>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="font-weight-bold">Last Name:</label>
+            <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.lastName" name="create-last-name" required>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Address:</label>
+        <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.address" name="create-address" required>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="font-weight-bold">City:</label>
+            <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.city" name="create-city" required>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="font-weight-bold">State:</label>
+            <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.state" name="create-state" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <div class="form-group">
+            <label class="font-weight-bold">Zip:</label>
+            <input type="number" class="form-control" [(ngModel)]="createCustomerRequest.zip" name="create-zip" required>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label class="font-weight-bold">Telephone:</label>
+            <input type="number" class="form-control" [(ngModel)]="createCustomerRequest.telephone" name="create-telephone" required>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-8">
+          <div class="form-group">
+            <label class="font-weight-bold">Credit Card Number:</label>
+            <input type="date" class="form-control" [(ngModel)]="createCustomerRequest.creditCardNo" name="create-credit-card-no" required>
+          </div>
+        </div>
+        <div class="col-4">
+          <div class="form-group">
+            <label class="font-weight-bold">Email:</label>
+            <input type="text" class="form-control" [(ngModel)]="createCustomerRequest.email" name="create-email" required>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Create Customer</button>
+    </div>
+  </form>
+</ng-template>

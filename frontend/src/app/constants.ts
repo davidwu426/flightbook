@@ -37,6 +37,7 @@ export class Constants {
   public static API_USERS_URL = Constants.API_URL + '/users';
 
   public static API_USER_ID_URL = Constants.API_USERS_URL + '/id';
+  public static API_PERSON_ID_URL = Constants.API_PEOPLE_URL + '/id';
 
   public static API_USER_USERNAME_URL = Constants.API_USERS_URL + '/username';
   public static API_PERSON_USERNAME_URL = Constants.API_PEOPLE_URL + '/username';
