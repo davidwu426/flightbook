@@ -37,7 +37,7 @@ public class CustomerController {
 	@RequestMapping(method = RequestMethod.GET, value="/contact")
 	public ResponseEntity<List<CustomerContact>> getCustomerContacts() {
 		List<CustomerContact> customers = customerService.getAllCustomerContacts();
-		//customers.add(new CustomerContact("Pizza@gmail.com", "Ecks Dee", "NYC", "NY", 10000));
+		
 		return new ResponseEntity<>(customers, HttpStatus.OK);
 	}
 
