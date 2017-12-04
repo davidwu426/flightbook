@@ -15,9 +15,6 @@ body {
 .jumbotron {
   color: white;
   background-color: rgb(70, 70, 70);
-  background-repeat: no-repeat;
-  background-size: 100% 100%;
-  background-attachment: fixed;
   opacity: 0.95;
   box-shadow: 0px 5px 10px #888888;
 }
