@@ -1,11 +1,14 @@
 package flightbook.dao.customer;
 
 import flightbook.entity.customer.Customer;
+import flightbook.entity.customer.CustomerContact;
 
 import java.util.List;
 
 public interface ICustomerDao {
 	List<Customer> getAllCustomers();
+
+	List<CustomerContact> getAllCustomerContacts();
 
 	Customer getCustomerByAccountNo(int accountNo);
 

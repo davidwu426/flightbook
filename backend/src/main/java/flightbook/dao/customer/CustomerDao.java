@@ -1,6 +1,8 @@
 package flightbook.dao.customer;
 
 import flightbook.entity.customer.Customer;
+import flightbook.entity.customer.CustomerContact;
+import flightbook.entity.customer.CustomerContactRowMapper;
 import flightbook.entity.customer.CustomerRowMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -23,6 +25,16 @@ public class CustomerDao implements ICustomerDao {
 		String sql = "SELECT * FROM Customer ORDER BY Id";
 
 		RowMapper<Customer> rowMapper = new CustomerRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper);
+	}
+
+	@Override
+	public List<CustomerContact> getAllCustomerContacts() {
+		String sql = "SELECT p.FirstName, p.LastName, p.Telephone, p.Address, p.City, p.State, p.ZipCode, c.Email " +
+					 "FROM Person p, Customer c " +
+					 "WHERE p.Id = c.Id";
+
+		RowMapper<CustomerContact> rowMapper = new CustomerContactRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
 	}
 
