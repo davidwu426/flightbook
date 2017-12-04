@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Constants } from '../../constants';
 import { Customer } from '../../models/customer';
+import { Flight } from '../../models/flight';
 import { CreateCustomerRequest } from '../../models/create-customer-request';
 
 @Injectable()
@@ -27,5 +28,11 @@ export class CustomerService {
     const url = `${Constants.API_CUSTOMERS_URL}/${accountNo}`;
 
     return this.http.delete<Customer>(url, Constants.HTTP_OPTIONS);
+  }
+
+  getSuggestions(accountNo: number): Observable<Flight[]> {
+    const url = `${Constants.API_SUGGESTIONS_URL}/${accountNo}`;
+
+    return this.http.get<Flight[]>(url, Constants.HTTP_OPTIONS);
   }
 }
