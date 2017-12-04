@@ -1,8 +1,10 @@
 package flightbook.controller;
 
 import flightbook.entity.flight.Flight;
+import flightbook.entity.flight.FrequentFlight;
 import flightbook.entity.leg.Leg;
 import flightbook.service.flight.IFlightService;
+import flightbook.entity.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -67,6 +69,22 @@ public class FlightController {
 		Leg legs = flightService.getLeg(airlineId, flightNo, legNo);
 
 		return new ResponseEntity<Leg>(legs, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/frequent")
+	public ResponseEntity<List<FrequentFlight>> getFrequentFlight()
+	{
+		List<FrequentFlight> frequentFlights = flightService.getFrequentFlight();
+
+		return new ResponseEntity<List<FrequentFlight>>(frequentFlights, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/customeronflight")
+	public ResponseEntity<List<Customer>> getCustomerOnFlight(@PathVariable String airlineId, @PathVariable int flightNo)
+	{
+		List<Customer> customerOnFlight = flightService.getCustomerOnFlight();
+
+		return new ResponseEntity<List<Customer>>(customerOnFlight, HttpStatus.OK, airlineId , flightNo);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
