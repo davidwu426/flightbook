@@ -6,20 +6,23 @@ body {
   cursor: pointer;
 }
 
+.shadow {
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* cards */
+.card {
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
 .card-header {
   background: #343a40;
   color: white;
 }
 
 /* ladda style */
-
 .ladda-button {
-  background-color: rgb(70, 70, 70);
   position: relative;
-}
-
-.ladda-button:hover {
-  background-color: rgb(100, 100, 100);
 }
 
 .ladda-button .ladda-spinner {
