@@ -1,8 +1,8 @@
 body {
   margin-top: 3.5rem;
-  background-image: url(images/FlightBookBG.jpg);
-  background-repeat: repeat;
-  background-size: 100%;
+  //background-image: url(images/FlightBookBG.jpg);
+  //background-repeat: repeat;
+  //background-size: 100%;
 }
 
 .pt-3 { 
@@ -31,12 +31,7 @@ body {
 /* ladda style */
 
 .ladda-button {
-  background-color: rgb(70, 70, 70);
   position: relative;
-}
-
-.ladda-button:hover {
-  background-color: rgb(100, 100, 100);
 }
 
 .ladda-button .ladda-spinner {
@@ -46,5 +41,6 @@ body {
 }
 
 .ladda-button[data-loading] .ladda-label {
+  background-color: rgb(241, 12, 12);
   opacity: 0;
 }
