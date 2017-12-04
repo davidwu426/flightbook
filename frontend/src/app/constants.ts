@@ -46,4 +46,5 @@ export class Constants {
 
   public static API_FLIGHTS_URL = Constants.API_URL + '/flights';
   public static API_LEGS = '/legs';
+  public static API_SEARCH = Constants.API_URL +  '/search';
 }
