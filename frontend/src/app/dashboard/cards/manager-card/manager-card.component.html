@@ -1,0 +1,177 @@
+<div class="card">
+    <div class="card-header">
+      Managers
+    </div>
+    <div class="card-body">
+        
+      <table class="table table-hover table-sm table-responsive-sm">
+        <thead>
+          <tr>
+            <th></th>
+            <th>ID</th>
+            <th>SSN</th>
+            <th>Start Date</th>
+            <th>Hourly Rate</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let m of managers">
+            <td>
+              <button type="button" class="close float-left" (click)="openEdit(editManager, m.ssn)"
+                data-toggle="modal" data-target="#edit-manager-modal">
+                <i class="fa fa-pencil"></i>
+              </button>
+            </td>
+            <td>{{m.id}}</td>
+            <td>{{m.ssn}}</td>
+            <td>{{m.startDate}}</td>
+            <td>{{m.hourlyRate | currency}}</td>
+            <td>
+              <button type="button" class="close" aria-label="Close" (click)="deleteManager(m.ssn)">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+  
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-success pull-right" (click)="openCreate(createManager)">Create Manager</button>
+    </div>
+  </div>
+  
+  <!-- edit manager -->
+  <ng-template #editManager let-d="dismiss">
+    <div class="modal-header">
+      Edit Manager
+      <button class="close" type="button" (click)="d()">
+        <span>&times;</span>
+      </button>
+    </div>
+    <form (ngSubmit)="updateManager(editingManager)" *ngIf="!showEditPersonalInfo" ngNativeValidate>
+      
+      <div class="modal-body">
+        <div class="mb-3">
+          <b>Manager ID:</b> {{editingManager.id}}
+        </div>
+        <div class="mb-3">
+          <b>Manager SSN:</b> {{editingManager.ssn}}
+        </div>
+        <div class="form-group">
+          <label class="font-weight-bold">Start Date:</label>
+          <input type="date" class="form-control" [(ngModel)]="editingManager.startDate" name="edit-start-date" required>
+        </div>
+        <div class="form-group">
+          <label class="font-weight-bold">Hourly Rate:</label>
+          <input type="number" min="0" step="0.01" class="form-control" placeholder="Hourly Rate" name="create-hourly-rate" [(ngModel)]="editingManager.hourlyRate" required>
+        </div>
+      </div>
+        
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="showEditPersonalInfo = true">Edit Personal Information</button>
+        <button type="submit" class="btn btn-success">Update Manager</button>
+      </div>
+    </form>
+    
+    <app-person-info-edit [id]="editingManager.id" [(show)]="showEditPersonalInfo"></app-person-info-edit>
+  </ng-template>
+  
+  <!-- create manager -->
+  <ng-template #createManager let-d="dismiss">
+      <div class="modal-header">
+        Create Manager
+        <button class="close" type="button" (click)="d()">
+          <span>&times;</span>
+        </button>
+      </div>
+      <form (ngSubmit)="addManager()" ngNativeValidate>
+        
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold">Username:</label>
+                <input type="text" class="form-control" [(ngModel)]="createManagerRequest.username" name="create-username" required>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold">Password:</label>
+                <input type="password" class="form-control" [(ngModel)]="createManagerRequest.password" name="create-password" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold">First Name:</label>
+                <input type="text" class="form-control" [(ngModel)]="createManagerRequest.firstName" name="create-first-name" required>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold">Last Name:</label>
+                <input type="text" class="form-control" [(ngModel)]="createManagerRequest.lastName" name="create-last-name" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="font-weight-bold">Address:</label>
+            <input type="text" class="form-control" [(ngModel)]="createManagerRequest.address" name="create-address" required>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold">City:</label>
+                <input type="text" class="form-control" [(ngModel)]="createManagerRequest.city" name="create-city" required>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold">State:</label>
+                <input type="text" class="form-control" [(ngModel)]="createManagerRequest.state" name="create-state" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold">Zip:</label>
+                <input type="number" class="form-control" [(ngModel)]="createManagerRequest.zip" name="create-zip" required>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="form-group">
+                <label class="font-weight-bold">Telephone:</label>
+                <input type="number" class="form-control" [(ngModel)]="createManagerRequest.telephone" name="create-telephone" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="font-weight-bold">SSN:</label>
+            <input type="number" class="form-control" [(ngModel)]="createManagerRequest.ssn" name="create-ssn" required>
+          </div>
+          <div class="row">
+            <div class="col-8">
+              <div class="form-group">
+                <label class="font-weight-bold">Start Date:</label>
+                <input type="date" class="form-control" [(ngModel)]="createManagerRequest.startDate" name="create-start-date" required>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label class="font-weight-bold">Hourly Rate:</label>
+                <input type="number" min="0" step="0.01" class="form-control" placeholder="Hourly Rate" name="create-hourly-rate" [(ngModel)]="createManagerRequest.hourlyRate" required>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Create Manager</button>
+        </div>
+      </form>
+    </ng-template>
+    

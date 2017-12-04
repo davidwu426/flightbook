@@ -23,6 +23,11 @@ import { AirportService } from './services/airport/airport.service';
 import { MessageService } from './services/message/message.service';
 import { FlightService } from './services/flight/flight.service';
 import { LegService } from './services/leg/leg.service';
+import { EmployeeService } from './services/employee/employee.service';
+import { ManagerService } from './services/manager/manager.service';
+import { CustomerService } from './services/customer/customer.service';
+import { PersonService } from './services/person/person.service';
+import { ReservationService } from './services/reservation/reservation.service';
 
 import { AppComponent } from './app.component';
 import { NotificationComponent } from './notification/notification.component';
@@ -54,6 +59,15 @@ import { AirlineCardComponent } from './dashboard/cards/airline-card/airline-car
 import { AirportCardComponent } from './dashboard/cards/airport-card/airport-card.component';
 import { FlightCardComponent } from './dashboard/cards/flight-card/flight-card.component';
 import { LegTableComponent } from './dashboard/cards/flight-card/leg-table/leg-table.component';
+import { AirportSelectComponent } from './airport-select/airport-select.component';
+import { UserCardComponent } from './dashboard/cards/user-card/user-card.component';
+import { EmployeeCardComponent } from './dashboard/cards/employee-card/employee-card.component';
+import { ManagerCardComponent } from './dashboard/cards/manager-card/manager-card.component';
+import { CustomerCardComponent } from './dashboard/cards/customer-card/customer-card.component';
+import { PersonInfoEditComponent } from './dashboard/cards/person-info-edit/person-info-edit.component';
+import { ReservationCardComponent } from './dashboard/cards/reservation-card/reservation-card.component';
+import { IncludesTableComponent } from './dashboard/cards/reservation-card/includes-table/includes-table.component';
+import { CustomerReservationCardComponent } from './dashboard/cards/reservation-card/customer-reservation-card/customer-reservation-card.component';
 
 @NgModule({
   declarations: [
@@ -86,7 +100,16 @@ import { LegTableComponent } from './dashboard/cards/flight-card/leg-table/leg-t
     AirlineCardComponent,
     AirportCardComponent,
     FlightCardComponent,
-    LegTableComponent
+    LegTableComponent,
+    AirportSelectComponent,
+    UserCardComponent,
+    EmployeeCardComponent,
+    ManagerCardComponent,
+    CustomerCardComponent,
+    PersonInfoEditComponent,
+    ReservationCardComponent,
+    IncludesTableComponent,
+    CustomerReservationCardComponent
   ],
   imports: [
     BrowserModule,
@@ -101,6 +124,7 @@ import { LegTableComponent } from './dashboard/cards/flight-card/leg-table/leg-t
     AirlineService,
     AirportService,
     FlightService,
+    LegService,
     MessageService,
     SearchService,
     AuthService,
@@ -108,7 +132,11 @@ import { LegTableComponent } from './dashboard/cards/flight-card/leg-table/leg-t
     AuthedGuard,
     NotificationService,
     UserService,
-    LegService,
+    EmployeeService,
+    ManagerService,
+    CustomerService,
+    PersonService,
+    ReservationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

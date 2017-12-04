@@ -45,6 +45,11 @@ public class ManagerService implements IManagerService {
 	}
 
 	@Override
+	public void updateManager(Employee manager) {
+		managerDao.updateManager(manager);
+	}
+
+	@Override
 	public void deleteManager(int ssn) {
 		managerDao.deleteManager(ssn);
 	}

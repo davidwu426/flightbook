@@ -51,6 +51,11 @@ public class EmployeeService implements IEmployeeService {
 	}
 
 	@Override
+	public void updateEmployee(Employee employee) {
+		employeeDao.updateEmployee(employee);
+	}
+
+	@Override
 	public void deleteEmployee(int ssn) {
 		employeeDao.deleteEmployee(ssn);
 	}

@@ -2,10 +2,24 @@ body {
   margin-top: 3.5rem;
 }
 
+.link-hover {
+  cursor: pointer;
+}
+
+.card-header {
+  background: #343a40;
+  color: white;
+}
+
 /* ladda style */
 
 .ladda-button {
+  background-color: rgb(70, 70, 70);
   position: relative;
+}
+
+.ladda-button:hover {
+  background-color: rgb(100, 100, 100);
 }
 
 .ladda-button .ladda-spinner {

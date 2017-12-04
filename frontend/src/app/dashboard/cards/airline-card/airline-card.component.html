@@ -34,13 +34,13 @@
 
   </div>
   <div class="card-footer">
-    <form class="form" (ngSubmit)="addAirline()">
+    <form class="form" (ngSubmit)="addAirline()" ngNativeValidate>
       <div class="row mb-3">
         <div class="col-6">
-          <input class="form-control" type="text" placeholder="ID" [(ngModel)]="airline.id" name="add-airline-id">
+          <input class="form-control" type="text" placeholder="ID" [(ngModel)]="airline.id" name="add-airline-id" required>
         </div>
         <div class="col-6">
-          <input class="form-control" type="text" placeholder="Name" [(ngModel)]="airline.name" name="add-airline-name">
+          <input class="form-control" type="text" placeholder="Name" [(ngModel)]="airline.name" name="add-airline-name" required>
         </div>
       </div>
       <button class="btn btn-success btn-block" type="submit">Add Airline</button>

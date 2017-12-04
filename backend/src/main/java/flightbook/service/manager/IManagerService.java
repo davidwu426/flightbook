@@ -41,6 +41,13 @@ public interface IManagerService {
 	void insertManager(User user, Person person, Employee manager);
 
 	/**
+	 * Update a manager
+	 *
+	 * @param manager   Manager to update
+	 */
+	void updateManager(Employee manager);
+
+	/**
 	 * Deletes a manager given an account number
 	 *
 	 * @param ssn    SSN of manager to delete

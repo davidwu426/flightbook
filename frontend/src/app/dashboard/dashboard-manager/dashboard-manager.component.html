@@ -2,4 +2,50 @@
 
 <hr>
 
-manager dashboard
+<ul class="nav nav-tabs mb-3" role="tablist">
+  <li class="nav-item active">
+    <a href="#employees" class="nav-link active" data-toggle="tab" role="tab">Employees</a>
+  </li>
+
+  <li class="nav-item">
+    <a href="#reservations" class="nav-link" data-toggle="tab" role="tab">Reservations</a>
+  </li>
+
+  <li class="nav-item">
+    <a href="#flights" class="nav-link" data-toggle="tab" role="tab">Flights</a>
+  </li>
+
+  <li class="nav-item">
+    <a href="#revenue" class="nav-link" data-toggle="tab" role="tab">Revenue</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <!-- employees -->
+  <div class="tab-pane fade show active" id="employees" role="tabpanel">
+    <div class="row mb-3">
+      <div class="col-12">
+        <app-employee-card></app-employee-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- reservations -->
+  <div class="tab-pane fade show" id="reservations" role="tabpanel">
+    <div class="row mb-3">
+      <div class="col-12">
+        <app-reservation-card></app-reservation-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- flights -->
+  <div class="tab-pane fade show" id="flights" role="tabpanel">
+    flights
+  </div>
+
+  <!-- revenue -->
+  <div class="tab-pane fade show" id="revenue" role="tabpanel">
+    revenue
+  </div>
+</div>

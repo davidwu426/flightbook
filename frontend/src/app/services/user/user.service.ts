@@ -7,8 +7,8 @@ import { CreateEmployeeRequest } from '../../models/create-employee-request';
 import { Router } from '@angular/router';
 import { CreateAdminRequest } from '../../models/create-admin-request';
 import { Constants } from '../../constants';
-import { UserEntity } from '../../models/user-entity';
 import { Observable } from 'rxjs/Observable';
+import { User } from '../../models/user';
 
 @Injectable()
 export class UserService {
@@ -62,7 +62,7 @@ export class UserService {
       });
   }
 
-  getUsers(): Observable<UserEntity[]> {
-    return this.http.get<UserEntity[]>(Constants.API_USERS_URL, Constants.HTTP_OPTIONS);
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(Constants.API_USERS_URL, Constants.HTTP_OPTIONS);
   }
 }

@@ -2,8 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { Leg } from '../../../../models/leg';
 import { LegService } from '../../../../services/leg/leg.service';
-import { AirportService } from '../../../../services/airport/airport.service';
-import { Airport } from '../../../../models/airport';
 
 @Component({
   selector: 'app-leg-table',
@@ -21,12 +19,10 @@ export class LegTableComponent implements OnInit {
   editingLeg: Leg;
 
   legs: Leg[];
-  airports: Airport[];
   modalRef: NgbModalRef;
 
   constructor(
     private legService: LegService,
-    private airportService: AirportService,
     private modalService: NgbModal
   ) { }
 
@@ -34,7 +30,6 @@ export class LegTableComponent implements OnInit {
     this.leg = new Leg();
     this.editingLeg = new Leg();
     this.legService.getLegsByFlightNo(this.airlineId, this.flightNo).subscribe(l => this.legs = l);
-    this.airportService.getAirports().subscribe(airports => this.airports = airports);
   }
 
   addLeg() {
@@ -73,7 +68,11 @@ export class LegTableComponent implements OnInit {
   updateLeg() {
     this.legService.updateLeg(this.editingLeg)
       .subscribe(l => {
-        const updatedLeg: Leg = this.legs.filter(leg => leg.airlineId === leg.airlineId)[0];
+        console.log(l);
+        const updatedLeg: Leg = this.legs.filter(leg =>
+          leg.airlineId === this.editingLeg.airlineId &&
+          leg.flightNo === this.editingLeg.flightNo &&
+          leg.legNo === this.editingLeg.legNo)[0];
         updatedLeg.depAirportId = l.depAirportId;
         updatedLeg.arrAirportId = l.arrAirportId;
         updatedLeg.arrTime = l.arrTime;
@@ -86,7 +85,10 @@ export class LegTableComponent implements OnInit {
   deleteLeg(airlineId: string, flightNo: number, legNo: number) {
     this.legService.deleteLeg(airlineId, flightNo, legNo)
       .subscribe(_ => {
-        this.legs = this.legs.filter(leg => leg.airlineId !== airlineId && leg.flightNo === flightNo && leg.legNo === legNo);
+        this.legs = this.legs.filter(leg =>
+          leg.airlineId !== airlineId &&
+          leg.flightNo !== flightNo &&
+          leg.legNo !== legNo);
       });
   }
 }

@@ -38,21 +38,21 @@
 
   </div>
   <div class="card-footer">
-    <form class="form" (ngSubmit)="addAirport()">
+    <form class="form" (ngSubmit)="addAirport()" ngNativeValidate>
       <div class="row mb-3">
         <div class="col-6">
-          <input class="form-control" type="text" placeholder="ID" [(ngModel)]="airport.id" name="add-airport-id">
+          <input class="form-control" type="text" placeholder="ID" [(ngModel)]="airport.id" name="add-airport-id" required>
         </div>
         <div class="col-6">
-          <input class="form-control" type="text" placeholder="Name" [(ngModel)]="airport.name" name="add-airport-name">
+          <input class="form-control" type="text" placeholder="Name" [(ngModel)]="airport.name" name="add-airport-name" required>
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-6">
-          <input class="form-control" type="text" placeholder="City" [(ngModel)]="airport.city" name="add-airport-city">
+          <input class="form-control" type="text" placeholder="City" [(ngModel)]="airport.city" name="add-airport-city" required>
         </div>
         <div class="col-6">
-          <input class="form-control" type="text" placeholder="Country" [(ngModel)]="airport.country" name="add-airport-country">
+          <input class="form-control" type="text" placeholder="Country" [(ngModel)]="airport.country" name="add-airport-country" required>
         </div>
       </div>
       <button class="btn btn-success btn-block" type="submit">Add Airport</button>
@@ -67,7 +67,7 @@
       <span>&times;</span>
     </button>
   </div>
-  <form (ngSubmit)="updateAirport(editingAirport)">
+  <form (ngSubmit)="updateAirport(editingAirport)" ngNativeValidate>
     
     <div class="modal-body">
       <div class="mb-3">
@@ -75,15 +75,15 @@
       </div>
       <div class="form-group">
         <label class="font-weight-bold">Airport Name:</label>
-        <input type="text" class="form-control" [(ngModel)]="editingAirport.name" name="edit-airport-name">
+        <input type="text" class="form-control" [(ngModel)]="editingAirport.name" name="edit-airport-name" required>
       </div>
       <div class="form-group">
         <label class="font-weight-bold">Airport City:</label>
-        <input type="text" class="form-control" [(ngModel)]="editingAirport.city" name="edit-airport-city">
+        <input type="text" class="form-control" [(ngModel)]="editingAirport.city" name="edit-airport-city" required>
       </div>
       <div class="form-group">
         <label class="font-weight-bold">Airport Country:</label>
-        <input type="text" class="form-control" [(ngModel)]="editingAirport.country" name="edit-airport-country">
+        <input type="text" class="form-control" [(ngModel)]="editingAirport.country" name="edit-airport-country" required>
       </div>
     </div>
       

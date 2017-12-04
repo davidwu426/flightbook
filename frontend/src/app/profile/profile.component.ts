@@ -4,9 +4,9 @@ import { UserCredentials } from '../models/user-credentials';
 import { Constants } from '../constants';
 import { HttpClient } from '@angular/common/http';
 import { Role } from '../models/role';
-import { PersonEntity } from '../models/person-entity';
-import { CustomerEntity } from '../models/customer-entity';
-import { EmployeeEntity } from '../models/employee-entity';
+import { Person } from '../models/person';
+import { Customer } from '../models/customer';
+import { Employee } from '../models/employee';
 
 @Component({
   selector: 'app-profile',
@@ -18,10 +18,10 @@ export class ProfileComponent implements OnInit {
 
   role: string;
 
-  personEntity: PersonEntity;
-  customerEntity: CustomerEntity;
-  employeeEntity: EmployeeEntity;
-  managerEntity: EmployeeEntity;
+  person: Person;
+  customer: Customer;
+  employee: Employee;
+  manager: Employee;
 
   roleConst = Role;
 
@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.user = this.authService.getCurrentUser();
-    this.authService.getPersonEntity().subscribe(p => this.personEntity = p);
+    this.authService.getPerson().subscribe(p => this.person = p);
     this.authService.getRole().subscribe(r => this.role = r);
   }
 }

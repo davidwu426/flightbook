@@ -6,7 +6,6 @@ import flightbook.entity.person.Person;
 import flightbook.entity.user.User;
 import flightbook.service.employee.IEmployeeService;
 import flightbook.service.person.IPersonService;
-import flightbook.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -71,7 +70,7 @@ public class EmployeeController {
 				createEmployeeRequest.getSSN(),
 				false,
 				createEmployeeRequest.getStartDate(),
-				createEmployeeRequest.getHourlyWage()
+				createEmployeeRequest.getHourlyRate()
 		);
 
 		User user = new User(
@@ -88,6 +87,20 @@ public class EmployeeController {
 			e.printStackTrace();
 			return new ResponseEntity<>(HttpStatus.CONFLICT);
 		}
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, value="/{ssn}")
+	public ResponseEntity<Employee> updateEmployee(@PathVariable int ssn, @RequestBody Employee employee) {
+		Employee currentEmployee = employeeService.getEmployeeBySSN(ssn);
+		if (currentEmployee == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		currentEmployee.setStartDate(employee.getStartDate());
+		currentEmployee.setHourlyRate(employee.getHourlyRate());
+
+		employeeService.updateEmployee(currentEmployee);
+		return new ResponseEntity<>(currentEmployee, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value="/{ssn}")

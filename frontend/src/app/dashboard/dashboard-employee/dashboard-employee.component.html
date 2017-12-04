@@ -2,4 +2,49 @@
 
 <hr>
 
-employee dashboard
+<ul class="nav nav-tabs mb-3" role="tablist">
+  <li class="nav-item active">
+    <a href="#customers" class="nav-link active" data-toggle="tab" role="tab">Customers</a>
+  </li>
+
+  <li class="nav-item">
+    <a href="#reservations" class="nav-link" data-toggle="tab" role="tab">Reservations</a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <!-- customer -->
+  <div class="tab-pane fade show active" id="customers" role="tabpanel">
+    <div class="row mb-3">
+      <div class="col-12">
+        <app-customer-card></app-customer-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- reservations -->
+  <div class="tab-pane fade show" id="reservations" role="tabpanel">
+    <div class="row mb-3">
+      <div class="col-12">
+        <app-reservation-card></app-reservation-card>
+      </div>
+    </div>
+
+    <div class="row mb-3">
+      <div class="col-5">
+        <div class="card">
+          <div class="card-header">Record a reservation for a customer</div>
+          <div class="card-body">
+            <p class="text-muted">
+              You can reserve a flight for a customer by going through the flight searching process and clicking "Reserve for Customer"
+              at the checkout screen.
+            </p>
+          </div>
+          <div class="card-footer">
+            <a class="btn btn-info btn-block" routerLink="/">Go to homepage</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
