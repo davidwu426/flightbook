@@ -50,4 +50,6 @@ export class Constants {
   public static API_SEARCH = Constants.API_URL +  '/search';
 
   public static API_RESERVATIONS_URL = Constants.API_URL + '/reservations';
+
+  public static API_CONTACTS_URL = Constants.API_CUSTOMERS_URL + '/contacts';
 }
