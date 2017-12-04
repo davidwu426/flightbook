@@ -1,6 +1,6 @@
 package flightbook.service.airport;
 
-import flightbook.dao.airport.IAirportDao;
+import flightbook.dao.Airport.IAirportDao;
 import flightbook.entity.airport.Airport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
