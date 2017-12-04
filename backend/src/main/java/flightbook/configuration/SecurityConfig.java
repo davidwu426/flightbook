@@ -50,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.antMatchers(HttpMethod.POST, "/api/employees").permitAll()
 					.antMatchers(HttpMethod.POST, "/api/managers").permitAll()
 					.antMatchers(HttpMethod.POST, "/api/admins").permitAll()
+					.antMatchers(HttpMethod.GET, "/api/search").permitAll()
 					.anyRequest().authenticated()
 				.and().sessionManagement()
 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
