@@ -1,0 +1,51 @@
+<div class="card">
+  <div class="card-header">
+    Reservations
+  </div>
+  <div class="card-body">
+
+    <table class="table table-sm table-responsive-sm">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Reservation Number</th>
+          <th>Reservation Date</th>
+          <th>Booking Fee</th>
+          <th>Total Fare</th>
+          <th>Representative SSN</th>
+          <th>Account Number</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let r of reservations">
+          <tr>
+            <td>
+              <button *ngIf="r.includes.length" type="button" class="close float-left link-hover" data-toggle="collapse" [attr.data-target]="'#resr-collapse-' + r.resrNo">
+                <i class="fa fa-plus-circle"></i>
+              </button>
+            </td>
+            <td>{{r.resrNo}}</td>
+            <td>{{r.resrDate}}</td>
+            <td>{{r.bookingFee}}</td>
+            <td>{{r.totalFare}}</td>
+            <td>{{r.repSSN}}</td>
+            <td>{{r.accountNo}}</td>
+            <td>
+              <button type="button" class="close link-hover" aria-label="Close" (click)="deleteReservation(r.resrNo)">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </td>
+          </tr>
+          <tr [attr.id]="'resr-collapse-' + r.resrNo" class="collapse">
+            <td colspan="1"></td>
+            <td colspan="7">
+              <app-includes-table [includes]="r.includes"></app-includes-table>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
+  </div>
+</div>

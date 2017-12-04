@@ -38,6 +38,7 @@ export class LoginComponent implements OnInit {
         this.authService.setCurrentUser(creds);
         this.router.navigateByUrl('/');
       }, error => {
+        this.isLoading = false;
         this.notificationService.error('Invalid username or password.');
       });
   }

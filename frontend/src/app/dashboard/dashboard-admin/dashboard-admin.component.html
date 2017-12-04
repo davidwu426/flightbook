@@ -10,7 +10,7 @@
   <li class="nav-item">
     <a href="#users" class="nav-link" data-toggle="tab" role="tab">User Management</a>
   </li>
-  
+
   <li class="nav-item">
     <a href="#reservations" class="nav-link" data-toggle="tab" role="tab">Reservations</a>
   </li>
@@ -19,7 +19,7 @@
 <div class="tab-content">
   <!-- flights -->
   <div class="tab-pane fade show active" id="flights" role="tabpanel">
-      
+
     <div class="row mb-3">
       <div class="col-12">
         <app-flight-card></app-flight-card>
@@ -27,15 +27,15 @@
     </div>
 
     <div class="row mb-3">
-        <div class="col-12 col-sm-5">
-          <app-airline-card></app-airline-card>
-        </div>
-      
-        <div class="col-12 col-sm-7">
-          <app-airport-card></app-airport-card>
-        </div>
+      <div class="col-12 col-sm-5">
+        <app-airline-card></app-airline-card>
       </div>
-        
+
+      <div class="col-12 col-sm-7">
+        <app-airport-card></app-airport-card>
+      </div>
+    </div>
+
   </div>
 
   <!-- users -->
@@ -65,14 +65,13 @@
 
   <!-- reservations -->
   <div class="tab-pane fade" id="reservations" role="tabpanel">
-      
+
     <div class="row mb-3">
       <div class="col-12">
         <a class="btn btn-info mb-3" routerLink="/">Record a reservation for a customer</a>
-          
+
         <app-reservation-card></app-reservation-card>
       </div>
     </div>
   </div>
 </div>
-
