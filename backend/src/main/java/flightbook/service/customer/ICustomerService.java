@@ -3,6 +3,7 @@ package flightbook.service.customer;
 import flightbook.Role;
 import flightbook.entity.customer.Customer;
 import flightbook.entity.customer.CustomerContact;
+import flightbook.entity.flight.Flight;
 import flightbook.entity.person.Person;
 import flightbook.entity.user.User;
 import org.springframework.security.access.annotation.Secured;
@@ -21,6 +22,9 @@ public interface ICustomerService {
 	 */
 	@Secured({Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
 	List<CustomerContact> getAllCustomerContacts();
+
+	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	List<Flight> getSuggestions(int accountNo);
 
 	/**
 	 * Find customer given account number of customer
