@@ -27,6 +27,7 @@ import { EmployeeService } from './services/employee/employee.service';
 import { ManagerService } from './services/manager/manager.service';
 import { CustomerService } from './services/customer/customer.service';
 import { PersonService } from './services/person/person.service';
+import { ReservationService } from './services/reservation/reservation.service';
 
 import { AppComponent } from './app.component';
 import { NotificationComponent } from './notification/notification.component';
@@ -64,6 +65,7 @@ import { EmployeeCardComponent } from './dashboard/cards/employee-card/employee-
 import { ManagerCardComponent } from './dashboard/cards/manager-card/manager-card.component';
 import { CustomerCardComponent } from './dashboard/cards/customer-card/customer-card.component';
 import { PersonInfoEditComponent } from './dashboard/cards/person-info-edit/person-info-edit.component';
+import { ReservationCardComponent } from './dashboard/cards/reservation-card/reservation-card.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +104,8 @@ import { PersonInfoEditComponent } from './dashboard/cards/person-info-edit/pers
     EmployeeCardComponent,
     ManagerCardComponent,
     CustomerCardComponent,
-    PersonInfoEditComponent
+    PersonInfoEditComponent,
+    ReservationCardComponent
   ],
   imports: [
     BrowserModule,
@@ -128,7 +131,8 @@ import { PersonInfoEditComponent } from './dashboard/cards/person-info-edit/pers
     EmployeeService,
     ManagerService,
     CustomerService,
-    PersonService
+    PersonService,
+    ReservationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

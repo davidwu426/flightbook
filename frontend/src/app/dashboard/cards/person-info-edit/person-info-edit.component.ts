@@ -33,8 +33,6 @@ export class PersonInfoEditComponent implements OnInit {
 
   updatePerson() {
     this.personService.updatePerson(this.person).subscribe(p => {
-
-
       this.modalRef.close();
     });
   }

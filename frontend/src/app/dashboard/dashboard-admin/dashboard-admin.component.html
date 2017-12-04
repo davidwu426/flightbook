@@ -10,6 +10,10 @@
   <li class="nav-item">
     <a href="#users" class="nav-link" data-toggle="tab" role="tab">User Management</a>
   </li>
+  
+  <li class="nav-item">
+    <a href="#reservations" class="nav-link" data-toggle="tab" role="tab">Reservations</a>
+  </li>
 </ul>
 
 <div class="tab-content">
@@ -55,6 +59,16 @@
     <div class="row mb-3">
       <div class="col-12">
         <app-customer-card></app-customer-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- reservations -->
+  <div class="tab-pane fade" id="reservations" role="tabpanel">
+      
+    <div class="row mb-3">
+      <div class="col-12">
+        <app-reservation-card></app-reservation-card>
       </div>
     </div>
   </div>
