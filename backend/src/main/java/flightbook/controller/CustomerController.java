@@ -34,10 +34,10 @@ public class CustomerController {
 		return new ResponseEntity<>(customers, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value="/contact")
+	@RequestMapping(method = RequestMethod.GET, value="/contacts")
 	public ResponseEntity<List<CustomerContact>> getCustomerContacts() {
 		List<CustomerContact> customers = customerService.getAllCustomerContacts();
-		
+
 		return new ResponseEntity<>(customers, HttpStatus.OK);
 	}
 

@@ -2,7 +2,6 @@ package flightbook.service.flight;
 
 import flightbook.Role;
 import flightbook.entity.flight.Flight;
-import flightbook.entity.leg.Leg;
 import org.springframework.security.access.annotation.Secured;
 
 import java.util.List;
@@ -31,51 +30,12 @@ public interface IFlightService {
 	Flight getFlight(String airlineId, int flightNo);
 
 	/**
-	 * Get all legs
-	 */
-	List<Leg> getAllLegs();
-
-	/**
-	 * Get all legs of an airline
-	 *
-	 * @param airlineId AirlineId of airline to get legs of
-	 * @return  List of legs of an airline
-	 */
-	List<Leg> getLegsByAirline(String airlineId);
-
-	/**
-	 * Get all legs of a flight by flight number
-	 *
-	 * @param airlineId AirlineId of airline to get legs of
-	 * @param flightNo  Flight number of flight to get legs of
-	 * @return  List of legs of a flight by flight number
-	 */
-	List<Leg> getLegsByFlight(String airlineId, int flightNo);
-
-	/**
-	 * Get a specific leg of a flight
-	 * @param airlineId AirlineId of airline to get leg of
-	 * @param flightNo  Flight number of flight to get leg of
-	 * @param legNo     Leg number of leg to get
-	 * @return  Leg of a flight
-	 */
-	Leg getLeg(String airlineId, int flightNo, int legNo);
-
-	/**
 	 * Inserts a flight
 	 *
 	 * @param flight  Flight to insert
 	 */
 	@Secured({Role.MANAGER, Role.ADMIN})
 	void insertFlight(Flight flight);
-
-	/**
-	 * Inserts a flight leg
-	 *
-	 * @param leg  Leg to insert
-	 */
-	@Secured({Role.MANAGER, Role.ADMIN})
-	void insertLeg(Leg leg);
 
 	/**
 	 * Updates a flight, excluding airlineId and flightNo
@@ -86,14 +46,6 @@ public interface IFlightService {
 	void updateFlight(Flight flight);
 
 	/**
-	 * Updates a leg, excluding airlineId, flightNo, and legNo
-	 *
-	 * @param leg   Leg to update
-	 */
-	@Secured({Role.MANAGER, Role.ADMIN})
-	void updateLeg(Leg leg);
-
-	/**
 	 * Deletes a flight given an airline ID and flight number
 	 *
 	 * @param airlineId     Airline ID
@@ -101,14 +53,4 @@ public interface IFlightService {
 	 */
 	@Secured({Role.MANAGER, Role.ADMIN})
 	void deleteFlight(String airlineId, int flightNo);
-
-	/**
-	 * Delete a leg
-	 *
-	 * @param airlineId AirlineId of flight to delete
-	 * @param flightNo  Flight number of leg to delete
-	 * @param legNo     Leg number of leg to delete
-	 */
-	@Secured({Role.MANAGER, Role.ADMIN})
-	void deleteLeg(String airlineId, int flightNo, int legNo);
 }
