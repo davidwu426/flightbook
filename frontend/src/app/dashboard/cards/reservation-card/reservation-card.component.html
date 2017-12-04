@@ -1,3 +1,110 @@
-<p>
-  reservation-card works!
-</p>
+<div class="card">
+  <div class="card-header">
+    Reservations
+    <div class="pull-right text-muted">
+      <a (click)="resetFilter()" class="link-hover">
+        <i class="fa fa-refresh" [ngClass]="{ 'fa-spin': filtered }"></i> Reset filter
+      </a>
+    </div>
+  </div>
+  <div class="card-body">
+      
+    <table class="table table-sm table-responsive-sm">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Reservation Number</th>
+          <th>Reservation Date</th>
+          <th>Booking Fee</th>
+          <th>Total Fare</th>
+          <th>Representative SSN</th>
+          <th>Account Number</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let r of reservations">
+          <tr>
+            <td>
+              <button *ngIf="r.includes.length" type="button" class="close float-left link-hover" data-toggle="collapse" [attr.data-target]="'#resr-collapse-' + r.resrNo">
+                <i class="fa fa-plus-circle"></i>
+              </button>
+            </td>
+            <td>{{r.resrNo}}</td>
+            <td>{{r.resrDate}}</td>
+            <td>{{r.bookingFee}}</td>
+            <td>{{r.totalFare}}</td>
+            <td>{{r.repSSN}}</td>
+            <td>{{r.accountNo}}</td>
+            <td>
+              <button type="button" class="close link-hover" aria-label="Close" (click)="deleteReservation(r.resrNo)">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </td>
+          </tr>
+          <tr [attr.id]="'resr-collapse-' + r.resrNo" class="collapse">
+            <td colspan="1"></td>
+            <td colspan="7">
+              <app-includes-table [includes]="r.includes"></app-includes-table>
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="card-footer">
+    <form (ngSubmit)="filter()" class="row" ngNativeValidate>
+      <div class="col-1 text-right">
+        <b>Filter:</b>
+      </div>
+
+      <div class="col-3">
+        <select name="filterChoice" [(ngModel)]="filterChoice" class="form-control">
+          <option [ngValue]="0">Reservation Number</option>
+          <option [ngValue]="1">Flight</option>
+          <option [ngValue]="2">Account Number</option>
+          <option [ngValue]="3">Customer Name</option>
+        </select>
+      </div>
+
+      <ng-container *ngIf="filterChoice === 0">
+        <div class="col-3">
+          <input type="number"  class="form-control" placeholder="Reservation Number" [(ngModel)]="filterResrNo" name="resr-no" required>
+        </div>
+        <div class="col-3"></div>
+      </ng-container>
+
+      <ng-container *ngIf="filterChoice === 1">
+        <div class="col-3">
+          <input type="text"  class="form-control" placeholder="Airline ID" [(ngModel)]="filterAirlineId" name="airline-id" required>
+        </div>
+        <div class="col-3">
+          <input type="number"  class="form-control" placeholder="Flight Number" [(ngModel)]="filterFlightNo" name="flight-no" required>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="filterChoice === 2">
+        <div class="col-3">
+          <input type="number"  class="form-control" placeholder="Account Number" [(ngModel)]="filterAccountNo" name="account-no" required>
+        </div>
+        <div class="col-3"></div>
+      </ng-container>
+
+      <ng-container *ngIf="filterChoice === 3">
+        <div class="col-3">
+          <input type="text"  class="form-control" placeholder="First Name" [(ngModel)]="filterFirstName" name="first-name" required>
+        </div>
+        <div class="col-3">
+          <input type="text"  class="form-control" placeholder="Last Name" [(ngModel)]="filterLastName" name="last-name" required>
+        </div>
+      </ng-container>
+
+      <div class="col-2">
+        <button type="submit" class="btn btn-success btn-block">Search</button>
+      </div>
+
+    </form>
+  </div>
+</div>
+

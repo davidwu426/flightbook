@@ -14,7 +14,7 @@ public class ReservationDetails {
 	private Date resrDate;
 	private double bookingFee;
 	private double totalFare;
-	private int reprSSN;
+	private int repSSN;
 	private int accountNo;
 	private List<Include> includes;
 
@@ -23,7 +23,7 @@ public class ReservationDetails {
 		this.resrDate = r.getResrDate();
 		this.bookingFee = r.getBookingFee();
 		this.totalFare = r.getTotalFare();
-		this.reprSSN = r.getReprSSN();
+		this.repSSN = r.getRepSSN();
 		this.accountNo = r.getAccountNo();
 		this.includes = includes;
 	}

@@ -78,7 +78,7 @@ public class ReservationDao implements IReservationDao {
 				reservation.getResrDate(),
 				reservation.getBookingFee(),
 				reservation.getTotalFare(),
-				reservation.getReprSSN(),
+				reservation.getRepSSN(),
 				reservation.getAccountNo());
 	}
 

@@ -12,6 +12,6 @@ public class Reservation {
 	private Date resrDate;
 	private double bookingFee;
 	private double totalFare;
-	private int reprSSN;
+	private int repSSN;
 	private int accountNo;
 }

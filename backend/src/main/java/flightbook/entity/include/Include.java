@@ -9,7 +9,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Include {
 	private int resrNo;
-	private String AirlineId;
+	private String airlineId;
 	private int flightNo;
 	private int legNo;
 	private int fromLegNo;

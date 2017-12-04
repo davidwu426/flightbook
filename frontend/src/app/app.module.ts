@@ -66,6 +66,7 @@ import { ManagerCardComponent } from './dashboard/cards/manager-card/manager-car
 import { CustomerCardComponent } from './dashboard/cards/customer-card/customer-card.component';
 import { PersonInfoEditComponent } from './dashboard/cards/person-info-edit/person-info-edit.component';
 import { ReservationCardComponent } from './dashboard/cards/reservation-card/reservation-card.component';
+import { IncludesTableComponent } from './dashboard/cards/reservation-card/includes-table/includes-table.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +106,8 @@ import { ReservationCardComponent } from './dashboard/cards/reservation-card/res
     ManagerCardComponent,
     CustomerCardComponent,
     PersonInfoEditComponent,
-    ReservationCardComponent
+    ReservationCardComponent,
+    IncludesTableComponent
   ],
   imports: [
     BrowserModule,
