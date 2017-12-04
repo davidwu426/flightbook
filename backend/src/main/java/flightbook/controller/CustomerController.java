@@ -2,6 +2,7 @@ package flightbook.controller;
 
 import flightbook.entity.customer.Customer;
 import flightbook.entity.customer.CreateCustomerRequest;
+import flightbook.entity.customer.CustomerContact;
 import flightbook.entity.person.Person;
 import flightbook.entity.user.User;
 import flightbook.service.customer.ICustomerService;
@@ -13,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,6 +31,13 @@ public class CustomerController {
 	public ResponseEntity<List<Customer>> getAllCustomers() {
 		List<Customer> customers = customerService.getAllCustomers();
 
+		return new ResponseEntity<>(customers, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value="/contact")
+	public ResponseEntity<List<CustomerContact>> getCustomerContacts() {
+		List<CustomerContact> customers = customerService.getAllCustomerContacts();
+		//customers.add(new CustomerContact("Pizza@gmail.com", "Ecks Dee", "NYC", "NY", 10000));
 		return new ResponseEntity<>(customers, HttpStatus.OK);
 	}
 

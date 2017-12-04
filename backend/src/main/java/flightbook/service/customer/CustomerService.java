@@ -4,6 +4,7 @@ import flightbook.dao.customer.ICustomerDao;
 import flightbook.dao.person.IPersonDao;
 import flightbook.dao.user.IUserDao;
 import flightbook.entity.customer.Customer;
+import flightbook.entity.customer.CustomerContact;
 import flightbook.entity.person.Person;
 import flightbook.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,9 @@ public class CustomerService implements ICustomerService {
 	public List<Customer> getAllCustomers() {
 		return customerDao.getAllCustomers();
 	}
+
+	@Override
+	public List<CustomerContact> getAllCustomerContacts() { return customerDao.getAllCustomerContacts(); }
 
 	@Override
 	public Customer getCustomerByAccountNo(int accountNo) {
