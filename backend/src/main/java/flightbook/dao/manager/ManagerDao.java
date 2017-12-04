@@ -58,8 +58,25 @@ public class ManagerDao implements IManagerDao {
 	}
 
 	@Override
+	public void updateManager(Employee manager) {
+		String sql = "UPDATE Employee " +
+				"SET StartDate = ?, " +
+				"HourlyRate = ? " +
+				"WHERE SSN = ? " +
+				"AND IsManager = 1";
+
+		this.jdbcTemplate.update(sql,
+				manager.getStartDate(),
+				manager.getHourlyRate(),
+				manager.getSSN());
+	}
+
+	@Override
 	public void deleteManager(int ssn) {
-		String sql = "DELETE FROM Employee WHERE SSN = ? AND IsManager = 1";
+		String sql = "DELETE Person " +
+				"FROM Person " +
+				"INNER JOIN Employee ON Employee.Id = Person.Id " +
+				"WHERE Employee.SSN = ? AND Employee.IsManager = 1";
 
 		this.jdbcTemplate.update(sql, ssn);
 	}

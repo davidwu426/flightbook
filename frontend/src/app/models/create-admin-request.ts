@@ -1,15 +1,12 @@
 export class CreateAdminRequest {
-  constructor(
-    private username: string,
-    private password: string,
+  username: string;
+  password: string;
 
-    private firstName: string,
-    private lastName: string,
-    private telephone: string,
-    private address: string,
-    private city: string,
-    private state: string,
-    private zip: number,
-  ) {
-  }
+  firstName: string;
+  lastName: string;
+  telephone: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: number;
 }

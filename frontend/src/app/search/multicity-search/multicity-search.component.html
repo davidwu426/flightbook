@@ -5,16 +5,12 @@
   <div class="row text-left">
     <div class="col-12 col-sm-6 mb-3">
       <small class="form-text text-muted">Flying from</small>
-      <select name="fromAirport" [(ngModel)]="c.fromAirport" class="custom-select" required>
-        <option *ngFor="let a of airports" [ngValue]="a.name">{{a.name}}</option>
-      </select>
+      <app-airport-select [(ngModel)]="c.fromAirport" name="fromAirport"></app-airport-select>
     </div>
     
     <div class="col-12 col-sm-6 mb-3">
       <small class="form-text text-muted">Flying to</small>
-      <select name="toAirport" [(ngModel)]="c.toAirport" class="custom-select" required>
-          <option *ngFor="let a of airports" [ngValue]="a.name">{{a.name}}</option>
-        </select>
+      <app-airport-select [(ngModel)]="c.toAirport" name="toAirport"></app-airport-select>
     </div>
   </div>
   

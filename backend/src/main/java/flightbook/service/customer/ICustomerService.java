@@ -41,6 +41,14 @@ public interface ICustomerService {
 	void insertCustomer(User user, Person person, Customer customer);
 
 	/**
+	 * Updates a customer
+	 *
+	 * @param customer  Customer to update
+	 */
+	@Secured({Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	void updateCustomer(Customer customer);
+
+	/**
 	 * Deletes a customer given an account number
 	 *
 	 * @param accountNo    Account number of customer to delete

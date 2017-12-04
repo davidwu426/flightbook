@@ -42,7 +42,7 @@
   <tfoot>
     <tr>
       <td colspan="6">
-          <form class="form" (ngSubmit)="addLeg()">
+          <form class="form" (ngSubmit)="addLeg()" ngNativeValidate>
             <div class="row mb-3">
               <div class="col-4">
                 <input class="form-control" type="text" placeholder="Leg Number" [(ngModel)]="leg.legNo" name="add-leg-no" required>
@@ -78,7 +78,7 @@
         <span>&times;</span>
       </button>
     </div>
-    <form (ngSubmit)="updateLeg(editingLeg)">
+    <form (ngSubmit)="updateLeg(editingLeg)" ngNativeValidate>
 
       <div class="modal-body">
         <div class="mb-3">
@@ -92,15 +92,11 @@
         </div>
         <div class="form-group">
           <label class="font-weight-bold">Departing Airport:</label>
-          <select class="form-control" name="edit-dep-airport" [(ngModel)]="editingLeg.depAirportId" required>
-            <option *ngFor="let a of airports" [ngValue]="a.id">{{a.name}}</option>
-          </select>
+          <app-airport-select [(ngModel)]="editingLeg.depAirportId" name="edit-dep-airport"></app-airport-select>
         </div>
         <div class="form-group">
           <label class="font-weight-bold">Arriving Airport:</label>
-          <select class="form-control" name="edit-arr-airport" [(ngModel)]="editingLeg.arrAirportId" required>
-            <option *ngFor="let a of airports" [ngValue]="a.id">{{a.name}}</option>
-          </select>
+          <app-airport-select [(ngModel)]="editingLeg.arrAirportId" name="edit-arr-airport"></app-airport-select>
         </div>
         <div class="form-group">
           <label class="font-weight-bold">Arrival Time:</label>

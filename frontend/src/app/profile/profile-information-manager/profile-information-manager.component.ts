@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { EmployeeEntity } from '../../models/employee-entity';
+import { Employee } from '../../models/employee';
 
 @Component({
   selector: 'app-profile-information-manager',
@@ -8,11 +8,11 @@ import { EmployeeEntity } from '../../models/employee-entity';
   styleUrls: ['./profile-information-manager.component.css'],
 })
 export class ProfileInformationManagerComponent implements OnInit {
-  managerEntity: EmployeeEntity;
+  manager: Employee;
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.getManagerEntity().subscribe(e => this.managerEntity = e);
+    this.authService.getManager().subscribe(e => this.manager = e);
   }
 }

@@ -61,6 +61,29 @@ public class PersonDao implements IPersonDao {
 	}
 
 	@Override
+	public void updatePerson(Person person) {
+		String sql = "UPDATE Person " +
+				"SET FirstName = ?, " +
+				"LastName = ?, " +
+				"Telephone = ?, " +
+				"Address = ?, " +
+				"City = ?, " +
+				"State = ?, " +
+				"ZipCode = ? " +
+				"WHERE Id = ?";
+
+		this.jdbcTemplate.update(sql,
+				person.getFirstName(),
+				person.getLastName(),
+				person.getTelephone(),
+				person.getAddress(),
+				person.getCity(),
+				person.getState(),
+				person.getZip(),
+				person.getId());
+	}
+
+	@Override
 	public void deletePerson(int id) {
 		String sql = "DELETE FROM Person WHERE Id = ?";
 

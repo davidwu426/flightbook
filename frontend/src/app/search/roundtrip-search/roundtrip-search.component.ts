@@ -10,9 +10,6 @@ import { Airport } from '../../models/airport';
   encapsulation: ViewEncapsulation.None
 })
 export class RoundtripSearchComponent implements OnInit {
-  @Input()
-  airports: Airport[];
-
   c: SearchCriteria;
 
   constructor(public searchService: SearchService) {
@@ -21,5 +18,4 @@ export class RoundtripSearchComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

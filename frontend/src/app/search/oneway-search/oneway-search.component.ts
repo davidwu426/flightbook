@@ -10,9 +10,6 @@ import { Airport } from '../../models/airport';
   encapsulation: ViewEncapsulation.None
 })
 export class OnewaySearchComponent implements OnInit {
-  @Input()
-  airports: Airport[];
-
   c: SearchCriteria;
 
   constructor(public searchService: SearchService) {

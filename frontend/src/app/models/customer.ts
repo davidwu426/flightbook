@@ -1,4 +1,4 @@
-export class CustomerEntity {
+export class Customer {
   id: number;
   accountNo: number;
   creditCardNo: string;

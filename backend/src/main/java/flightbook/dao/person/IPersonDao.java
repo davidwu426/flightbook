@@ -13,6 +13,8 @@ public interface IPersonDao {
 
 	void insertPerson(Person person);
 
+	void updatePerson(Person person);
+
 	void deletePerson(int id);
 
 	int getNewId();

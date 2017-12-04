@@ -1,0 +1,4 @@
+<select class="form-control" name="airport-search" [ngModel]="model"
+  (ngModelChange)="onChange($event)" required>
+  <option *ngFor="let a of airports" [ngValue]="a.id">{{a.name}}</option>
+</select>

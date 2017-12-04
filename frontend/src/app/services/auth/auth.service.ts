@@ -4,9 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { UserLogin } from '../../models/user-login';
 import { UserCredentials } from '../../models/user-credentials';
 import { Constants } from '../../constants';
-import { PersonEntity } from '../../models/person-entity';
-import { CustomerEntity } from '../../models/customer-entity';
-import { EmployeeEntity } from '../../models/employee-entity';
+import { Person } from '../../models/person';
+import { Customer } from '../../models/customer';
+import { Employee } from '../../models/employee';
 
 @Injectable()
 export class AuthService {
@@ -30,28 +30,28 @@ export class AuthService {
     return this.http.get<string>(getRoleUrl, Constants.HTTP_OPTIONS_TEXT);
   }
 
-  getPersonEntity(): Observable<PersonEntity> {
+  getPerson(): Observable<Person> {
     const getPersonUrl = Constants.API_PERSON_USERNAME_URL + `/${this.getCurrentUser().username}`;
 
-    return this.http.get<PersonEntity>(getPersonUrl, Constants.HTTP_OPTIONS);
+    return this.http.get<Person>(getPersonUrl, Constants.HTTP_OPTIONS);
   }
 
-  getCustomerEntity(): Observable<CustomerEntity> {
+  getCustomer(): Observable<Customer> {
     const getCustomerUrl = Constants.API_CUSTOMER_USERNAME_URL + `/${this.getCurrentUser().username}`;
 
-    return this.http.get<CustomerEntity>(getCustomerUrl, Constants.HTTP_OPTIONS);
+    return this.http.get<Customer>(getCustomerUrl, Constants.HTTP_OPTIONS);
   }
 
-  getEmployeeEntity(): Observable<EmployeeEntity> {
+  getEmployee(): Observable<Employee> {
     const getEmployeeUrl = Constants.API_EMPLOYEE_USERNAME_URL + `/${this.getCurrentUser().username}`;
 
-    return this.http.get<EmployeeEntity>(getEmployeeUrl, Constants.HTTP_OPTIONS);
+    return this.http.get<Employee>(getEmployeeUrl, Constants.HTTP_OPTIONS);
   }
 
-  getManagerEntity(): Observable<EmployeeEntity> {
+  getManager(): Observable<Employee> {
     const getManagerUrl = Constants.API_MANAGER_USERNAME_URL + `/${this.getCurrentUser().username}`;
 
-    return this.http.get<EmployeeEntity>(getManagerUrl, Constants.HTTP_OPTIONS);
+    return this.http.get<Employee>(getManagerUrl, Constants.HTTP_OPTIONS);
   }
 
   login(user: UserLogin): Observable<any> {

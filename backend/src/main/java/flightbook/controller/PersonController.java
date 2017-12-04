@@ -6,10 +6,7 @@ import flightbook.service.person.IPersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/people")
@@ -27,6 +24,13 @@ public class PersonController {
 	@RequestMapping(method = RequestMethod.GET, value="/id/{id}")
 	public ResponseEntity<Person> getPersonById(@PathVariable int id) {
 		Person person = personService.getPersonById(id);
+
+		return new ResponseEntity<>(person, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.PUT, value="/{id}")
+	public ResponseEntity<Person> updateCustomer(@PathVariable int id, @RequestBody Person person) {
+		personService.updatePerson(person);
 
 		return new ResponseEntity<>(person, HttpStatus.OK);
 	}

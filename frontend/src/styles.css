@@ -27,6 +27,10 @@ body {
   top: 15%;
 }
 
+.link-hover {
+  cursor: pointer;
+}
+
 /* ladda style */
 
 .ladda-button {

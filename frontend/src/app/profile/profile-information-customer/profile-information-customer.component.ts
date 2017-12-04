@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth/auth.service';
-import { CustomerEntity } from '../../models/customer-entity';
+import { Customer } from '../../models/customer';
 
 @Component({
   selector: 'app-profile-information-customer',
@@ -8,16 +8,16 @@ import { CustomerEntity } from '../../models/customer-entity';
   styleUrls: ['./profile-information-customer.component.css']
 })
 export class ProfileInformationCustomerComponent implements OnInit {
-  customerEntity: CustomerEntity;
+  customer: Customer;
   stars: number[];
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.authService.getCustomerEntity()
+    this.authService.getCustomer()
       .subscribe(c => {
-        this.customerEntity = c;
-        this.stars = this.getRatingStars(this.customerEntity.rating);
+        this.customer = c;
+        this.stars = this.getRatingStars(this.customer.rating);
       });
   }
 

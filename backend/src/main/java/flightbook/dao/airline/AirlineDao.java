@@ -20,7 +20,7 @@ public class AirlineDao implements IAirlineDao {
 
 	@Override
 	public List<Airline> getAllAirlines() {
-		String sql = "SELECT * FROM Airline ORDER BY AirlineId";
+		String sql = "SELECT * FROM Airline ORDER BY Id";
 
 		RowMapper<Airline> rowMapper = new AirlineRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
