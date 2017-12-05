@@ -68,6 +68,11 @@ import { PersonInfoEditComponent } from './dashboard/cards/person-info-edit/pers
 import { ReservationCardComponent } from './dashboard/cards/reservation-card/reservation-card.component';
 import { IncludesTableComponent } from './dashboard/cards/reservation-card/includes-table/includes-table.component';
 import { CustomerReservationCardComponent } from './dashboard/cards/reservation-card/customer-reservation-card/customer-reservation-card.component';
+import { ContactsCardComponent } from './dashboard/cards/contacts-card/contacts-card.component';
+import { SuggestionsCardComponent } from './dashboard/cards/suggestions-card/suggestions-card.component';
+import { CustomerSuggestionsCardComponent } from './dashboard/cards/customer-suggestions-card/customer-suggestions-card.component';
+import { RevenueCardComponent } from './dashboard/cards/revenue-card/revenue-card.component';
+import { RevenueService } from './services/revenue/revenue.service';
 
 @NgModule({
   declarations: [
@@ -109,7 +114,11 @@ import { CustomerReservationCardComponent } from './dashboard/cards/reservation-
     PersonInfoEditComponent,
     ReservationCardComponent,
     IncludesTableComponent,
-    CustomerReservationCardComponent
+    CustomerReservationCardComponent,
+    ContactsCardComponent,
+    SuggestionsCardComponent,
+    CustomerSuggestionsCardComponent,
+    RevenueCardComponent
   ],
   imports: [
     BrowserModule,
@@ -137,6 +146,7 @@ import { CustomerReservationCardComponent } from './dashboard/cards/reservation-
     CustomerService,
     PersonService,
     ReservationService,
+    RevenueService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,

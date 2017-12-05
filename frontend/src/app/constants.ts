@@ -54,4 +54,13 @@ export class Constants {
   public static API_SEARCH_MULTICITY = Constants.API_SEARCH +  '/multicity';
 
   public static API_RESERVATIONS_URL = Constants.API_URL + '/reservations';
+<<<<<<< Updated upstream
+
+  public static API_CONTACTS_URL = Constants.API_CUSTOMERS_URL + '/contacts';
+  
+  public static API_SUGGESTIONS_URL = Constants.API_CUSTOMERS_URL + '/suggestions';
+=======
+  
+  public static API_REVENUE_URL = Constants.API_URL + '/revenue';
+>>>>>>> Stashed changes
 }

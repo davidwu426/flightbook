@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-header">
+      Suggested Flights
+    </div>
+    <div class="card-body">
+      <table class="table table-hover table-sm table-responsive-sm">
+        <thead>
+          <tr>
+            <th>AirlineID</th>
+            <th>Flight Number</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let f of suggestions">
+            <td>{{f.airlineId}}</td>
+            <td>{{f.flightNo}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

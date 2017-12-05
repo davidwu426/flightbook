@@ -1,6 +1,8 @@
 package flightbook.controller;
 
+import flightbook.entity.customer.CustomerOnFlight;
 import flightbook.entity.flight.Flight;
+import flightbook.entity.flight.FrequentFlight;
 import flightbook.entity.leg.Leg;
 import flightbook.service.flight.IFlightService;
 import flightbook.service.leg.ILegService;
@@ -34,6 +36,13 @@ public class FlightController {
 		return new ResponseEntity<>(flights, HttpStatus.OK);
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value="/airport/{airportId}")
+	public ResponseEntity<List<Flight>> getFlightsByAirport(@PathVariable String airportId) {
+		List<Flight> flights = flightService.getFlightsByAirport(airportId);
+
+		return new ResponseEntity<>(flights, HttpStatus.OK);
+	}
+
 	@RequestMapping(method = RequestMethod.GET, value = "/{airlineId}/{flightNo}")
 	public ResponseEntity<Flight> getFlight(@PathVariable String airlineId, @PathVariable int flightNo) {
 		Flight flight = flightService.getFlight(airlineId, flightNo);
@@ -42,6 +51,30 @@ public class FlightController {
 		}
 
 		return new ResponseEntity<>(flight, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/frequent")
+	public ResponseEntity<List<FrequentFlight>> getFrequentFlight()
+	{
+		List<FrequentFlight> frequentFlights = flightService.getFrequentFlight();
+
+		return new ResponseEntity<List<FrequentFlight>>(frequentFlights, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/customeronflight")
+	public ResponseEntity<List<CustomerOnFlight>> getCustomerOnFlight(@PathVariable String airlineId, @PathVariable int flightNo)
+	{
+		List<CustomerOnFlight> customerOnFlight = flightService.getCustomerOnFlight(airlineId, flightNo);
+
+		return new ResponseEntity<List<CustomerOnFlight>>(customerOnFlight, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value ="/delayed")
+	public ResponseEntity<List<Flight>> getDelayedFlights()
+	{
+		List<Flight> delayedFlights = flightService.getDelayedFlights();
+
+		return new ResponseEntity<List<Flight>>(delayedFlights, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

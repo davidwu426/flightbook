@@ -1,7 +1,9 @@
 package flightbook.service.flight;
 
 import flightbook.Role;
+import flightbook.entity.customer.CustomerOnFlight;
 import flightbook.entity.flight.Flight;
+import flightbook.entity.flight.FrequentFlight;
 import org.springframework.security.access.annotation.Secured;
 
 import java.util.List;
@@ -21,6 +23,14 @@ public interface IFlightService {
 	List<Flight> getFlightsByAirline(String airlineId);
 
 	/**
+	 * Get all flights from an airport
+	 *
+	 * @param airportId	Airport to get flights from
+	 * @return List of flights from airport
+	 */
+	List<Flight> getFlightsByAirport(String airportId);
+
+	/**
 	 * Find a specific flight
 	 *
 	 * @param airlineId     Airline ID of flight to get
@@ -29,6 +39,25 @@ public interface IFlightService {
 	 */
 	Flight getFlight(String airlineId, int flightNo);
 
+	/**
+	 *
+	 * @return List of 5 most frequent flight
+	 */
+	List<FrequentFlight> getFrequentFlight();
+
+	/**
+	 *
+	 * @param airlineId Airline id for the flight
+	 * @param flightNo flight number for the flight
+	 * @return the list of customers who are on the flight
+	 */
+	List<CustomerOnFlight> getCustomerOnFlight(String airlineId, int flightNo);
+
+	/**
+	 *
+	 * @return return the flights that are delayed
+	 */
+	List<Flight> getDelayedFlights();
 	/**
 	 * Inserts a flight
 	 *
