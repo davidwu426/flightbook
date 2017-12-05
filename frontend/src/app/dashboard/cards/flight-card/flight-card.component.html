@@ -3,7 +3,7 @@
     Flights
   </div>
   <div class="card-body">
-      
+
     <table class="table table-sm table-responsive-sm">
       <thead>
         <tr>
@@ -27,8 +27,8 @@
               </button>
             </td>
             <td>
-              <button type="button" class="close float-left link-hover" (click)="open(editFlight, f.airlineId, f.flightNo)"
-                data-toggle="modal" data-target="#edit-flight-modal">
+              <button type="button" class="close float-left link-hover" (click)="open(editFlight, f.airlineId, f.flightNo)" data-toggle="modal"
+                data-target="#edit-flight-modal">
                 <i class="fa fa-pencil"></i>
               </button>
             </td>
@@ -67,18 +67,22 @@
       </div>
       <div class="row mb-3">
         <div class="col-6">
-          <input class="form-control" type="text" placeholder="Number of Seats" [(ngModel)]="flight.numberOfSeats" name="add-no-of-seats" required>
+          <input class="form-control" type="text" placeholder="Number of Seats" [(ngModel)]="flight.numberOfSeats" name="add-no-of-seats"
+            required>
         </div>
         <div class="col-6">
-          <input class="form-control" type="text" placeholder="Days Operating" [(ngModel)]="flight.daysOperating" name="add-flight-days-operting" required>
+          <input class="form-control" type="text" placeholder="Days Operating" [(ngModel)]="flight.daysOperating" name="add-flight-days-operting"
+            required>
         </div>
       </div>
       <div class="row mb-3">
         <div class="col-6">
-          <input class="form-control" type="text" placeholder="Minimum Length of Stay" [(ngModel)]="flight.minLengthOfStay" name="add-flight-min" required>
+          <input class="form-control" type="text" placeholder="Minimum Length of Stay" [(ngModel)]="flight.minLengthOfStay" name="add-flight-min"
+            required>
         </div>
         <div class="col-6">
-          <input class="form-control" type="text" placeholder="Maximum Length of Stay" [(ngModel)]="flight.maxLengthOfStay" name="add-flight-max" required>
+          <input class="form-control" type="text" placeholder="Maximum Length of Stay" [(ngModel)]="flight.maxLengthOfStay" name="add-flight-max"
+            required>
         </div>
       </div>
       <button class="btn btn-success btn-block" type="submit">Add Flight</button>
@@ -94,7 +98,7 @@
     </button>
   </div>
   <form (ngSubmit)="updateFlight(editingFlight)" ngNativeValidate>
-    
+
     <div class="modal-body">
       <div class="mb-3">
         <b>Airline ID:</b> {{editingFlight.airlineId}}
@@ -119,7 +123,7 @@
         <input type="text" class="form-control" [(ngModel)]="editingFlight.maxLengthOfStay" name="edit-max-length-of-stay" required>
       </div>
     </div>
-      
+
     <div class="modal-footer">
       <button type="submit" class="btn btn-success">Update Flight</button>
     </div>
