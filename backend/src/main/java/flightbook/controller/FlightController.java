@@ -31,6 +31,13 @@ public class FlightController {
 		return new ResponseEntity<>(flights, HttpStatus.OK);
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value="/airport/{airportId}")
+	public ResponseEntity<List<Flight>> getFlightsByAirport(@PathVariable String airportId) {
+		List<Flight> flights = flightService.getFlightsByAirport(airportId);
+
+		return new ResponseEntity<>(flights, HttpStatus.OK);
+	}
+
 	@RequestMapping(method = RequestMethod.GET, value = "/{airlineId}/{flightNo}")
 	public ResponseEntity<Flight> getFlight(@PathVariable String airlineId, @PathVariable int flightNo) {
 		Flight flight = flightService.getFlight(airlineId, flightNo);

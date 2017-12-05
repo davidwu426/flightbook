@@ -35,6 +35,18 @@ public class FlightDao implements IFlightDao {
 	}
 
 	@Override
+	public List<Flight> getFlightsByAirport(String airportId) {
+		String sql = "SELECT f.* " +
+				"FROM Airport a, Leg l, Flight f " +
+				"WHERE a.Id = l.DepAirportID " +
+				"AND f.FlightNo = l.FlightNo " +
+				"AND a.Id = ?;";
+
+		RowMapper<Flight> rowMapper = new FlightRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper, airportId);
+	}
+
+	@Override
 	public Flight getFlight(String airlineId, int flightNo) {
 		String sql = "SELECT * FROM Flight WHERE AirlineId = ? AND FlightNo = ?";
 

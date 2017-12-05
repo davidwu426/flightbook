@@ -27,6 +27,11 @@ public class FlightService implements IFlightService {
 	}
 
 	@Override
+	public List<Flight> getFlightsByAirport(String airportId) {
+		return flightDao.getFlightsByAirport(airportId);
+	}
+
+	@Override
 	public List<Leg> getLegsByAirline(String airlineId) {
 		return legDao.getLegsByAirline(airlineId);
 	}

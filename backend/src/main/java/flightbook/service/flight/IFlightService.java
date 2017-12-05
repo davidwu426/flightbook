@@ -22,6 +22,14 @@ public interface IFlightService {
 	List<Flight> getFlightsByAirline(String airlineId);
 
 	/**
+	 * Get all flights from an airport
+	 *
+	 * @param airportId	Airport to get flights from
+	 * @return List of flights from airport
+	 */
+	List<Flight> getFlightsByAirport(String airportId);
+
+	/**
 	 * Find a specific flight
 	 *
 	 * @param airlineId     Airline ID of flight to get
