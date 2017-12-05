@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SearchCriteria } from '../../models/search-criteria';
+import { HttpClient } from '@angular/common/http';
 
 type SearchType = 'oneway' | 'roundtrip' | 'multicity';
 
@@ -8,7 +9,7 @@ export class SearchService {
   searchCriteria: SearchCriteria[] = [new SearchCriteria(), new SearchCriteria()];
   type: SearchType = 'oneway';
 
-  constructor() { }
+  constructor(http: HttpClient) { }
 
   addCriteria() {
     if (this.searchCriteria.length < 5) {
@@ -20,5 +21,9 @@ export class SearchService {
     if (this.searchCriteria.length > 2) {
       this.searchCriteria.pop();
     }
+  }
+
+  getOneWay(){
+
   }
 }
