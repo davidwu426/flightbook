@@ -1,8 +1,11 @@
 package flightbook.controller;
 
+import flightbook.entity.customer.CustomerOnFlight;
 import flightbook.entity.flight.Flight;
+import flightbook.entity.flight.FrequentFlight;
 import flightbook.entity.leg.Leg;
 import flightbook.service.flight.IFlightService;
+import flightbook.entity.customer.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -76,6 +79,31 @@ public class FlightController {
 		return new ResponseEntity<Leg>(legs, HttpStatus.OK);
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value = "/frequent")
+	public ResponseEntity<List<FrequentFlight>> getFrequentFlight()
+	{
+		List<FrequentFlight> frequentFlights = flightService.getFrequentFlight();
+
+		return new ResponseEntity<List<FrequentFlight>>(frequentFlights, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/customeronflight")
+	public ResponseEntity<List<CustomerOnFlight>> getCustomerOnFlight(@PathVariable String airlineId, @PathVariable int flightNo)
+	{
+		List<CustomerOnFlight> customerOnFlight = flightService.getCustomerOnFlight(airlineId, flightNo);
+
+		return new ResponseEntity<List<CustomerOnFlight>>(customerOnFlight, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value ="/delayed")
+	public ResponseEntity<List<Flight>> getDelayedFlights()
+	{
+		List<Flight> delayedFlights = flightService.getDelayedFlights();
+
+		return new ResponseEntity<List<Flight>>(delayedFlights, HttpStatus.OK);
+	}
+
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Flight> createFlight(@RequestBody Flight flight) {
 		try {
@@ -111,6 +139,7 @@ public class FlightController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
 
 	@RequestMapping(method=RequestMethod.PUT, value = "/{airlineId}/{flightNo}/legs/{legNo}")
 	public ResponseEntity<Leg> updateLeg(@PathVariable String airlineId, @PathVariable int flightNo,

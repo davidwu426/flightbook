@@ -1,7 +1,9 @@
 package flightbook.service.flight;
 
 import flightbook.Role;
+import flightbook.entity.customer.CustomerOnFlight;
 import flightbook.entity.flight.Flight;
+import flightbook.entity.flight.FrequentFlight;
 import flightbook.entity.leg.Leg;
 import org.springframework.security.access.annotation.Secured;
 
@@ -59,6 +61,26 @@ public interface IFlightService {
 	 * @return  List of legs of a flight by flight number
 	 */
 	List<Leg> getLegsByFlight(String airlineId, int flightNo);
+
+	/**
+	 *
+	 * @return List of 5 most frequent flight
+	 */
+	List<FrequentFlight> getFrequentFlight();
+
+	/**
+	 *
+	 * @param airlineId Airline id for the flight
+	 * @param flightNo flight number for the flight
+	 * @return the list of customers who are on the flight
+	 */
+	List<CustomerOnFlight> getCustomerOnFlight(String airlineId, int flightNo);
+
+	/**
+	 *
+	 * @return return the flights that are delayed
+	 */
+	List<Flight> getDelayedFlights();
 
 	/**
 	 * Get a specific leg of a flight
