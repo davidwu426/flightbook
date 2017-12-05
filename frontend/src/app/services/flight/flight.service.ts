@@ -27,4 +27,9 @@ export class FlightService {
 
     return this.http.delete<Flight>(url, Constants.HTTP_OPTIONS);
   }
+
+  getFlightsByAirport(airportId: string): Observable<Flight[]> {
+    const url = `${Constants.API_FLIGHTS_BY_AIRPORT_URL}/${airportId}`;
+    return this.http.get<Flight[]>(url, Constants.HTTP_OPTIONS);
+  }
 }
