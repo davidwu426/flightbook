@@ -1,11 +1,9 @@
 package flightbook.service.flight;
 
 import flightbook.dao.flight.IFlightDao;
-import flightbook.dao.leg.ILegDao;
 import flightbook.entity.customer.CustomerOnFlight;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.flight.FrequentFlight;
-import flightbook.entity.leg.Leg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +13,6 @@ import java.util.List;
 public class FlightService implements IFlightService {
 	@Autowired
 	IFlightDao flightDao;
-	@Autowired
-	ILegDao legDao;
 
 	@Override
 	public List<Flight> getAllFlights() {
@@ -29,13 +25,8 @@ public class FlightService implements IFlightService {
 	}
 
 	@Override
-	public List<Leg> getLegsByAirline(String airlineId) {
-		return legDao.getLegsByAirline(airlineId);
-	}
-
-	@Override
-	public List<Leg> getLegsByFlight(String airlineId, int flightNo) {
-		return legDao.getLegsByFlight(airlineId, flightNo);
+	public List<Flight> getFlightsByAirport(String airportId) {
+		return flightDao.getFlightsByAirport(airportId);
 	}
 
 	@Override
@@ -48,9 +39,10 @@ public class FlightService implements IFlightService {
 	{
 		return flightDao.getFrequentFlight();
 	}
+
 	@Override
-	public Leg getLeg(String airlineId, int flightNo, int legNo) {
-		return legDao.getLeg(airlineId, flightNo, legNo);
+	public List<Flight> getDelayedFlights() {
+		return flightDao.getDelayedFlights();
 	}
 
 	@Override
@@ -61,18 +53,8 @@ public class FlightService implements IFlightService {
 
 
 	@Override
-	public List<Leg> getAllLegs() {
-		return legDao.getAllLegs();
-	}
-
-	@Override
 	public void insertFlight(Flight flight) {
 		flightDao.insertFlight(flight);
-	}
-
-	@Override
-	public void insertLeg(Leg leg) {
-		legDao.insertLeg(leg);
 	}
 
 	@Override
@@ -81,17 +63,7 @@ public class FlightService implements IFlightService {
 	}
 
 	@Override
-	public void updateLeg(Leg leg) {
-		legDao.updateLeg(leg);
-	}
-
-	@Override
 	public void deleteFlight(String airlineId, int flightNo) {
 		flightDao.deleteFlight(airlineId, flightNo);
-	}
-
-	@Override
-	public void deleteLeg(String airlineId, int flightNo, int legNo) {
-		legDao.deleteLeg(airlineId, flightNo, legNo);
 	}
 }

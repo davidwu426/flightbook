@@ -40,6 +40,30 @@ public class FlightDao implements IFlightDao {
 	}
 
 	@Override
+	public List<Flight> getFlightsDepartingFromAirportOnDayOfWeek(String airportId, String dayOfWeekBinary) {
+		String sql = "SELECT f.*\n" +
+				"FROM Flight f, Leg l\n" +
+				"WHERE f.DaysOperating & b?\n" +
+				"AND f.AirlineId = l.AirlineId\n" +
+				"AND f.FlightNo = l.FlightNo\n" +
+				"AND l.DepAirportId = ?";
+
+		RowMapper<Flight> rowMapper = new FlightRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper, dayOfWeekBinary, airportId);
+	}
+
+	public List<Flight> getFlightsByAirport(String airportId) {
+		String sql = "SELECT f.* " +
+				"FROM Airport a, Leg l, Flight f " +
+				"WHERE a.Id = l.DepAirportID " +
+				"AND f.FlightNo = l.FlightNo " +
+				"AND a.Id = ?;";
+
+		RowMapper<Flight> rowMapper = new FlightRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper, airportId);
+	}
+
+	@Override
 	public Flight getFlight(String airlineId, int flightNo) {
 		String sql = "SELECT * FROM Flight WHERE AirlineId = ? AND FlightNo = ?";
 
@@ -76,6 +100,15 @@ public class FlightDao implements IFlightDao {
 		return this.jdbcTemplate.query(sql, rowMapper, airlineId, flightNo);
 	}
 
+	@Override
+	public List<Flight> getDelayedFlights() {
+		String sql = "SELECT f.AirlineID, f.FlightNo\n" +
+				"FROM Flight f\n" +
+				"WHERE f.IsDelayed = TRUE;\n";
+
+		RowMapper<Flight> rowMapper = new FlightRowMapper();
+		return this.jdbcTemplate.query(sql,rowMapper);
+	}
 
 	@Override
 	public void insertFlight(Flight flight) {

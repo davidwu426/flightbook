@@ -12,11 +12,17 @@ public interface IFlightDao {
 
 	List<Flight> getFlightsByAirline(String airlineId);
 
+	List<Flight> getFlightsDepartingFromAirportOnDayOfWeek(String airportId, String dayOfWeekBinary);
+	
+	List<Flight> getFlightsByAirport(String airportId);
+
 	Flight getFlight(String airlineId, int flightNo);
 
 	List<FrequentFlight> getFrequentFlight ();
 
 	List<CustomerOnFlight> getCustomerOnFlight(String airlineId, int flightNo);
+
+	List<Flight> getDelayedFlights();
 
 	void insertFlight(Flight flight);
 
