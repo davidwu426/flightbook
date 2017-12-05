@@ -3,6 +3,7 @@ package flightbook.controller;
 import flightbook.entity.customer.Customer;
 import flightbook.entity.customer.CreateCustomerRequest;
 import flightbook.entity.customer.CustomerContact;
+import flightbook.entity.flight.Flight;
 import flightbook.entity.person.Person;
 import flightbook.entity.user.User;
 import flightbook.service.customer.ICustomerService;
@@ -34,10 +35,10 @@ public class CustomerController {
 		return new ResponseEntity<>(customers, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value="/contact")
+	@RequestMapping(method = RequestMethod.GET, value="/contacts")
 	public ResponseEntity<List<CustomerContact>> getCustomerContacts() {
 		List<CustomerContact> customers = customerService.getAllCustomerContacts();
-		
+
 		return new ResponseEntity<>(customers, HttpStatus.OK);
 	}
 
@@ -49,6 +50,17 @@ public class CustomerController {
 		}
 
 		return new ResponseEntity<>(customer, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/suggestions/{accountNo}")
+	public ResponseEntity<List<Flight>> getSuggestions(@PathVariable int accountNo) {
+		Customer customer = customerService.getCustomerByAccountNo(accountNo);
+		List<Flight> suggestions= customerService.getSuggestions(accountNo);
+		if (customer == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+
+		return new ResponseEntity<>(suggestions, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value="/username/{username}")

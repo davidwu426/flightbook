@@ -1,9 +1,12 @@
 package flightbook.entity.customer;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 
 public class CustomerRowMapper implements RowMapper<Customer> {
 	@Override

@@ -4,6 +4,8 @@ import flightbook.entity.customer.Customer;
 import flightbook.entity.customer.CustomerContact;
 import flightbook.entity.customer.CustomerContactRowMapper;
 import flightbook.entity.customer.CustomerRowMapper;
+import flightbook.entity.flight.Flight;
+import flightbook.entity.flight.FlightRowMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -36,6 +38,29 @@ public class CustomerDao implements ICustomerDao {
 
 		RowMapper<CustomerContact> rowMapper = new CustomerContactRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
+	}
+
+	@Override
+	public List<Flight> getSuggestions(int accountNo) {
+		String sql = "SELECT DISTINCT f.* " +
+					 "FROM Flight f, Leg l, Reservation r, Trip t " +
+					 "WHERE r.AccountNo = ? " +
+					 "AND r.ResrNo = t.ResrNo " +
+					 "AND l.AirlineID = f.AirlineID " +
+					 "AND l.FlightNo = f.FlightNo " +
+					 "AND t.Source IN (SELECT l2.ArrAirportId " +
+					 "FROM Leg l2 " +
+					 "WHERE f.AirlineID = l2.AirlineID " +
+					 "AND f.FlightNo = l2.FlightNo " +
+				 	 ") " +
+					 "AND t.Destination IN (SELECT l3.DepAirportId " +
+					 "FROM Leg l3 " +
+					 "WHERE f.AirlineID = l3.AirlineID " +
+					 "AND f.FlightNo = l3.FlightNo " +
+					 ");";
+
+		RowMapper<Flight> rowMapper = new FlightRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper, accountNo);
 	}
 
 	@Override
