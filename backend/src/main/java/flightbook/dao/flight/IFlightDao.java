@@ -9,6 +9,8 @@ public interface IFlightDao {
 
 	List<Flight> getFlightsByAirline(String airlineId);
 
+	List<Flight> getFlightsDepartingFromAirportOnDayOfWeek(String airportId, String dayOfWeekBinary);
+
 	Flight getFlight(String airlineId, int flightNo);
 
 	void insertFlight(Flight flight);

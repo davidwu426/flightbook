@@ -2,6 +2,8 @@ package flightbook.dao.flight;
 
 import flightbook.entity.flight.Flight;
 import flightbook.entity.flight.FlightRowMapper;
+import flightbook.entity.flightleg.FlightLeg;
+import flightbook.entity.flightleg.FlightLegRowMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -32,6 +34,19 @@ public class FlightDao implements IFlightDao {
 
 		RowMapper<Flight> rowMapper = new FlightRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, airlineId);
+	}
+
+	@Override
+	public List<Flight> getFlightsDepartingFromAirportOnDayOfWeek(String airportId, String dayOfWeekBinary) {
+		String sql = "SELECT f.*\n" +
+				"FROM Flight f, Leg l\n" +
+				"WHERE f.DaysOperating & b?\n" +
+				"AND f.AirlineId = l.AirlineId\n" +
+				"AND f.FlightNo = l.FlightNo\n" +
+				"AND l.DepAirportId = ?";
+
+		RowMapper<Flight> rowMapper = new FlightRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper, dayOfWeekBinary, airportId);
 	}
 
 	@Override

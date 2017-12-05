@@ -47,7 +47,11 @@ export class Constants {
 
   public static API_FLIGHTS_URL = Constants.API_URL + '/flights';
   public static API_LEGS = '/legs';
+
   public static API_SEARCH = Constants.API_URL +  '/search';
+  public static API_SEARCH_ONEWAY = Constants.API_SEARCH +  '/oneway';
+  public static API_SEARCH_ROUNDTRIP = Constants.API_SEARCH +  '/roundtrip';
+  public static API_SEARCH_MULTICITY = Constants.API_SEARCH +  '/multicity';
 
   public static API_RESERVATIONS_URL = Constants.API_URL + '/reservations';
 }

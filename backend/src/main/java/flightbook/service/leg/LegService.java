@@ -3,9 +3,11 @@ package flightbook.service.leg;
 import flightbook.dao.leg.ILegDao;
 import flightbook.entity.leg.Leg;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class LegService implements ILegService {
 	@Autowired
 	ILegDao legDao;
