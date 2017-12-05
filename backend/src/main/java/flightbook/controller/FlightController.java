@@ -1,5 +1,6 @@
 package flightbook.controller;
 
+import flightbook.entity.customer.CustomerOnFlight;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.flight.FrequentFlight;
 import flightbook.entity.leg.Leg;
@@ -80,11 +81,11 @@ public class FlightController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/customeronflight")
-	public ResponseEntity<List<Customer>> getCustomerOnFlight(@PathVariable String airlineId, @PathVariable int flightNo)
+	public ResponseEntity<List<CustomerOnFlight>> getCustomerOnFlight(@PathVariable String airlineId, @PathVariable int flightNo)
 	{
-		List<Customer> customerOnFlight = flightService.getCustomerOnFlight();
+		List<CustomerOnFlight> customerOnFlight = flightService.getCustomerOnFlight(airlineId, flightNo);
 
-		return new ResponseEntity<List<Customer>>(customerOnFlight, HttpStatus.OK, airlineId , flightNo);
+		return new ResponseEntity<List<CustomerOnFlight>>(customerOnFlight, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
