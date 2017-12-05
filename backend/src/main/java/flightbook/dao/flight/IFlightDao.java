@@ -18,6 +18,8 @@ public interface IFlightDao {
 
 	List<CustomerOnFlight> getCustomerOnFlight(String airlineId, int flightNo);
 
+	List<Flight> getDelayedFlights();
+
 	void insertFlight(Flight flight);
 
 	void updateFlight(Flight flight);

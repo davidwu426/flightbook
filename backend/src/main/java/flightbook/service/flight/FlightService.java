@@ -48,6 +48,12 @@ public class FlightService implements IFlightService {
 	{
 		return flightDao.getFrequentFlight();
 	}
+
+	@Override
+	public List<Flight> getDelayedFlights() {
+		return flightDao.getDelayedFlights();
+	}
+
 	@Override
 	public Leg getLeg(String airlineId, int flightNo, int legNo) {
 		return legDao.getLeg(airlineId, flightNo, legNo);

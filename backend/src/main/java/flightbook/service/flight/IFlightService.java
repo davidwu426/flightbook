@@ -69,6 +69,12 @@ public interface IFlightService {
 	List<CustomerOnFlight> getCustomerOnFlight(String airlineId, int flightNo);
 
 	/**
+	 *
+	 * @return return the flights that are delayed
+	 */
+	List<Flight> getDelayedFlights();
+
+	/**
 	 * Get a specific leg of a flight
 	 * @param airlineId AirlineId of airline to get leg of
 	 * @param flightNo  Flight number of flight to get leg of

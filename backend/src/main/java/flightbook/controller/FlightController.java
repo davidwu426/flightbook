@@ -88,6 +88,15 @@ public class FlightController {
 		return new ResponseEntity<List<CustomerOnFlight>>(customerOnFlight, HttpStatus.OK);
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value ="/delayed")
+	public ResponseEntity<List<Flight>> getDelayedFlights()
+	{
+		List<Flight> delayedFlights = flightService.getDelayedFlights();
+
+		return new ResponseEntity<List<Flight>>(delayedFlights, HttpStatus.OK);
+	}
+
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Flight> createFlight(@RequestBody Flight flight) {
 		try {
@@ -123,6 +132,7 @@ public class FlightController {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 	}
+
 
 	@RequestMapping(method=RequestMethod.PUT, value = "/{airlineId}/{flightNo}/legs/{legNo}")
 	public ResponseEntity<Leg> updateLeg(@PathVariable String airlineId, @PathVariable int flightNo,

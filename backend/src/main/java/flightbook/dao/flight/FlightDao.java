@@ -76,6 +76,15 @@ public class FlightDao implements IFlightDao {
 		return this.jdbcTemplate.query(sql, rowMapper, airlineId, flightNo);
 	}
 
+	@Override
+	public List<Flight> getDelayedFlights() {
+		String sql = "SELECT f.AirlineID, f.FlightNo\n" +
+				"FROM Flight f\n" +
+				"WHERE f.IsDelayed = TRUE;\n";
+
+		RowMapper<Flight> rowMapper = new FlightRowMapper();
+		return this.jdbcTemplate.query(sql,rowMapper);
+	}
 
 	@Override
 	public void insertFlight(Flight flight) {
