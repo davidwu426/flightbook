@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RevenueService implements  IRevenueService{
 
-    @Autowireds
+    @Autowired
     IReservationDao reservationDao;
 
     @Autowired

@@ -1,23 +1,20 @@
 package flightbook.controller;
 
-import com.sun.org.apache.regexp.internal.RE;
-import flightbook.entity.customer.Customer;
 import flightbook.entity.customer.CreateCustomerRequest;
-import flightbook.entity.customer.CustomerContact;
+import flightbook.entity.customer.Customer;
 import flightbook.entity.customer.CustomerAuction;
+import flightbook.entity.customer.CustomerContact;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.person.Person;
 import flightbook.entity.user.User;
 import flightbook.service.customer.ICustomerService;
 import flightbook.service.person.IPersonService;
-import flightbook.service.user.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
