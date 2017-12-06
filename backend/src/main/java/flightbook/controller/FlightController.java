@@ -61,7 +61,7 @@ public class FlightController {
 		return new ResponseEntity<List<FrequentFlight>>(frequentFlights, HttpStatus.OK);
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/customeronflight")
+	@RequestMapping(method = RequestMethod.GET, value = "/customeronflight/{airlineId}/{flightNo}")
 	public ResponseEntity<List<CustomerOnFlight>> getCustomerOnFlight(@PathVariable String airlineId, @PathVariable int flightNo)
 	{
 		List<CustomerOnFlight> customerOnFlight = flightService.getCustomerOnFlight(airlineId, flightNo);
