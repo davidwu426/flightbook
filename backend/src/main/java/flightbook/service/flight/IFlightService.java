@@ -58,6 +58,13 @@ public interface IFlightService {
 	 * @return return the flights that are delayed
 	 */
 	List<Flight> getDelayedFlights();
+
+	/**
+	 *
+	 * @return List of flights that are on time
+	 */
+	List<Flight> getOnTimeFlight();
+
 	/**
 	 * Inserts a flight
 	 *

@@ -12,7 +12,7 @@ public class FrequentFlightMapper implements RowMapper<FrequentFlight> {
         return new FrequentFlight(
                 rs.getInt("FlightNo"),
                 rs.getString( "AirlineId"),
-                rs.getInt("ResrNoCount")
+                rs.getInt("ResrCount")
         );
     }
 }

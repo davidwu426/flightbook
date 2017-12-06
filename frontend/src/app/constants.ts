@@ -64,9 +64,10 @@ export class Constants {
   public static API_DELAYED_FLIGHTS_URL = Constants.API_FLIGHTS_URL +"/delayed";
   public static API_FLIGHTS_BY_AIRPORT_URL = Constants.API_FLIGHTS_URL + '/airport';
 
-<<<<<<< HEAD
-  public static API_CUSTOMER_ON_FLIGHT = Constants.API_FLIGHTS_URL+ "/customeronflight"
-=======
+  public static API_CUSTOMER_ON_FLIGHT_URL = Constants.API_FLIGHTS_URL+ "/customeronflight"
   public static API_AUCTIONS_URL = Constants.API_CUSTOMERS_URL + '/auctions';
->>>>>>> 5fac8f9cd910f7734866c719ef0751068e2430dc
+
+  public static API_FREQUENT_FLIGHT_URL = Constants.API_FLIGHTS_URL +"/frequent";
+
+  public static API_ON_TIME_FLIGHTS_URL = Constants.API_FLIGHTS_URL +"/ontime";
 }

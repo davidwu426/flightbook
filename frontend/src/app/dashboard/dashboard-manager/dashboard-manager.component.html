@@ -41,12 +41,28 @@
 
   <!-- flights -->
   <div class="tab-pane fade show" id="flights" role="tabpanel">
-    <app-delayed-flights-card> </app-delayed-flights-card>
+    <div class="row mb-3">
+      <div class="col-12">
+        <app-delayed-flights-card> </app-delayed-flights-card>
+      </div>
+    </div>
+    <div class="row mb-3">
+      <div class="col-12">
+        <app-on-time-flight-card></app-on-time-flight-card>
+      </div>
+    </div>
     <div class="row mb-3">
       <div class="col-12">
         <app-flight-card></app-flight-card>
       </div>
     </div>
+
+    <div class="row mb-3">
+      <div class="col-12">
+        <app-most-frequent-flight-card></app-most-frequent-flight-card>
+      </div>
+    </div>
+
     <div class="row mb-3">
       <div class="col-12">
         <app-flights-by-airport-card></app-flights-by-airport-card>
@@ -54,13 +70,11 @@
     </div>
 
     <div class="row mb-3">
-        <div class="col-12">
-          <app-customer-on-flight-card></app-customer-on-flight-card>
-        </div>
+      <div class="col-12">
+        <app-customer-on-flight-card></app-customer-on-flight-card>
       </div>
+    </div>
   </div>
-
-  <!-- Customer on Flight -->
 
   <!-- revenue -->
   <div class="tab-pane fade show" id="revenue" role="tabpanel">

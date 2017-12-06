@@ -79,6 +79,8 @@ import { CustomerOnFlightCardComponent } from './dashboard/cards/customer-on-fli
 import { OnewaySearchEntryComponent } from './search-results/flight-results/oneway-search-entry/oneway-search-entry.component';
 import { AuctionCardComponent } from './dashboard/cards/auction-card/auction-card.component';
 import { CustomerAuctionsCardComponent } from './dashboard/cards/customer-auctions-card/customer-auctions-card.component';
+import { MostFrequentFlightCardComponent } from './dashboard/cards/most-frequent-flight-card/most-frequent-flight-card.component';
+import { OnTimeFlightCardComponent } from './dashboard/cards/on-time-flight-card/on-time-flight-card.component';
 
 @NgModule({
   declarations: [
@@ -127,11 +129,13 @@ import { CustomerAuctionsCardComponent } from './dashboard/cards/customer-auctio
     RevenueCardComponent,
     DelayedFlightsCardComponent,
     FlightsByAirportCardComponent,
-    CustomerOnFlightCardComponent
-    OnewaySearchEntryComponent,
+    CustomerOnFlightCardComponent,
+    OnewaySearchEntryComponent, 
     FlightsByAirportCardComponent,
     CustomerAuctionsCardComponent,
-    AuctionCardComponent
+    AuctionCardComponent,
+    MostFrequentFlightCardComponent,
+    OnTimeFlightCardComponent
   ],
   imports: [
     BrowserModule,

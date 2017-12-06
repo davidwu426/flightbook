@@ -24,6 +24,8 @@ public interface IFlightDao {
 
 	List<Flight> getDelayedFlights();
 
+	List<Flight> getOnTimeFlights();
+
 	void insertFlight(Flight flight);
 
 	void updateFlight(Flight flight);

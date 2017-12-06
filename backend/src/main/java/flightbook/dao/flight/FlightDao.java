@@ -111,6 +111,16 @@ public class FlightDao implements IFlightDao {
 	}
 
 	@Override
+	public List<Flight> getOnTimeFlights() {
+		String sql = "SELECT *\n" +
+				"FROM Flight f\n" +
+				"WHERE f.IsDelayed = FALSE;\n";
+
+		RowMapper<Flight> rowMapper = new FlightRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper);
+	}
+
+	@Override
 	public void insertFlight(Flight flight) {
 		String sql = "INSERT INTO Flight (AirlineId, FlightNo, NoOfSeats, DaysOperating, MinLengthOfStay, MaxLengthOfStay) " +
 				"VALUES (?, ?, ?, ?, ?, ?)";

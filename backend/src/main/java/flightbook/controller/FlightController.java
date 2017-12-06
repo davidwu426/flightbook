@@ -1,5 +1,6 @@
 package flightbook.controller;
 
+import com.sun.org.apache.regexp.internal.RE;
 import flightbook.entity.customer.CustomerOnFlight;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.flight.FrequentFlight;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController
@@ -75,6 +77,13 @@ public class FlightController {
 		List<Flight> delayedFlights = flightService.getDelayedFlights();
 
 		return new ResponseEntity<List<Flight>>(delayedFlights, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value="/ontime")
+	public ResponseEntity<List<Flight>> getOnTimeFlights()
+	{
+		List<Flight> onTimeFlights = flightService.getOnTimeFlight();
+		return new ResponseEntity<List<Flight>>(onTimeFlights, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

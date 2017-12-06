@@ -1,0 +1,46 @@
+<div class="card">
+
+  <div class="card-header">
+    Customer On Flight
+  </div>
+
+  <div class="card-body">
+    <table class="table table-hover table-sm table-responsive-sm">
+      <thead>
+        <tr>
+          <th>Account Number </th>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Reservation Number</th>
+          <th>Seat Number</th>
+          <th>Seat Class</th>
+          <th>Meal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of customerOnFlight">
+          <td>{{d.accountNumber}}</td>
+          <td>{{d.firstName}}</td>
+          <td>{{d.lastName}}</td>
+          <td>{{d.reservationNumber}}</td>
+          <td>{{d.seatNumver}}</td>
+          <td>{{d.seatClass}}</td>
+          <td>{{d.meal}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-5">
+        <input class="form-control" type="string" placeholder="Airline ID" [(ngModel)]="airlineId">
+      </div>
+      <div class="col-5">
+        <input class="form-control" type="string" placeholder="Flight No" [(ngModel)]="flightNo">
+      </div>
+      <div class="col-2">
+        <button class="btn btn-success" type="submit" (click)="getCustomerOnFlight()">Get Customer</button>
+      </div>
+    </div>
+  </div>
+</div>
