@@ -94,7 +94,7 @@ public class FlightDao implements IFlightDao {
 				"\tAND r.ResrNo = rp.ResrNo\n" +
 				"\tAND i.ResrNo = rp.ResrNo\n" +
 				"\tAND i.AirlineID = ?\n" +
-				"\tAND i.FlightNo = ?;";
+				"\tAND i.FlightNo = ?";
 
 		RowMapper<CustomerOnFlight> rowMapper = new CustomerOnFlightMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, airlineId, flightNo);

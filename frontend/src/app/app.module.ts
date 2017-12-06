@@ -73,11 +73,9 @@ import { SuggestionsCardComponent } from './dashboard/cards/suggestions-card/sug
 import { CustomerSuggestionsCardComponent } from './dashboard/cards/customer-suggestions-card/customer-suggestions-card.component';
 import { RevenueCardComponent } from './dashboard/cards/revenue-card/revenue-card.component';
 import { RevenueService } from './services/revenue/revenue.service';
-<<<<<<< HEAD
 import { DelayedFlightsCardComponent } from './dashboard/cards/delayed-flights-card/delayed-flights-card.component';
-=======
 import { FlightsByAirportCardComponent } from './dashboard/cards/flights-by-airport-card/flights-by-airport-card.component';
->>>>>>> c5f53425e195d2a42852d59c01fac4b247ae661d
+import { CustomerOnFlightCardComponent } from './dashboard/cards/customer-on-flight-card/customer-on-flight-card.component';
 
 @NgModule({
   declarations: [
@@ -124,11 +122,9 @@ import { FlightsByAirportCardComponent } from './dashboard/cards/flights-by-airp
     SuggestionsCardComponent,
     CustomerSuggestionsCardComponent,
     RevenueCardComponent,
-<<<<<<< HEAD
-    DelayedFlightsCardComponent
-=======
-    FlightsByAirportCardComponent
->>>>>>> c5f53425e195d2a42852d59c01fac4b247ae661d
+    DelayedFlightsCardComponent,
+    FlightsByAirportCardComponent,
+    CustomerOnFlightCardComponent
   ],
   imports: [
     BrowserModule,
