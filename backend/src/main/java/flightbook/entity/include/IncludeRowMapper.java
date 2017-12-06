@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class IncludeRowMapper implements RowMapper<Include> {
 	@Override
@@ -14,7 +15,7 @@ public class IncludeRowMapper implements RowMapper<Include> {
 				rs.getInt("FlightNo"),
 				rs.getInt("LegNo"),
 				rs.getInt("FromStopNo"),
-				rs.getDate("Date")
+				new Date(rs.getTimestamp("Date").getTime())
 		);
 	}
 }

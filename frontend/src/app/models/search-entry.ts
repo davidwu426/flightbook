@@ -1,8 +1,15 @@
 import { Leg } from './leg';
+import { TripLeg } from './trip-leg';
 
 export class SearchEntry {
   airlineId: string;
+  airlineName: string;
   price: number;
   fromFlightNo: number;
-  legs: Leg[];
+  flightClass: string;
+
+  tripLegs: TripLeg[];
+
+  tripDepTime: Date;
+  tripArrTime: Date;
 }
