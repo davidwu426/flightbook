@@ -1,9 +1,6 @@
 package flightbook.dao.customer;
 
-import flightbook.entity.customer.Customer;
-import flightbook.entity.customer.CustomerContact;
-import flightbook.entity.customer.CustomerContactRowMapper;
-import flightbook.entity.customer.CustomerRowMapper;
+import flightbook.entity.customer.*;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.flight.FlightRowMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -61,6 +58,28 @@ public class CustomerDao implements ICustomerDao {
 
 		RowMapper<Flight> rowMapper = new FlightRowMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, accountNo);
+	}
+
+	@Override
+	public List<CustomerAuction> getAuctionsByAccountNo(int accountNo) {
+		String sql = "SELECT * " +
+				"FROM Auctions " +
+				"WHERE AccountNo = ?";
+
+		RowMapper<CustomerAuction> rowMapper = new CustomerAuctionRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper, accountNo);
+	}
+
+	@Override
+	public List<CustomerAuction> getAuction(String airlineId, int flightNo, String flightClass) {
+		String sql = "SELECT * " +
+				"FROM Auctions " +
+				"WHERE AirlineId = ? " +
+				"AND FlightNo = ? " +
+				"AND Class = ?;";
+
+		RowMapper<CustomerAuction> rowMapper = new CustomerAuctionRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper, airlineId, flightNo, flightClass);
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-<form class="form-group" (ngSubmit)="search()" ngNativeValidate>
+<form class="form-group" (ngSubmit)="reSearch()" ngNativeValidate>
   <!-- trip type -->
   <div class="row mb-3">
     <div class="col-3 col-md-2">
@@ -16,7 +16,13 @@
         Multi-City
       </button>
     </div>
-    <div class="col-3 col-md-2 offset-md-4">
+    <div class="col-3 col-md-2">
+      <select name="flightClass" class="form-control" [(ngModel)]="searchService.flightClass">
+        <option value="Economy">Economy</option>
+        <option value="First">First Class</option>
+      </select>
+    </div>
+    <div class="col-12 col-md-2 offset-md-2">
       <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-search"></i> Search</button>
     </div>
   </div>
