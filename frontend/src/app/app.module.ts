@@ -75,6 +75,8 @@ import { RevenueCardComponent } from './dashboard/cards/revenue-card/revenue-car
 import { RevenueService } from './services/revenue/revenue.service';
 import { OnewaySearchEntryComponent } from './search-results/flight-results/oneway-search-entry/oneway-search-entry.component';
 import { FlightsByAirportCardComponent } from './dashboard/cards/flights-by-airport-card/flights-by-airport-card.component';
+import { CustomerAuctionsCardComponent } from './dashboard/cards/customer-auctions-card/customer-auctions-card.component';
+import { AuctionCardComponent } from './dashboard/cards/auction-card/auction-card.component';
 
 @NgModule({
   declarations: [
@@ -122,7 +124,9 @@ import { FlightsByAirportCardComponent } from './dashboard/cards/flights-by-airp
     CustomerSuggestionsCardComponent,
     RevenueCardComponent,
     OnewaySearchEntryComponent,
-    FlightsByAirportCardComponent
+    FlightsByAirportCardComponent,
+    CustomerAuctionsCardComponent,
+    AuctionCardComponent
   ],
   imports: [
     BrowserModule,

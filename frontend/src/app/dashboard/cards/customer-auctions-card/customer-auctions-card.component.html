@@ -1,0 +1,29 @@
+<div class = "card">
+  <div class = "card-header">
+    My Auctions
+  </div>
+  <div class = "card-body">
+    <table class = "table table-hover table-sm table-responsive-sm">
+      <thead>
+        <tr>
+          <th>Account Number</th>
+          <th>Airline ID</th>
+          <th>Flight Number</th>
+          <th>Class</th>
+          <th>Date</th>
+          <th>NYOP</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of auctions">
+          <td>{{a.accountNo}}</td>
+          <td>{{a.airlineId}}</td>
+          <td>{{a.flightNo}}</td>
+          <td>{{a.flightClass}}</td>
+          <td>{{a.date}}</td>
+          <td>{{a.price}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
