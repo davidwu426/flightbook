@@ -74,6 +74,7 @@ import { CustomerSuggestionsCardComponent } from './dashboard/cards/customer-sug
 import { RevenueCardComponent } from './dashboard/cards/revenue-card/revenue-card.component';
 import { RevenueService } from './services/revenue/revenue.service';
 import { OnewaySearchEntryComponent } from './search-results/flight-results/oneway-search-entry/oneway-search-entry.component';
+import { FlightsByAirportCardComponent } from './dashboard/cards/flights-by-airport-card/flights-by-airport-card.component';
 
 @NgModule({
   declarations: [
@@ -120,7 +121,8 @@ import { OnewaySearchEntryComponent } from './search-results/flight-results/onew
     SuggestionsCardComponent,
     CustomerSuggestionsCardComponent,
     RevenueCardComponent,
-    OnewaySearchEntryComponent
+    OnewaySearchEntryComponent,
+    FlightsByAirportCardComponent
   ],
   imports: [
     BrowserModule,

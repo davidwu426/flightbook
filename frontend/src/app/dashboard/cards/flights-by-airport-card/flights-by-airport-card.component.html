@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-header">
+    Find Flights by Airport
+  </div>
+  <div class="card-body">
+    <table class="table table-hover table-sm table-responsive-sm">
+      <thead>
+        <tr>
+          <th>Airline ID</th>
+          <th>Flight No</th>
+          <th>Number of Seats</th>
+          <th>Days Operating</th>
+          <th>Min Length of Stay</th>
+          <th>Max Length of Stay</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let f of flights">
+          <td>{{f.airlineId}}</td>
+          <td>{{f.flightNo}}</td>
+          <td>{{f.noOfSeats}}</td>
+          <td>{{f.daysOperating}}</td>
+          <td>{{f.minLengthOfStay}}</td>
+          <td>{{f.maxLengthOfStay}}</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card-footer">
+    <div class="row">
+      <div class="col-3"><b>Airport ID: </b></div>
+      <div class="col-6"><input class="form-control" type="string" placeholder="Airport ID" [(ngModel)]="airportId"></div>
+      <div class="col-3"><button class="btn btn-success" type="submit" (click)="getFlightsByAirport()">Get Flights</button></div>
+    </div>
+  </div>
+</div>
