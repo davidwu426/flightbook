@@ -18,7 +18,7 @@ public class RevenueController {
     private IRevenueService revenueService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/{year}/{month}")
-    public ResponseEntity<Double> getReservationByMonth(@PathVariable int year,
+    public ResponseEntity<Double> getRevenueByMonth(@PathVariable int year,
                                         @PathVariable int month) {
         double totalRevenue = revenueService.getReservationByMonth(month,year);
         return new ResponseEntity<>(totalRevenue, HttpStatus.OK);
@@ -34,6 +34,23 @@ public class RevenueController {
     public ResponseEntity<PersonCustomer> getBestCustomer(){
         PersonCustomer bestCustomer = revenueService.getBestCustomer();
         return new ResponseEntity<>(bestCustomer, HttpStatus.OK);
+    @RequestMapping(method = RequestMethod.GET, value = "/flight/{airlineId}/{flightNo}")
+    public ResponseEntity<Double> getRevenueByFlight(@PathVariable String airlineId,
+                                                     @PathVariable int flightNo) {
+        double totalRevenue = revenueService.getRevenueByFlight(airlineId, flightNo);
+        return new ResponseEntity<>(totalRevenue, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/city/{city}")
+    public ResponseEntity<Double> getRevenueByCity(@PathVariable String city) {
+        double totalRevenue = revenueService.getRevenueByCity(city);
+        return new ResponseEntity<>(totalRevenue, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/customer/{accountNo}")
+    public ResponseEntity<Double> getRevenueByAccountNo(@PathVariable int accountNo) {
+        double totalRevenue = revenueService.getRevenueByAccountNo(accountNo);
+        return new ResponseEntity<>(totalRevenue, HttpStatus.OK);
     }
 
 }

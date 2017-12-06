@@ -94,7 +94,7 @@ public class FlightDao implements IFlightDao {
 				"\tAND r.ResrNo = rp.ResrNo\n" +
 				"\tAND i.ResrNo = rp.ResrNo\n" +
 				"\tAND i.AirlineID = ?\n" +
-				"\tAND i.FlightNo = ?;";
+				"\tAND i.FlightNo = ?";
 
 		RowMapper<CustomerOnFlight> rowMapper = new CustomerOnFlightMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, airlineId, flightNo);
@@ -102,7 +102,7 @@ public class FlightDao implements IFlightDao {
 
 	@Override
 	public List<Flight> getDelayedFlights() {
-		String sql = "SELECT f.AirlineID, f.FlightNo\n" +
+		String sql = "SELECT *\n" +
 				"FROM Flight f\n" +
 				"WHERE f.IsDelayed = TRUE;\n";
 

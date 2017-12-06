@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class RevenueService implements  IRevenueService{
 
-    @Autowired
+    @Autowireds
     IReservationDao reservationDao;
 
     @Autowired
@@ -30,4 +30,17 @@ public class RevenueService implements  IRevenueService{
         return customerDao.getBestCustomer();
     }
 
+    public double getRevenueByFlight(String airlineId, int flightNo) {
+        return reservationDao.getRevenueByFlight(airlineId, flightNo);
+    }
+
+    @Override
+    public double getRevenueByCity(String city) {
+        return reservationDao.getRevenueByCity(city);
+    }
+
+    @Override
+    public double getRevenueByAccountNo(int accountNo) {
+        return reservationDao.getRevenueByAccountNo(accountNo);
+    }
 }

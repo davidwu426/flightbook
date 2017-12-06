@@ -8,7 +8,7 @@ import lombok.Data;
 public class CustomerOnFlight {
 
     private int accountNumber;
-    private String firtName;
+    private String firstName;
     private String lastName;
     private int reservationNumber;
     private String seatNumber;

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Constants } from '../../constants';
 import { Customer } from '../../models/customer';
 import { Flight } from '../../models/flight';
+import { Auction } from '../../models/auction';
 import { CreateCustomerRequest } from '../../models/create-customer-request';
 
 @Injectable()
@@ -34,5 +35,20 @@ export class CustomerService {
     const url = `${Constants.API_SUGGESTIONS_URL}/${accountNo}`;
 
     return this.http.get<Flight[]>(url, Constants.HTTP_OPTIONS);
+  }
+
+  getAuctionsByAccountNo(accountNo: number): Observable<Auction[]> {
+    const url = `${Constants.API_AUCTIONS_URL}/${accountNo}`;
+    
+    return this.http.get<Auction[]>(url, Constants.HTTP_OPTIONS);
+  }
+
+  getAuction(airlineId: string, flightNo: number, flightClass: string): Observable<Auction[]> {
+    let params = new HttpParams();
+    params = params.append('airlineId', airlineId);
+    params = params.append('flightNo', `${flightNo}`);
+    params = params.append('flightClass', flightClass);
+
+    return this.http.get<Auction[]>(Constants.API_AUCTIONS_URL, { params: params });
   }
 }
