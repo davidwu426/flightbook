@@ -16,11 +16,13 @@ public class SearchController {
     @Autowired
     private ISearchService search;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List> getOneWayFlights(@RequestParam("dayWeek") String dayWeek) {
+    @RequestMapping(method = RequestMethod.GET, value = "/oneway", params = {"depAirport", "arrAirport", "depDate", "flightClass"})
+    public ResponseEntity<List<SearchEntry>> getOneWayFlights(@RequestParam("depAirport") String depAirport,
+                                                              @RequestParam("arrAirport") String arrAirport,
+                                                              @RequestParam("depDate") String depDate,
+                                                              @RequestParam("flightClass") String flightClass) {
+        List<SearchEntry> searchEntries = search.getOneWayResults(depAirport, arrAirport, depDate, flightClass);
 
-        List<SearchEntry> flights = search.getOneWayResults(dayWeek);
-
-        return new ResponseEntity<>(flights, HttpStatus.OK);
+        return new ResponseEntity<>(searchEntries, HttpStatus.OK);
     }
 }

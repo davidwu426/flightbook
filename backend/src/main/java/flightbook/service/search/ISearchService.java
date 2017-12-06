@@ -5,12 +5,10 @@ import flightbook.entity.search.SearchEntry;
 import java.util.List;
 
 public interface ISearchService {
-
     /**
-     * Get one way results
+     * Get list of sets of legs that reach destination (at most 3 legs)
      *
-     * @return  A list of all people
+     * @return  A list of all search results
      */
-    List<SearchEntry> getOneWayResults(String depTime);
-
+    List<SearchEntry> getOneWayResults(String depAirport, String arrAirport, String depTime, String flightClass);
 }

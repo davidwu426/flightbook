@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 import { SearchCriteria } from '../../models/search-criteria';
-import { HttpClient } from '@angular/common/http';
+import { SearchEntry } from '../../models/search-entry';
+import { Constants } from '../../constants';
+import { FlightClass } from '../../models/flight-class';
 
 type SearchType = 'oneway' | 'roundtrip' | 'multicity';
 
@@ -8,8 +12,9 @@ type SearchType = 'oneway' | 'roundtrip' | 'multicity';
 export class SearchService {
   searchCriteria: SearchCriteria[] = [new SearchCriteria(), new SearchCriteria()];
   type: SearchType = 'oneway';
+  flightClass: FlightClass = FlightClass.ECONOMY;
 
-  constructor(http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   addCriteria() {
     if (this.searchCriteria.length < 5) {
@@ -23,7 +28,13 @@ export class SearchService {
     }
   }
 
-  getOneWay(){
+  searchOneWay(depAirport: string, arrAirport: string, depDate: Date, flightClass: string): Observable<SearchEntry[]> {
+    let params = new HttpParams();
+    params = params.append('depAirport', depAirport);
+    params = params.append('arrAirport', arrAirport);
+    params = params.append('depDate', `${new Date(depDate).getTime()}`);
+    params = params.append('flightClass', flightClass);
 
+    return this.http.get<SearchEntry[]>(Constants.API_SEARCH_ONEWAY, { params: params });
   }
 }
