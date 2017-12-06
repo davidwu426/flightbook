@@ -1,6 +1,7 @@
 package flightbook.controller;
 
 
+import flightbook.entity.personCustomer.PersonCustomer;
 import flightbook.service.revenue.IRevenueService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,18 @@ public class RevenueController {
                                         @PathVariable int month) {
         double totalRevenue = revenueService.getReservationByMonth(month,year);
         return new ResponseEntity<>(totalRevenue, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/bestRep")
+    public ResponseEntity<Integer> getBestCustomerRep(){
+        Integer id = revenueService.getBestCustomerRep();
+        return new ResponseEntity<Integer>(id, HttpStatus.OK);
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/bestCust")
+    public ResponseEntity<PersonCustomer> getBestCustomer(){
+        PersonCustomer bestCustomer = revenueService.getBestCustomer();
+        return new ResponseEntity<>(bestCustomer, HttpStatus.OK);
     }
 
 }
