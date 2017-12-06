@@ -30,4 +30,6 @@ export class RevenueCardComponent implements OnInit {
     });
   }
 
+  getRevenueBy
+
 }
