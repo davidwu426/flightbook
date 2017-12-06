@@ -10,8 +10,8 @@ public class FrequentFlightMapper implements RowMapper<FrequentFlight> {
     @Override
     public FrequentFlight mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new FrequentFlight(
-                rs.getInt("FlightNo"),
                 rs.getString( "AirlineId"),
+                rs.getInt("FlightNo"),
                 rs.getInt("ResrNoCount")
         );
     }

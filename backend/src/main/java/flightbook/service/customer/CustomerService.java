@@ -7,6 +7,7 @@ import flightbook.entity.customer.Customer;
 import flightbook.entity.customer.CustomerAuction;
 import flightbook.entity.customer.CustomerContact;
 import flightbook.entity.flight.Flight;
+import flightbook.entity.flightreservation.FlightReservation;
 import flightbook.entity.person.Person;
 import flightbook.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class CustomerService implements ICustomerService {
 	}
 
 	@Override
-	public List<Flight> getSuggestions(int accountNo){ return customerDao.getSuggestions(accountNo); }
+	public List<FlightReservation> getSuggestions(int accountNo){ return customerDao.getSuggestions(accountNo); }
 
 	@Override
 	public List<CustomerAuction> getAuctionsByAccountNo(int accountNo) { return customerDao.getAuctionsByAccountNo(accountNo); }

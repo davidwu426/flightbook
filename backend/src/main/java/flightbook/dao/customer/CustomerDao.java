@@ -3,6 +3,8 @@ package flightbook.dao.customer;
 import flightbook.entity.customer.*;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.flight.FlightRowMapper;
+import flightbook.entity.flightreservation.FlightReservation;
+import flightbook.entity.flightreservation.FlightReservationMapper;
 import flightbook.entity.person.Person;
 import flightbook.entity.personCustomer.PersonCustomer;
 import flightbook.entity.personCustomer.PersonCustomerRowMapper;
@@ -41,8 +43,8 @@ public class CustomerDao implements ICustomerDao {
 	}
 
 	@Override
-	public List<Flight> getSuggestions(int accountNo) {
-		String sql = "SELECT DISTINCT f.* " +
+	public List<FlightReservation> getSuggestions(int accountNo) {
+		/*String sql = "SELECT DISTINCT f.* " +
 					 "FROM Flight f, Leg l, Reservation r, Trip t " +
 					 "WHERE r.AccountNo = ? " +
 					 "AND r.ResrNo = t.ResrNo " +
@@ -57,9 +59,16 @@ public class CustomerDao implements ICustomerDao {
 					 "FROM Leg l3 " +
 					 "WHERE f.AirlineID = l3.AirlineID " +
 					 "AND f.FlightNo = l3.FlightNo " +
-					 ");";
+					 ");";*/
+		String sql = "SELECT * FROM FlightReservation FR\n" +
+				"WHERE NOT EXISTS (\n" +
+				"       SELECT * FROM Reservation R, Includes I\n" +
+				"       WHERE R.ResrNo = I.ResrNo AND FR.AirlineID = I.AirlineID\n" +
+				"       AND FR.FlightNo = I.FlightNo AND R.AccountNo = ?\n" +
+				")\n" +
+				"ORDER BY FR.ResrCount DESC;";
 
-		RowMapper<Flight> rowMapper = new FlightRowMapper();
+		RowMapper<FlightReservation> rowMapper = new FlightReservationMapper();
 		return this.jdbcTemplate.query(sql, rowMapper, accountNo);
 	}
 

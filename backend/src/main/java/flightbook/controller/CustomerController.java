@@ -5,6 +5,7 @@ import flightbook.entity.customer.Customer;
 import flightbook.entity.customer.CustomerAuction;
 import flightbook.entity.customer.CustomerContact;
 import flightbook.entity.flight.Flight;
+import flightbook.entity.flightreservation.FlightReservation;
 import flightbook.entity.person.Person;
 import flightbook.entity.user.User;
 import flightbook.service.customer.ICustomerService;
@@ -52,9 +53,9 @@ public class CustomerController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/suggestions/{accountNo}")
-	public ResponseEntity<List<Flight>> getSuggestions(@PathVariable int accountNo) {
+	public ResponseEntity<List<FlightReservation>> getSuggestions(@PathVariable int accountNo) {
 		Customer customer = customerService.getCustomerByAccountNo(accountNo);
-		List<Flight> suggestions = customerService.getSuggestions(accountNo);
+		List<FlightReservation> suggestions = customerService.getSuggestions(accountNo);
 		if (customer == null) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
