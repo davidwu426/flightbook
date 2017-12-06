@@ -16,10 +16,20 @@
 </div>
 
 <ng-container *ngIf="searchResults?.length">
-  <div *ngFor="let s of searchResults" class="mb-3">
-    <app-oneway-search-entry [searchEntry]="s"
+  <ng-container *ngIf="type === 'oneway'">
+    <div *ngFor="let s of searchResults[0]" class="mb-3">
+      <app-oneway-search-entry [searchEntry]="s"
       [from]="searchService.searchCriteria[0].fromAirport"
       [to]="searchService.searchCriteria[0].toAirport">
-    </app-oneway-search-entry>
-  </div>
+      </app-oneway-search-entry>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="type === 'roundtrip'">
+    <div *ngFor="let s of searchResults" class="mb-3">
+      <app-roundtrip-search-entry [searchEntries]="s"
+      [from]="searchService.searchCriteria[0].fromAirport"
+      [to]="searchService.searchCriteria[0].toAirport">
+      </app-roundtrip-search-entry>
+    </div>
+  </ng-container>
 </ng-container>

@@ -6,9 +6,16 @@ import java.util.List;
 
 public interface ISearchService {
     /**
-     * Get list of sets of legs that reach destination (at most 3 legs)
+     * Get list of one way trip flights that satisfy search criteria
      *
-     * @return  A list of all search results
+     * @return  List of all search results
      */
-    List<SearchEntry> getOneWayResults(String depAirport, String arrAirport, String depTime, String flightClass);
+    List<SearchEntry> getOneWayResults(String depAirport, String arrAirport, String depDate, String flightClass);
+
+	/**
+	 * Get list of round trip flights that satisfy search criteria
+	 *
+	 * @return  List of search results containing 2 flights
+	 */
+    List<List<SearchEntry>> getRoundTripResults(String depAirport, String arrAirport, String depDate, String retDate, String flightClass);
 }

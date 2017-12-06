@@ -37,4 +37,15 @@ export class SearchService {
 
     return this.http.get<SearchEntry[]>(Constants.API_SEARCH_ONEWAY, { params: params });
   }
+
+  searchRoundTrip(depAirport: string, arrAirport: string, depDate: Date, retDate: Date, flightClass: string): Observable<SearchEntry[][]> {
+    let params = new HttpParams();
+    params = params.append('depAirport', depAirport);
+    params = params.append('arrAirport', arrAirport);
+    params = params.append('depDate', `${new Date(depDate).getTime()}`);
+    params = params.append('retDate', `${new Date(retDate).getTime()}`);
+    params = params.append('flightClass', flightClass);
+
+    return this.http.get<SearchEntry[][]>(Constants.API_SEARCH_ROUNDTRIP, { params: params });
+  }
 }

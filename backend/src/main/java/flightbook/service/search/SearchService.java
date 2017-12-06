@@ -30,9 +30,9 @@ public class SearchService implements ISearchService {
 	IAirlineDao airlineDao;
 
     @Override
-    public List<SearchEntry> getOneWayResults(String depAirport, String arrAirport, String depTime, String flightClass) {
+    public List<SearchEntry> getOneWayResults(String depAirport, String arrAirport, String depDate, String flightClass) {
         Calendar c = Calendar.getInstance();
-        c.setTime(new Date(Long.parseLong(depTime)));
+        c.setTime(new Date(Long.parseLong(depDate)));
         int dayOfWeek = c.get(Calendar.DAY_OF_WEEK);
         StringBuilder binary = new StringBuilder("0000000");
         binary.setCharAt(dayOfWeek - 1,'1');
@@ -113,11 +113,11 @@ public class SearchService implements ISearchService {
 	                    }
 
 	                    Calendar calendar = Calendar.getInstance();
-	                    calendar.setTimeInMillis(Long.parseLong(depTime));
-	                    Date depDate = calendar.getTime();
+	                    calendar.setTimeInMillis(Long.parseLong(depDate));
+	                    Date d = calendar.getTime();
 
-					    searchEntry.setTripDepTime(updateDate(flightDepTime, depDate, 0));
-					    searchEntry.setTripArrTime(updateDate(flightArrTime, depDate, getDayOffset(flightDepTime, flightArrTime)));
+					    searchEntry.setTripDepTime(updateDate(flightDepTime, d, 0));
+					    searchEntry.setTripArrTime(updateDate(flightArrTime, d, getDayOffset(flightDepTime, flightArrTime)));
 					    searchEntries.add(searchEntry);
 
 					    break;
@@ -128,6 +128,26 @@ public class SearchService implements ISearchService {
 
 	    return searchEntries;
     }
+
+	@Override
+	public List<List<SearchEntry>> getRoundTripResults(String depAirport, String arrAirport, String depDate, String retDate, String flightClass) {
+		List<SearchEntry> tripsThere = getOneWayResults(depAirport, arrAirport, depDate, flightClass);
+		List<SearchEntry> tripsBack = getOneWayResults(arrAirport, depAirport, retDate, flightClass);
+
+		List<List<SearchEntry>> roundTrips = new ArrayList<>();
+		// get all combinations of trips there and back
+		for (SearchEntry tt : tripsThere) {
+			for (SearchEntry tb : tripsBack) {
+				List<SearchEntry> roundTrip = new ArrayList<>();
+				roundTrip.add(tt);
+				roundTrip.add(tb);
+
+				roundTrips.add(roundTrip);
+			}
+		}
+
+		return roundTrips;
+	}
 
 	/**
 	 * Returns the difference in number of days between two dates

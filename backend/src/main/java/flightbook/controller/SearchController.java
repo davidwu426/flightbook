@@ -25,4 +25,15 @@ public class SearchController {
 
         return new ResponseEntity<>(searchEntries, HttpStatus.OK);
     }
+
+	@RequestMapping(method = RequestMethod.GET, value = "/roundtrip", params = {"depAirport", "arrAirport", "depDate", "retDate", "flightClass"})
+	public ResponseEntity<List<List<SearchEntry>>> getRoundTripFlights(@RequestParam("depAirport") String depAirport,
+	                                                          @RequestParam("arrAirport") String arrAirport,
+	                                                          @RequestParam("depDate") String depDate,
+	                                                          @RequestParam("retDate") String retDate,
+	                                                          @RequestParam("flightClass") String flightClass) {
+		List<List<SearchEntry>> searchEntries = search.getRoundTripResults(depAirport, arrAirport, depDate, retDate, flightClass);
+
+		return new ResponseEntity<>(searchEntries, HttpStatus.OK);
+	}
 }

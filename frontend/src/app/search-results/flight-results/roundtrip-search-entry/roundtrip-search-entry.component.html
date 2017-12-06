@@ -30,10 +30,6 @@
           {{tripDurationMinutes}} minutes
         </ng-container>
       </div>
-      <div class="col-6 text-right">
-        <p *ngIf="searchEntry.tripLegs?.length > 1; else nostops">{{searchEntry.tripLegs?.length - 1}} stops</p>
-        <ng-template #nostops>Nonstop flight</ng-template>
-      </div>
     </div>
   </div>
 
@@ -54,7 +50,17 @@
 </div>
 
 <div class="collapse ml-4" id="details">
+  <!-- trip there -->
   <ng-container *ngFor="let l of searchEntry.tripLegs; let i = index;">
-    <app-leg-detail [index]="i" [searchEntry]="searchEntry" [tripLeg]="l" [to]="to"></app-leg-detail>
+    <app-leg-detail [index]="i" [searchEntry]="searchEntries[0]" [tripLeg]="l" [to]="to"></app-leg-detail>
+  </ng-container>
+
+  <div class="card rounded-0 text-center py-5 mx-5">
+    <h1><i class="fa fa-plane"></i> <i class="fa fa-globe fa-spin text-primary"></i></h1>
+  </div>
+
+  <!-- trip back -->
+  <ng-container *ngFor="let l of searchEntries[1].tripLegs; let i = index;">
+    <app-leg-detail [index]="i" [searchEntry]="searchEntries[1]" [tripLeg]="l" [to]="from"></app-leg-detail>
   </ng-container>
 </div>
