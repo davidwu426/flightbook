@@ -12,6 +12,11 @@ export class FlightService {
     return this.http.get<Flight[]>(Constants.API_FLIGHTS_URL);
   }
 
+  getDelayedFights(): Observable<Flight[]>
+  {
+    return this.http.get<Flight[]>(Constants.API_DELAYED_FLIGHTS_URL);
+  }
+
   addFlight(flight: Flight): Observable<Flight> {
     return this.http.post<Flight>(Constants.API_FLIGHTS_URL, flight, Constants.HTTP_OPTIONS);
   }

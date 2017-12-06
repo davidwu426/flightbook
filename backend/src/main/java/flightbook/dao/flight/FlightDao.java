@@ -78,7 +78,7 @@ public class FlightDao implements IFlightDao {
 
 	@Override
 	public List<Flight> getDelayedFlights() {
-		String sql = "SELECT f.AirlineID, f.FlightNo\n" +
+		String sql = "SELECT *\n" +
 				"FROM Flight f\n" +
 				"WHERE f.IsDelayed = TRUE;\n";
 

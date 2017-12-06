@@ -73,6 +73,7 @@ import { SuggestionsCardComponent } from './dashboard/cards/suggestions-card/sug
 import { CustomerSuggestionsCardComponent } from './dashboard/cards/customer-suggestions-card/customer-suggestions-card.component';
 import { RevenueCardComponent } from './dashboard/cards/revenue-card/revenue-card.component';
 import { RevenueService } from './services/revenue/revenue.service';
+import { DelayedFlightsCardComponent } from './dashboard/cards/delayed-flights-card/delayed-flights-card.component';
 
 @NgModule({
   declarations: [
@@ -118,7 +119,8 @@ import { RevenueService } from './services/revenue/revenue.service';
     ContactsCardComponent,
     SuggestionsCardComponent,
     CustomerSuggestionsCardComponent,
-    RevenueCardComponent
+    RevenueCardComponent,
+    DelayedFlightsCardComponent
   ],
   imports: [
     BrowserModule,
