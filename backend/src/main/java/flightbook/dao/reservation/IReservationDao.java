@@ -21,4 +21,10 @@ public interface IReservationDao {
 	void deleteReservation(int resrNo);
 
 	List<TotalBookingFee> getReservationByMonth(int month, int year);
+
+	double getRevenueByFlight(String airlineId, int flightNo);
+
+	double getRevenueByCity(String city);
+
+	double getRevenueByAccountNo(int AccountNo);
 }
