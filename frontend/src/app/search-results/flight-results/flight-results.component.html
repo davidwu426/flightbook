@@ -17,6 +17,9 @@
 
 <ng-container *ngIf="searchResults?.length">
   <div *ngFor="let s of searchResults" class="mb-3">
-    <app-oneway-search-entry [searchEntry]="s"></app-oneway-search-entry>
+    <app-oneway-search-entry [searchEntry]="s"
+      [from]="searchService.searchCriteria[0].fromAirport"
+      [to]="searchService.searchCriteria[0].toAirport">
+    </app-oneway-search-entry>
   </div>
 </ng-container>

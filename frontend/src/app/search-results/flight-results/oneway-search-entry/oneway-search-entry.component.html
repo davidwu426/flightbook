@@ -23,12 +23,16 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-12">
+      <div class="col-6">
         <b>Trip Duration:</b>
         {{tripDurationHours}} hours
         <ng-container *ngIf="tripDurationMinutes">
           {{tripDurationMinutes}} minutes
         </ng-container>
+      </div>
+      <div class="col-6 text-right">
+        <p *ngIf="searchEntry.tripLegs?.length > 1; else nostops">{{searchEntry.tripLegs?.length - 1}} stops</p>
+        <ng-template #nostops>Nonstop flight</ng-template>
       </div>
     </div>
   </div>
@@ -36,7 +40,7 @@
   <div class="card-footer">
     <div class="row">
       <div class="col-6">
-        <button class="btn btn-primary">
+        <button class="btn btn-primary" data-toggle="collapse" data-target="#details">
           <i class="fa fa-info-circle"></i> View Details
         </button>
       </div>
@@ -44,6 +48,60 @@
         <button class="btn btn-success">
           <i class="fa fa-book"></i> Book Flight
         </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="collapse ml-4" id="details">
+  <div class="card list-group-flush rounded-0" *ngFor="let l of searchEntry.tripLegs; let i = index;">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-6">
+          <h5>
+            <b>{{l.leg.airlineId}}</b> #
+            <b>{{l.leg.flightNo}}</b>
+          </h5>
+        </div>
+        <div class="col-6 text-right">
+          <p class="text-muted text-small">Leg #{{l.leg.legNo}}</p>
+        </div>
+      </div>
+
+      <hr class="mt-0">
+
+      <div class="row">
+        <div class="col-5">
+          <p><b>Flight takes off</b></p>
+          <p class="mb-1">{{l.leg.depTime | date:'h:mm aa'}}</p>
+          <p>from {{l.leg.depAirportId}}</p>
+          <p class="text-small text-muted">{{l.leg.depTime | date:'MMMM d z'}}</p>
+        </div>
+        <div class="col-2 align-self-center">
+          <i class="fa fa-arrow-right"></i>
+        </div>
+        <div class="col-5">
+          <p><b>Flight lands</b></p>
+          <p class="mb-1">{{l.leg.depTime + l.flightDuration | date:'h:mm aa'}}</p>
+          <p *ngIf="i != searchEntry.tripLegs?.length - 1; else lastLeg">from {{searchEntry.tripLegs[i + 1]?.leg.depAirportId}}</p>
+          <ng-template #lastLeg>
+            <p>
+              from {{to}}
+            </p>
+          </ng-template>
+          <p class="text-small text-muted">{{l.leg.depTime + l.flightDuration | date:'MMMM d z'}}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="row">
+        <div class="col-6">
+          <b>Duration</b>: {{l.flightDuration / 1000 / 60 / 60}} h {{l.flightDuration / 1000 % 60}} m
+        </div>
+        <div class="col-6 text-right" *ngIf="i != searchEntry.tripLegs.length - 1">
+          <b>Layover</b>: {{l.layoverTime / 1000 / 60 / 60}} h {{l.layoverTime / 1000 % 60}} m
+        </div>
       </div>
     </div>
   </div>

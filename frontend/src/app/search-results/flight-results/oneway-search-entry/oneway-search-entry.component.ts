@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SearchEntry } from '../../../models/search-entry';
 import { SearchService } from '../../../services/search/search.service';
 import { TripLeg } from '../../../models/trip-leg';
+import { Airport } from '../../../models/airport';
 
 @Component({
   selector: 'app-oneway-search-entry',
@@ -11,6 +12,11 @@ import { TripLeg } from '../../../models/trip-leg';
 export class OnewaySearchEntryComponent implements OnInit {
   @Input()
   searchEntry: SearchEntry;
+  @Input()
+  to: Airport;
+  @Input()
+  from: Airport;
+
   tripDuration: number;
   tripDurationHours: number;
   tripDurationMinutes: number;
