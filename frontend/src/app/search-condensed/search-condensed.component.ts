@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SearchComponent } from '../search/search.component';
+import { FlightClass } from '../models/flight-class';
 
 @Component({
   selector: 'app-search-condensed',
@@ -7,4 +8,10 @@ import { SearchComponent } from '../search/search.component';
   styleUrls: ['./search-condensed.component.css']
 })
 export class SearchCondensedComponent extends SearchComponent {
+  @Output()
+  onReSearch: EventEmitter<any> = new EventEmitter();
+
+  reSearch() {
+    this.onReSearch.emit();
+  }
 }

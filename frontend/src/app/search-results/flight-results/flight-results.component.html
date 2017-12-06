@@ -1,25 +1,25 @@
 <h1>Flight Search Results</h1>
 
-<h1>Searching for</h1>
-<p><b>type:</b> {{searchService.type}}</p>
-<p><b>fromAirport:</b> {{searchService.searchCriteria[0].fromAirport}}</p>
-<p><b>toAirport:</b> {{searchService.searchCriteria[0].toAirport}}</p>
-<p><b>departureDate:</b> {{searchService.searchCriteria[0].departureDate}}</p>
-<p><b>returningDate:</b> {{searchService.searchCriteria[0].returningDate}}</p>
+<p class="mb-3">
+  Searching for flights from <b>{{fromAirport}}</b> to <b>{{toAirport}}</b>
+  departing on {{depDate | date:'MM/dd/yy'}}.
+</p>
 
-<h1>Results</h1>
-<div *ngFor="let s of searchResults">
-  <div><b>Airline ID:</b> {{s.airlineId}}</div>
-  <div><b>Price:</b> {{s.price}}</div>
-  <div><b>FromStopNo:</b> {{s.fromStopNo}}</div>
+<hr>
 
-  <h2>Legs</h2>
-  <div *ngFor="let l of s.legs">
-    <div><b>Flight Number:</b> {{l.flightNo}}</div>
-    <div><b>Leg Number:</b> {{l.legNo}}</div>
-    <div><b>Dep Airport ID:</b> {{l.depAirportId}}</div>
-    <div><b>Arr Airport ID:</b> {{l.arrAirportId}}</div>
-    <div><b>Dep Time:</b> {{l.depTime}}</div>
-    <div><b>Arr Time:</b> {{l.arrTime}}</div>
-  </div>
+<div *ngIf="!searchResults?.length" class="text-center text-muted">
+  <h1><i class="fa fa-frown-o" aria-hidden="true"></i></h1>
+  <h2>No flights found</h2>
+  <p>
+    No flights found matching specified criteria.
+  </p>
 </div>
+
+<ng-container *ngIf="searchResults?.length">
+  <div *ngFor="let s of searchResults" class="mb-3">
+    <app-oneway-search-entry [searchEntry]="s"
+      [from]="searchService.searchCriteria[0].fromAirport"
+      [to]="searchService.searchCriteria[0].toAirport">
+    </app-oneway-search-entry>
+  </div>
+</ng-container>

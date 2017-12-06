@@ -6,9 +6,9 @@
       </button>
     </div>
     <div class="card-body collapse" id="search">
-      <app-search-condensed></app-search-condensed>
+      <app-search-condensed (onReSearch)="triggerReSearch()"></app-search-condensed>
     </div>
   </div>
 
-  <app-flight-results></app-flight-results>
+  <app-flight-results [timesReSearched]="timesReSearched"></app-flight-results>
 </div>

@@ -43,7 +43,7 @@ public class FlightDao implements IFlightDao {
 	public List<Flight> getFlightsDepartingFromAirportOnDayOfWeek(String airportId, String dayOfWeekBinary) {
 		String sql = "SELECT f.*\n" +
 				"FROM Flight f, Leg l\n" +
-				"WHERE f.DaysOperating & b?\n" +
+				"WHERE CAST(CONV(f.DaysOperating, 2, 10) AS BINARY) & b?\n" +
 				"AND f.AirlineId = l.AirlineId\n" +
 				"AND f.FlightNo = l.FlightNo\n" +
 				"AND l.DepAirportId = ?";

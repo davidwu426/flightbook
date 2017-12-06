@@ -1,12 +1,14 @@
 package flightbook.service.search;
 
 
+import flightbook.dao.airline.IAirlineDao;
 import flightbook.dao.fare.IFareDao;
 import flightbook.dao.flight.IFlightDao;
 import flightbook.dao.leg.ILegDao;
 import flightbook.entity.fare.FareType;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.leg.Leg;
+import flightbook.entity.leg.TripLeg;
 import flightbook.entity.search.SearchEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +26,8 @@ public class SearchService implements ISearchService {
 	ILegDao legDao;
     @Autowired
     IFareDao fareDao;
+    @Autowired
+	IAirlineDao airlineDao;
 
     @Override
     public List<SearchEntry> getOneWayResults(String depAirport, String arrAirport, String depTime, String flightClass) {
@@ -41,38 +45,126 @@ public class SearchService implements ISearchService {
         // find flights from eligible flights that stop at arrAirport
 	    for (Flight f : flights) {
 	    	// legs on flight
-	    	List<Leg> trip = new ArrayList<>();
+	    	List<TripLeg> tripLegs = new ArrayList<>();
 
 	    	// legs of flight
-	    	List<Leg> legs = legDao.getLegsByFlight(f.getAirlineId(), f.getFlightNo());
+	    	List<Leg> flightLegs = legDao.getLegsByFlight(f.getAirlineId(), f.getFlightNo());
 
-            // find starting leg number
-		    int fromStopNo = 1;
-	    	for (Leg l : legs) {
-			    if (l.getDepAirportId().equals(depAirport)) {
-			    	break;
+	    	int fromStopNo = -1;
+	    	for (int i = 0; i < flightLegs.size(); i++) {
+			    SearchEntry searchEntry = new SearchEntry();
+
+			    Leg l = flightLegs.get(i);
+
+	    		// start airport is reached
+	    		if (l.getDepAirportId().equals(depAirport)) {
+	    			fromStopNo = i + 1;
 			    }
-			    fromStopNo++;
-		    }
 
-		    // add legs until arrAirport is reached or back to start
-		    for (int i = 0; i < legs.size(); i++) {
-	    		Leg l = legs.get((fromStopNo + i - 1) % legs.size());
-	    		trip.add(l);
+			    // start adding legs
+			    if (fromStopNo > 0) {
+	    			TripLeg tripLeg = new TripLeg();
+	    			tripLeg.setLeg(l);
+	    			tripLeg.setLayoverTime(l.getDepTime().getTime() - l.getArrTime().getTime());
 
-	    		// arrAirport reached
-			    if (l.getArrAirportId().equals(arrAirport)) {
-			    	// get price of flight
-				    double price = fareDao.getFare(f.getAirlineId(), f.getFlightNo(), FareType.REGULAR, flightClass);
+	    			// last leg of flight
+				    if (i == flightLegs.size() - 1) {
+						Leg firstLeg = flightLegs.get(0);
+						int departureTime = (int) (l.getDepTime().getTime() % (24 * 60 * 60 * 1000L));
+						int arrivalTime = (int) (firstLeg.getArrTime().getTime() % (24 * 60 * 60 * 1000L));
+						long diff = arrivalTime - departureTime;
 
-			    	SearchEntry e = new SearchEntry(f.getAirlineId(), price, fromStopNo, trip);
-			    	searchEntries.add(e);
+						// add a day
+						if (diff < 0) {
+							diff += 24 * 60 * 60 * 1000L;
+						}
+						tripLeg.setFlightDuration(diff);
+				    } else {
+	    			    tripLeg.setFlightDuration(flightLegs.get(i + 1).getArrTime().getTime() - l.getDepTime().getTime());
+				    }
 
-			    	break;
+				    tripLegs.add(tripLeg);
+
+				    // destination reached
+				    if (l.getArrAirportId().equals(arrAirport)) {
+					    // get price of flight
+					    double price = fareDao.getFare(f.getAirlineId(), f.getFlightNo(), FareType.REGULAR, flightClass);
+					    String airlineName = airlineDao.getAirlineById(f.getAirlineId()).getName();
+
+	                    searchEntry.setAirlineId(f.getAirlineId());
+	                    searchEntry.setAirlineName(airlineName);
+	                    searchEntry.setPrice(price);
+	                    searchEntry.setFromFlightNo(fromStopNo);
+	                    searchEntry.setTripLegs(tripLegs);
+	                    searchEntry.setFlightClass(flightClass);
+
+	                    Date flightDepTime = tripLegs.get(0).getLeg().getDepTime();
+	                    Date flightArrTime;
+	                    if (i == flightLegs.size() - 1) {
+	                    	flightArrTime = flightLegs.get(0).getArrTime();
+	                    	while (flightArrTime.getTime() < flightDepTime.getTime()) {
+	                    		Calendar cal = Calendar.getInstance();
+	                    		cal.setTime(flightArrTime);
+	                    		cal.add(Calendar.DAY_OF_YEAR, 1);
+	                    		flightArrTime = cal.getTime();
+		                    }
+	                    } else {
+	                    	flightArrTime = flightLegs.get(i + 1).getArrTime();
+	                    }
+
+	                    Calendar calendar = Calendar.getInstance();
+	                    calendar.setTimeInMillis(Long.parseLong(depTime));
+	                    Date depDate = calendar.getTime();
+
+					    searchEntry.setTripDepTime(updateDate(flightDepTime, depDate, 0));
+					    searchEntry.setTripArrTime(updateDate(flightArrTime, depDate, getDayOffset(flightDepTime, flightArrTime)));
+					    searchEntries.add(searchEntry);
+
+					    break;
+				    }
 			    }
 		    }
 	    }
 
 	    return searchEntries;
     }
+
+	/**
+	 * Returns the difference in number of days between two dates
+	 *
+	 * @param date1 Earlier date
+	 * @param date2 Later date
+	 * @return  Number of days difference
+	 */
+	private int getDayOffset(Date date1, Date date2) {
+    	Calendar calendar = Calendar.getInstance();
+    	calendar.setTime(date2);
+    	int day2 = calendar.get(Calendar.DAY_OF_YEAR);
+    	calendar.setTime(date1);
+
+    	return Math.abs(day2 - calendar.get(Calendar.DAY_OF_YEAR));
+    }
+
+	/**
+	 * Updates a date's month, day, and year to match dateToUpdateTo
+	 *
+	 * @param dateToBeUpdated   Date whose D, M, Y should be updated
+	 * @param dateToUpdateTo    Date with D, M, Y to update to
+	 * @param dayOffset         Days to offset result date by
+	 * @return  Updated dateToBeUpdated
+	 */
+	private Date updateDate(Date dateToBeUpdated, Date dateToUpdateTo, int dayOffset) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(dateToUpdateTo);
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH);
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+		calendar.setTime(dateToBeUpdated);
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.MONTH, month);
+		calendar.set(Calendar.DAY_OF_MONTH, day + dayOffset);
+
+		return calendar.getTime();
+	}
 }

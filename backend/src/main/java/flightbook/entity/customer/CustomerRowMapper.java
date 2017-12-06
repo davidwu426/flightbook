@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 
 public class CustomerRowMapper implements RowMapper<Customer> {
@@ -16,7 +17,7 @@ public class CustomerRowMapper implements RowMapper<Customer> {
 				rs.getInt("AccountNo"),
 				rs.getString("CreditCardNo"),
 				rs.getString("Email"),
-				rs.getDate("CreationDate"),
+				new Date(rs.getTimestamp("CreationDate").getTime()),
 				rs.getInt("Rating")
 		);
 	}

@@ -4,6 +4,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 public class LegRowMapper implements RowMapper<Leg>{
 	@Override
@@ -14,8 +15,8 @@ public class LegRowMapper implements RowMapper<Leg>{
 				rs.getInt("LegNo"),
 				rs.getString("DepAirportId"),
 				rs.getString("ArrAirportId"),
-				rs.getDate("ArrTime"),
-				rs.getDate("DepTime")
+				new Date(rs.getTimestamp("ArrTime").getTime()),
+				new Date(rs.getTimestamp("DepTime").getTime())
 		);
 	}
 }

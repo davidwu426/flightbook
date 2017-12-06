@@ -33,8 +33,6 @@ export class LegTableComponent implements OnInit {
   }
 
   addLeg() {
-    const daysOperating = '1010101';
-
     this.legService.addLeg({
       airlineId: this.airlineId,
       flightNo: this.flightNo,

@@ -56,9 +56,9 @@ export class Constants {
   public static API_RESERVATIONS_URL = Constants.API_URL + '/reservations';
 
   public static API_CONTACTS_URL = Constants.API_CUSTOMERS_URL + '/contacts';
-  
+
   public static API_SUGGESTIONS_URL = Constants.API_CUSTOMERS_URL + '/suggestions';
-  
+
   public static API_REVENUE_URL = Constants.API_URL + '/revenue';
 
   public static API_FLIGHTS_BY_AIRPORT_URL = Constants.API_FLIGHTS_URL + '/airport';
