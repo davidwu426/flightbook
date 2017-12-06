@@ -3,6 +3,9 @@ package flightbook.dao.customer;
 import flightbook.entity.customer.*;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.flight.FlightRowMapper;
+import flightbook.entity.person.Person;
+import flightbook.entity.personCustomer.PersonCustomer;
+import flightbook.entity.personCustomer.PersonCustomerRowMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -156,4 +159,35 @@ public class CustomerDao implements ICustomerDao {
 		Integer max = this.jdbcTemplate.queryForObject(sql, Integer.class);
 		return max + 1;
 	}
+
+	@Override
+	public int getBestCustomerRep() {
+		String sql = "SELECT r.RepSSN\n" +
+				"FROM Reservation r\n" +
+				"WHERE r.RepSSN IS NOT NULL\n" +
+				"GROUP BY r.RepSSN\n" +
+				"ORDER BY SUM(r.TotalFare) DESC\n" +
+				"LIMIT 1;";
+		Integer id = this.jdbcTemplate.queryForObject(sql, Integer.class);
+		return id;
+	}
+
+
+
+	@Override
+	public PersonCustomer getBestCustomer() {
+		String sql = "SELECT c.id, p.FirstName, p.LastName, p.Telephone, p.Address, p.City, p.State, p.ZipCode, c.AccountNo, c.CreditCardNo, c.Email, c.CreationDate, c.Rating, r.BookingFee\n" +
+				"FROM Customer c, Person p, Reservation r\n" +
+				"WHERE c.Id = p.Id\n" +
+				"\tAND c.AccountNo = r.AccountNo\n" +
+				"GROUP BY c.AccountNo\n" +
+				"ORDER BY SUM(r.BookingFee) DESC\n" +
+				"LIMIT 1;";
+		RowMapper<PersonCustomer> bestCust = new PersonCustomerRowMapper();
+		return this.jdbcTemplate.queryForObject(sql,bestCust);
+	}
+
+
+
+
 }

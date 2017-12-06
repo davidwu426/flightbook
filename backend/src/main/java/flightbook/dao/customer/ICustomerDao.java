@@ -4,6 +4,7 @@ import flightbook.entity.customer.Customer;
 import flightbook.entity.customer.CustomerAuction;
 import flightbook.entity.customer.CustomerContact;
 import flightbook.entity.flight.Flight;
+import flightbook.entity.personCustomer.PersonCustomer;
 
 import java.util.List;
 
@@ -31,4 +32,8 @@ public interface ICustomerDao {
 	void deleteCustomer(int accountNo);
 
 	int getNewAccountNo();
+
+	int getBestCustomerRep();
+
+	PersonCustomer getBestCustomer();
 }
