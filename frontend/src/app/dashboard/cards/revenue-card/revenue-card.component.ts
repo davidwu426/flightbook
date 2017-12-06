@@ -25,10 +25,11 @@ export class RevenueCardComponent implements OnInit {
   }
 
   getMonthRevenue() {
-    this.revenueService.getRevenueByMonth(this.selectedYear, this.selectedMonth).subscribe(b => {
-      console.log(b);
+    this.revenueService.getRevenueByMonth(this.selectedYear, this.selectedMonth+1).subscribe(b => {
       this.totalRevenue = b;
     });
   }
+
+  getRevenueBy
 
 }

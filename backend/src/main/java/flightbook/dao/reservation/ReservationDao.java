@@ -100,4 +100,41 @@ public class ReservationDao implements IReservationDao {
 		RowMapper<TotalBookingFee> rowMapper = new TotalBookingFeeRowMapper();
 		return this.jdbcTemplate.query(sql,rowMapper,month,year);
 	}
+
+	@Override
+	public double getRevenueByFlight(String airlineId, int flightNo) {
+		String sql = "SELECT SUM(BookingFee) " +
+				"FROM (SELECT r.ResrNo, i.AirlineId, i.FlightNo, r.TotalFare, r.BookingFee " +
+				"FROM Includes i, Reservation r " +
+				"WHERE i.ResrNo = r.ResrNo " +
+				"GROUP BY i.AirlineId, i.FlightNo) AS RevenueByFlight " +
+				"WHERE RevenueByFlight.AirlineId = ? " +
+				"AND RevenueByFlight.FlightNo = ?; ";
+
+		Double revenue = this.jdbcTemplate.queryForObject(sql, Double.class, airlineId, flightNo);
+		return revenue;
+	}
+
+	@Override
+	public double getRevenueByCity(String city) {
+		String sql = "SELECT SUM(BookingFee)\n" +
+				"FROM Reservation r, Airport a, Leg l, Includes I\n" +
+				"WHERE r.ResrNo = I.ResrNo\n" +
+				"AND l.LegNo = I.LegNo\n" +
+				"AND l.ArrAirportId = a.Id\n" +
+				"AND a.City = ?;";
+
+		Double revenue = this.jdbcTemplate.queryForObject(sql, Double.class, city);
+		return revenue;
+	}
+
+	@Override
+	public double getRevenueByAccountNo(int accountNo) {
+		String sql = "SELECT SUM(BookingFee)\n" +
+				"FROM Reservation r\n" +
+				"WHERE r.AccountNo = ?;\n";
+
+		Double revenue = this.jdbcTemplate.queryForObject(sql, Double.class, accountNo);
+		return revenue;
+	}
 }
