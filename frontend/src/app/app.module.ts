@@ -81,6 +81,7 @@ import { AuctionCardComponent } from './dashboard/cards/auction-card/auction-car
 import { CustomerAuctionsCardComponent } from './dashboard/cards/customer-auctions-card/customer-auctions-card.component';
 import { HelpMenuComponent } from './help-menu/help-menu.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
