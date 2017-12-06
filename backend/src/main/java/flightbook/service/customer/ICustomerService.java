@@ -2,6 +2,7 @@ package flightbook.service.customer;
 
 import flightbook.Role;
 import flightbook.entity.customer.Customer;
+import flightbook.entity.customer.CustomerAuction;
 import flightbook.entity.customer.CustomerContact;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.person.Person;
@@ -22,6 +23,15 @@ public interface ICustomerService {
 	 */
 	@Secured({Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
 	List<CustomerContact> getAllCustomerContacts();
+
+	/**
+	 * Get a customer's auctions
+	 */
+	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	List<CustomerAuction> getAuctionsByAccountNo(int accountNo);
+
+	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	List<CustomerAuction> getAuction(String airlineId, int flightNo, String flightClass);
 
 	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
 	List<Flight> getSuggestions(int accountNo);

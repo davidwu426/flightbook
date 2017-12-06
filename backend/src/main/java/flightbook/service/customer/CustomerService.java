@@ -4,6 +4,7 @@ import flightbook.dao.customer.ICustomerDao;
 import flightbook.dao.person.IPersonDao;
 import flightbook.dao.user.IUserDao;
 import flightbook.entity.customer.Customer;
+import flightbook.entity.customer.CustomerAuction;
 import flightbook.entity.customer.CustomerContact;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.person.Person;
@@ -31,6 +32,14 @@ public class CustomerService implements ICustomerService {
 
 	@Override
 	public List<Flight> getSuggestions(int accountNo){ return customerDao.getSuggestions(accountNo); }
+
+	@Override
+	public List<CustomerAuction> getAuctionsByAccountNo(int accountNo) { return customerDao.getAuctionsByAccountNo(accountNo); }
+
+	@Override
+	public List<CustomerAuction> getAuction(String airlineId, int flightNo, String flightClass) {
+		return customerDao.getAuction(airlineId, flightNo, flightClass);
+	}
 
 	@Override
 	public List<CustomerContact> getAllCustomerContacts() { return customerDao.getAllCustomerContacts(); }
