@@ -5,6 +5,7 @@ import flightbook.entity.customer.Customer;
 import flightbook.entity.customer.CustomerAuction;
 import flightbook.entity.customer.CustomerContact;
 import flightbook.entity.flight.Flight;
+import flightbook.entity.flightreservation.FlightReservation;
 import flightbook.entity.person.Person;
 import flightbook.entity.user.User;
 import org.springframework.security.access.annotation.Secured;
@@ -34,7 +35,7 @@ public interface ICustomerService {
 	List<CustomerAuction> getAuction(String airlineId, int flightNo, String flightClass);
 
 	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
-	List<Flight> getSuggestions(int accountNo);
+	List<FlightReservation> getSuggestions(int accountNo);
 
 	/**
 	 * Find customer given account number of customer

@@ -31,9 +31,11 @@ public class RevenueController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/bestCust")
-    public ResponseEntity<PersonCustomer> getBestCustomer(){
+    public ResponseEntity<PersonCustomer> getBestCustomer() {
         PersonCustomer bestCustomer = revenueService.getBestCustomer();
         return new ResponseEntity<>(bestCustomer, HttpStatus.OK);
+    }
+
     @RequestMapping(method = RequestMethod.GET, value = "/flight/{airlineId}/{flightNo}")
     public ResponseEntity<Double> getRevenueByFlight(@PathVariable String airlineId,
                                                      @PathVariable int flightNo) {

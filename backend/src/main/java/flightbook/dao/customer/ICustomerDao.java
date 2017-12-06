@@ -4,6 +4,7 @@ import flightbook.entity.customer.Customer;
 import flightbook.entity.customer.CustomerAuction;
 import flightbook.entity.customer.CustomerContact;
 import flightbook.entity.flight.Flight;
+import flightbook.entity.flightreservation.FlightReservation;
 import flightbook.entity.personCustomer.PersonCustomer;
 
 import java.util.List;
@@ -13,7 +14,7 @@ public interface ICustomerDao {
 
 	List<CustomerContact> getAllCustomerContacts();
 
-	List<Flight> getSuggestions(int accountNo);
+	List<FlightReservation> getSuggestions(int accountNo);
 
 	List<CustomerAuction> getAuctionsByAccountNo(int accountNo);
 
