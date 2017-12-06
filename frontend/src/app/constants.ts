@@ -60,6 +60,8 @@ export class Constants {
   public static API_SUGGESTIONS_URL = Constants.API_CUSTOMERS_URL + '/suggestions';
 
   public static API_REVENUE_URL = Constants.API_URL + '/revenue';
+  public static API_REVENUE_BEST_REP_URL = Constants.API_REVENUE_URL + '/bestRep';
+  public static API_REVENUE_BEST_CUST_URL = Constants.API_REVENUE_URL + '/bestCust';
 
   public static API_DELAYED_FLIGHTS_URL = Constants.API_FLIGHTS_URL +"/delayed";
   public static API_FLIGHTS_BY_AIRPORT_URL = Constants.API_FLIGHTS_URL + '/airport';

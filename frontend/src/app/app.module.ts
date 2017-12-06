@@ -73,14 +73,16 @@ import { SuggestionsCardComponent } from './dashboard/cards/suggestions-card/sug
 import { CustomerSuggestionsCardComponent } from './dashboard/cards/customer-suggestions-card/customer-suggestions-card.component';
 import { RevenueCardComponent } from './dashboard/cards/revenue-card/revenue-card.component';
 import { RevenueService } from './services/revenue/revenue.service';
-import { DelayedFlightsCardComponent } from './dashboard/cards/delayed-flights-card/delayed-flights-card.component';
 import { FlightsByAirportCardComponent } from './dashboard/cards/flights-by-airport-card/flights-by-airport-card.component';
-import { CustomerOnFlightCardComponent } from './dashboard/cards/customer-on-flight-card/customer-on-flight-card.component';
+import { RevenueByCustomerRepCardComponent } from './dashboard/cards/revenue-by-customer-rep-card/revenue-by-customer-rep-card.component';
+import { RevenueByCustomerCardComponent } from './dashboard/cards/revenue-by-customer-card/revenue-by-customer-card.component';
 import { OnewaySearchEntryComponent } from './search-results/flight-results/oneway-search-entry/oneway-search-entry.component';
 import { AuctionCardComponent } from './dashboard/cards/auction-card/auction-card.component';
 import { CustomerAuctionsCardComponent } from './dashboard/cards/customer-auctions-card/customer-auctions-card.component';
 import { MostFrequentFlightCardComponent } from './dashboard/cards/most-frequent-flight-card/most-frequent-flight-card.component';
 import { OnTimeFlightCardComponent } from './dashboard/cards/on-time-flight-card/on-time-flight-card.component';
+import { CustomerOnFlightCardComponent } from './dashboard/cards/customer-on-flight-card/customer-on-flight-card.component';
+import { HelpMenuComponent } from './help-menu/help-menu.component';
 
 @NgModule({
   declarations: [
@@ -127,15 +129,16 @@ import { OnTimeFlightCardComponent } from './dashboard/cards/on-time-flight-card
     SuggestionsCardComponent,
     CustomerSuggestionsCardComponent,
     RevenueCardComponent,
-    DelayedFlightsCardComponent,
-    FlightsByAirportCardComponent,
     CustomerOnFlightCardComponent,
     OnewaySearchEntryComponent, 
     FlightsByAirportCardComponent,
+    RevenueByCustomerRepCardComponent,
+    RevenueByCustomerCardComponent,
     CustomerAuctionsCardComponent,
     AuctionCardComponent,
     MostFrequentFlightCardComponent,
-    OnTimeFlightCardComponent
+    OnTimeFlightCardComponent,
+    HelpMenuComponent
   ],
   imports: [
     BrowserModule,
