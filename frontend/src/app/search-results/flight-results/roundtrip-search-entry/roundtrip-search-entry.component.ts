@@ -22,17 +22,21 @@ export class RoundtripSearchEntryComponent implements OnInit {
   tripDurationMinutes: number;
 
   searchEntry: SearchEntry;
+  returnEntry: SearchEntry;
 
   constructor() { }
 
   ngOnInit() {
     this.searchEntry = this.searchEntries[0];
+    this.returnEntry = this.searchEntries[1];
 
-    const tripDuration0 = new Date(this.searchEntries[0].tripArrTime).getTime() -
-      new Date(this.searchEntries[1].tripDepTime).getTime();
-    const tripDuration1 = new Date(this.searchEntries[1].tripArrTime).getTime() -
-      new Date(this.searchEntries[1].tripDepTime).getTime();
-    this.tripDurationHours = (tripDuration0 + tripDuration1) / 1000 / 60 / 60;
-    this.tripDurationMinutes = (tripDuration0 + tripDuration1) / 1000 % 60;
+    if (this.returnEntry) {
+      const tripDuration0 = new Date(this.searchEntries[0].tripArrTime).getTime() -
+        new Date(this.returnEntry.tripDepTime).getTime();
+      const tripDuration1 = new Date(this.returnEntry.tripArrTime).getTime() -
+        new Date(this.returnEntry.tripDepTime).getTime();
+      this.tripDurationHours = (tripDuration0 + tripDuration1) / 1000 / 60 / 60;
+      this.tripDurationMinutes = (tripDuration0 + tripDuration1) / 1000 % 60;
+    }
   }
 }

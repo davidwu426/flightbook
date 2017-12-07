@@ -51,7 +51,7 @@
 
 <div class="collapse ml-4" [attr.id]="'details-'+ searchEntryIndex">
   <!-- trip there -->
-  <ng-container *ngFor="let l of searchEntry.tripLegs; let i = index;">
+  <ng-container *ngFor="let l of searchEntry?.tripLegs; let i = index;">
     <app-leg-detail [index]="i" [searchEntry]="searchEntries[0]" [tripLeg]="l" [to]="to"></app-leg-detail>
   </ng-container>
 
@@ -60,7 +60,7 @@
   </div>
 
   <!-- trip back -->
-  <ng-container *ngFor="let l of searchEntries[1].tripLegs; let i = index;">
-    <app-leg-detail [index]="i" [searchEntry]="searchEntries[1]" [tripLeg]="l" [to]="from"></app-leg-detail>
+  <ng-container *ngFor="let l of returnEntry?.tripLegs; let i = index;">
+    <app-leg-detail [index]="i" [searchEntry]="returnEntry" [tripLeg]="l" [to]="from"></app-leg-detail>
   </ng-container>
 </div>

@@ -54,7 +54,7 @@
 </div>
 
 <div class="collapse ml-4" [attr.id]="'details-' + searchEntryIndex">
-  <ng-container *ngFor="let l of searchEntry.tripLegs; let i = index;">
+  <ng-container *ngFor="let l of searchEntry?.tripLegs; let i = index;">
     <app-leg-detail [index]="i" [searchEntry]="searchEntry" [tripLeg]="l" [to]="to"></app-leg-detail>
   </ng-container>
 </div>
