@@ -1,6 +1,7 @@
 package flightbook.dao.flight;
 
 import flightbook.entity.customer.CustomerOnFlight;
+import flightbook.entity.flight.BestSoldFlight;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.flight.FrequentFlight;
 import flightbook.entity.customer.Customer;
@@ -25,6 +26,8 @@ public interface IFlightDao {
 	List<Flight> getDelayedFlights();
 
 	List<Flight> getOnTimeFlights();
+
+	List<BestSoldFlight> getBestSoldFlights();
 
 	void insertFlight(Flight flight);
 

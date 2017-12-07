@@ -3,10 +3,7 @@ package flightbook.dao.flight;
 import flightbook.entity.customer.Customer;
 import flightbook.entity.customer.CustomerOnFlight;
 import flightbook.entity.customer.CustomerOnFlightMapper;
-import flightbook.entity.flight.Flight;
-import flightbook.entity.flight.FlightRowMapper;
-import flightbook.entity.flight.FrequentFlight;
-import flightbook.entity.flight.FrequentFlightMapper;
+import flightbook.entity.flight.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -117,6 +114,20 @@ public class FlightDao implements IFlightDao {
 				"WHERE f.IsDelayed = FALSE;\n";
 
 		RowMapper<Flight> rowMapper = new FlightRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper);
+	}
+
+	@Override
+	public List<BestSoldFlight> getBestSoldFlights() {
+		String sql ="SELECT F.FlightNo, SUM(R.BookingFee) AS BookingFee, SUM(TotalFare) AS TotalFare\n" +
+				"FROM Flight F, Reservation R, Includes I\n" +
+				"WHERE F.FlightNo = I.FlightNo\n" +
+				"AND I.ResrNo = R.ResrNo\n" +
+				"GROUP BY F.FlightNo\n" +
+				"ORDER BY BookingFee DESC\n" +
+				"LIMIT 5";
+
+		RowMapper<BestSoldFlight> rowMapper = new BestSoldFlightMapper();
 		return this.jdbcTemplate.query(sql, rowMapper);
 	}
 

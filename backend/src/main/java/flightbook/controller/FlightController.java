@@ -2,6 +2,7 @@ package flightbook.controller;
 
 import com.sun.org.apache.regexp.internal.RE;
 import flightbook.entity.customer.CustomerOnFlight;
+import flightbook.entity.flight.BestSoldFlight;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.flight.FrequentFlight;
 import flightbook.entity.leg.Leg;
@@ -84,6 +85,13 @@ public class FlightController {
 	{
 		List<Flight> onTimeFlights = flightService.getOnTimeFlight();
 		return new ResponseEntity<List<Flight>>(onTimeFlights, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value ="/bestsoldflight")
+	public ResponseEntity<List<BestSoldFlight>> getBestSoldFlights()
+	{
+		List<BestSoldFlight> bestSoldFlights = flightService.getBestSoldFlights();
+		return new ResponseEntity<List<BestSoldFlight>>(bestSoldFlights, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
