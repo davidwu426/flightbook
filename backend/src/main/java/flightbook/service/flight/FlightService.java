@@ -41,6 +41,12 @@ public class FlightService implements IFlightService {
 	}
 
 	@Override
+	public List<Flight> getOnTimeFlight()
+	{
+		return flightDao.getOnTimeFlights();
+	}
+
+	@Override
 	public List<Flight> getDelayedFlights() {
 		return flightDao.getDelayedFlights();
 	}

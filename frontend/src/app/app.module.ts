@@ -79,15 +79,23 @@ import { RevenueByCustomerCardComponent } from './dashboard/cards/revenue-by-cus
 import { OnewaySearchEntryComponent } from './search-results/flight-results/oneway-search-entry/oneway-search-entry.component';
 import { AuctionCardComponent } from './dashboard/cards/auction-card/auction-card.component';
 import { CustomerAuctionsCardComponent } from './dashboard/cards/customer-auctions-card/customer-auctions-card.component';
+import { MostFrequentFlightCardComponent } from './dashboard/cards/most-frequent-flight-card/most-frequent-flight-card.component';
+import { OnTimeFlightCardComponent } from './dashboard/cards/on-time-flight-card/on-time-flight-card.component';
+import { CustomerOnFlightCardComponent } from './dashboard/cards/customer-on-flight-card/customer-on-flight-card.component';
 import { HelpMenuComponent } from './help-menu/help-menu.component';
+<<<<<<< HEAD
 import { HelpManagerCardComponent } from './dashboard/cards/help-manager-card/help-manager-card.component';
 import { HelpAdminCardComponent } from './dashboard/cards/help-admin-card/help-admin-card.component';
 import { HelpEmployeeCardComponent } from './dashboard/cards/help-employee-card/help-employee-card.component';
 import { HelpCustomerCardComponent } from './dashboard/cards/help-customer-card/help-customer-card.component';
 
+=======
+import { DelayedFlightsCardComponent } from './dashboard/cards/delayed-flights-card/delayed-flights-card.component';
+>>>>>>> b809575984980b699a7f7e1753b1e635ff7c05a4
 
 @NgModule({
   declarations: [
+    DelayedFlightsCardComponent,
     AppComponent,
     MessagesComponent,
     HomeComponent,
@@ -131,18 +139,24 @@ import { HelpCustomerCardComponent } from './dashboard/cards/help-customer-card/
     SuggestionsCardComponent,
     CustomerSuggestionsCardComponent,
     RevenueCardComponent,
-    FlightsByAirportCardComponent,
-    OnewaySearchEntryComponent,
+    CustomerOnFlightCardComponent,
+    OnewaySearchEntryComponent, 
     FlightsByAirportCardComponent,
     RevenueByCustomerRepCardComponent,
     RevenueByCustomerCardComponent,
     CustomerAuctionsCardComponent,
     AuctionCardComponent,
+<<<<<<< HEAD
     HelpMenuComponent,
     HelpCustomerCardComponent,
     HelpManagerCardComponent,
     HelpAdminCardComponent,
     HelpEmployeeCardComponent
+=======
+    MostFrequentFlightCardComponent,
+    OnTimeFlightCardComponent,
+    HelpMenuComponent
+>>>>>>> b809575984980b699a7f7e1753b1e635ff7c05a4
   ],
   imports: [
     BrowserModule,

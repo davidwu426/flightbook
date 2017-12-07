@@ -11,8 +11,8 @@ public class FrequentFlightMapper implements RowMapper<FrequentFlight> {
     public FrequentFlight mapRow(ResultSet rs, int rowNum) throws SQLException {
         return new FrequentFlight(
                 rs.getString( "AirlineId"),
-                rs.getInt("FlightNo"),
-                rs.getInt("ResrNoCount")
+                rs.getInt("ResrCount"),
+                rs.getInt("FlightNo")
         );
     }
 }

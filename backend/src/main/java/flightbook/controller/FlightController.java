@@ -77,6 +77,13 @@ public class FlightController {
 		return new ResponseEntity<List<Flight>>(delayedFlights, HttpStatus.OK);
 	}
 
+	@RequestMapping(method = RequestMethod.GET, value="/ontime")
+	public ResponseEntity<List<Flight>> getOnTimeFlights()
+	{
+		List<Flight> onTimeFlights = flightService.getOnTimeFlight();
+		return new ResponseEntity<List<Flight>>(onTimeFlights, HttpStatus.OK);
+	}
+
 	@RequestMapping(method = RequestMethod.POST)
 	public ResponseEntity<Flight> createFlight(@RequestBody Flight flight) {
 		try {

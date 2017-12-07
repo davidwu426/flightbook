@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Flight } from '../../models/flight';
 import { Constants } from '../../constants';
 import { CustomerOnFlight } from '../../models/customer-on-flight';
+import { FrequentFlight } from '../../models/frequent-flight';
 
 
 @Injectable()
@@ -19,10 +20,20 @@ export class FlightService {
     return this.http.get<Flight[]>(Constants.API_DELAYED_FLIGHTS_URL);
   }
 
+  getOnTimeFlights() : Observable<Flight[]>
+  {
+    return this.http.get<Flight[]>(Constants.API_ON_TIME_FLIGHTS_URL);
+  }
+
   getCustomerOnFlight(airlineId : string , flightNo : number) : Observable<CustomerOnFlight[]>
   {
-    const url = `${Constants.API_CUSTOMER_ON_FLIGHT}/${airlineId}/${flightNo}`;
+    const url = `${Constants.API_CUSTOMER_ON_FLIGHT_URL}/${airlineId}/${flightNo}`;
     return this.http.get<CustomerOnFlight[]>(url, Constants.HTTP_OPTIONS);
+  }
+
+  getMostFrequentFlight(): Observable<FrequentFlight[]>
+  {
+    return this.http.get<FrequentFlight[]>(Constants.API_FREQUENT_FLIGHT_URL);
   }
 
   addFlight(flight: Flight): Observable<Flight> {

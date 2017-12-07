@@ -2,27 +2,86 @@
   <div class="card-header">
     Revenue
   </div>
-  <div class="card-body">Revenue for the month for {{selectedMonth+1}}/{{selectedYear}} is  {{totalRevenue}}</div>
+  <div class="card-body text-center">
+    <div *ngIf="totalRevenue != null; else noinfo;">
+      <h1>
+        <i class="fa fa-line-chart text-primary"></i>
+        {{totalRevenue | currency}}
+      </h1>
+    </div>
+    <ng-template #noinfo>
+      <h4 class="text-muted">
+        <i class="fa fa-search"></i>
+        <hr> Select a month and year
+      </h4>
+    </ng-template>
+    <br>
+  </div>
   <div class="card-footer">
-    <div class="row">
-      <div class="col-4">Select Month and Year</div>
-      <div class="col-3">
-        <select class="form-control" [(ngModel)]="selectedMonth" name="months">
-          <option *ngFor="let m of months; let i = index" [ngValue]="i">
-            {{m}}
-          </option>
-        </select>
-      </div>
-      <div class="col-3">
-          <select class="form-control" [(ngModel)]="selectedYear" name="years">
-            <option *ngFor="let y of years; let i = index" [ngValue]="y">
-              {{y}}
-            </option>
+    <form (ngSubmit)="filter()" ngNativeValidate>
+
+      <div class="row mb-3">
+        <div class="col-3 align-items-center">
+          <b>Filter:</b>
+        </div>
+
+        <div class="col-9">
+          <select name="filterChoice" [(ngModel)]="filterChoice" class="form-control">
+            <option [ngValue]="0">Revenue by Month</option>
+            <option [ngValue]="1">Revenue by Flight</option>
+            <option [ngValue]="2">Revenue by City</option>
+            <option [ngValue]="3">Revenue by Customer</option>
           </select>
         </div>
-      <div class="col-2">
-        <button type="button" class="btn btn-primary" (click)="getMonthRevenue()">Submit</button>
+
       </div>
-    </div>
+
+      <div class="row mb-3">
+        <ng-container *ngIf="filterChoice === 0">
+          <div class="col-6">
+            <select class="form-control" [(ngModel)]="selectedMonth" name="months">
+              <option *ngFor="let m of months; let i = index" [ngValue]="i">
+                {{m}}
+              </option>
+            </select>
+          </div>
+          <div class="col-6">
+            <select class="form-control" [(ngModel)]="selectedYear" name="years">
+              <option *ngFor="let y of years; let i = index" [ngValue]="y">
+                {{y}}
+              </option>
+            </select>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="filterChoice === 1">
+          <div class="col-6">
+            <input type="text" class="form-control" placeholder="Airline ID" [(ngModel)]="airlineId" name="airlineId" required>
+          </div>
+          <div class="col-6">
+            <input type="text" class="form-control" placeholder="Flight Number" [(ngModel)]="flightNo" name="flightNo" required>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="filterChoice === 2">
+          <div class="col-12">
+            <input type="text" class="form-control" placeholder="City" [(ngModel)]="city" name="city" required>
+          </div>
+        </ng-container>
+
+        <ng-container *ngIf="filterChoice === 3">
+          <div class="col-12">
+            <input type="text" class="form-control" placeholder="Account Number" [(ngModel)]="accountNo" name="accountNo" required>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </div>
+      </div>
+
+    </form>
   </div>
 </div>
