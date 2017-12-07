@@ -160,7 +160,9 @@ export class HelpMenuComponent implements OnInit {
         }, { 
           title: "List of Most Active Flights",
           content:[
-            "asd"
+            "1. Go to Flights Tab",
+            "2. Scroll down to active flights card",
+            "3. Observe"
           ]
         }
       ]
