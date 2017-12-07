@@ -80,6 +80,10 @@ import { OnewaySearchEntryComponent } from './search-results/flight-results/onew
 import { AuctionCardComponent } from './dashboard/cards/auction-card/auction-card.component';
 import { CustomerAuctionsCardComponent } from './dashboard/cards/customer-auctions-card/customer-auctions-card.component';
 import { HelpMenuComponent } from './help-menu/help-menu.component';
+import { HelpManagerCardComponent } from './dashboard/cards/help-manager-card/help-manager-card.component';
+import { HelpAdminCardComponent } from './dashboard/cards/help-admin-card/help-admin-card.component';
+import { HelpEmployeeCardComponent } from './dashboard/cards/help-employee-card/help-employee-card.component';
+import { HelpCustomerCardComponent } from './dashboard/cards/help-customer-card/help-customer-card.component';
 
 
 @NgModule({
@@ -134,7 +138,11 @@ import { HelpMenuComponent } from './help-menu/help-menu.component';
     RevenueByCustomerCardComponent,
     CustomerAuctionsCardComponent,
     AuctionCardComponent,
-    HelpMenuComponent
+    HelpMenuComponent,
+    HelpCustomerCardComponent,
+    HelpManagerCardComponent,
+    HelpAdminCardComponent,
+    HelpEmployeeCardComponent
   ],
   imports: [
     BrowserModule,
