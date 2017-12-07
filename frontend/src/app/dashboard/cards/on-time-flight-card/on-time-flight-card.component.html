@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-header">
+      On-Time Flights
+    </div>
+    <div class="card-body">
+      <table class="table table-hover table-sm table-responsive-sm">
+        <thead>
+          <tr>
+            <th>Airline ID</th>
+            <th>Flight No</th>
+            <th>Number of Seats</th>
+            <th>Days Operating</th>
+            <th>Min Length of Stay</th>
+            <th>Max Length of Stay</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of onTimeFlights">
+            <td>{{d.airlineId}}</td>
+            <td>{{d.flightNo}}</td>
+            <td>{{d.noOfSeats}}</td>
+            <td>{{d.daysOperating}}</td>
+            <td>{{d.minLengthOfStay}}</td>
+            <td>{{d.maxLengthOfStay}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

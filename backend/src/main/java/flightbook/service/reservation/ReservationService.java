@@ -2,10 +2,14 @@ package flightbook.service.reservation;
 
 import flightbook.dao.reservation.IReservationDao;
 import flightbook.dao.include.IIncludeDao;
+import flightbook.dao.reservationpassenger.IReservationPassengerDao;
 import flightbook.entity.include.Include;
+import flightbook.entity.reservation.BookRequest;
 import flightbook.entity.reservation.Reservation;
 import flightbook.entity.reservation.ReservationDetails;
+import flightbook.entity.reservationpassenger.ReservationPassenger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +22,8 @@ public class ReservationService implements IReservationService {
 	IReservationDao reservationDao;
 	@Autowired
 	IIncludeDao includeDao;
+	@Autowired
+	IReservationPassengerDao reservationPassengerDao;
 
 	@Override
 	public List<ReservationDetails> getAllReservations() {
@@ -83,5 +89,34 @@ public class ReservationService implements IReservationService {
 		}
 
 		return reservationDetails;
+	}
+
+	@Override
+	@Transactional
+	public boolean bookOneWay(BookRequest b) {
+		try {
+			insertReservation(b.getReservation(), b.getIncludes());
+			reservationPassengerDao.insertReservationPassenger(b.getReservationPassenger());
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	@Transactional
+	public boolean bookMultiple(List<BookRequest> bs) {
+		try {
+			for (BookRequest br : bs) {
+				bookOneWay(br);
+			}
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
 	}
 }

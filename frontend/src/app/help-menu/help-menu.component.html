@@ -1,0 +1,36 @@
+<div class="container">
+  <div id="accordion" role="tablist" aria-multiselectable="true">
+
+    <div>
+      <h1>Help Menu</h1>
+    </div>
+    <p class="text-muted">Help Menu for Customers, Customer Representatives and Managers. For further help, please call 1-800-111-1111</p>
+    <hr>
+
+    <div class="card" *ngFor="let s of sections; let i = index;">
+      <div class="card-header" role="tab">
+        <h5 class="mb-0">
+          <a data-toggle="collapse" data-parent="#accordion" [attr.href]="'#collapse-' + i">
+            <h4 class="text-light">{{s.title}}</h4>
+          </a>
+        </h5>
+      </div>
+
+      <div [attr.id]="'collapse-' + i" class="collapse" role="tabpanel" data-parent="#accordion">
+        <div class="card-block">
+          <div class="list-group">
+            <a class="list-group-item list-group-item-action" *ngFor="let c of s.chapters">
+              <h3>{{c.title}}</h3>
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let x of c.content">
+                  {{x}}
+                </li>
+              </ul>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

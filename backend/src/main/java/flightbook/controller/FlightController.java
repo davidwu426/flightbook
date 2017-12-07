@@ -1,6 +1,7 @@
 package flightbook.controller;
 
 import flightbook.entity.customer.CustomerOnFlight;
+import flightbook.entity.flight.BestSoldFlight;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.flight.FrequentFlight;
 import flightbook.entity.leg.Leg;
@@ -75,6 +76,20 @@ public class FlightController {
 		List<Flight> delayedFlights = flightService.getDelayedFlights();
 
 		return new ResponseEntity<List<Flight>>(delayedFlights, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value="/ontime")
+	public ResponseEntity<List<Flight>> getOnTimeFlights()
+	{
+		List<Flight> onTimeFlights = flightService.getOnTimeFlight();
+		return new ResponseEntity<List<Flight>>(onTimeFlights, HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value ="/bestsoldflight")
+	public ResponseEntity<List<BestSoldFlight>> getBestSoldFlights()
+	{
+		List<BestSoldFlight> bestSoldFlights = flightService.getBestSoldFlights();
+		return new ResponseEntity<List<BestSoldFlight>>(bestSoldFlights, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

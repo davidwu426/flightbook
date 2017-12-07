@@ -3,10 +3,7 @@ package flightbook.dao.flight;
 import flightbook.entity.customer.Customer;
 import flightbook.entity.customer.CustomerOnFlight;
 import flightbook.entity.customer.CustomerOnFlightMapper;
-import flightbook.entity.flight.Flight;
-import flightbook.entity.flight.FlightRowMapper;
-import flightbook.entity.flight.FrequentFlight;
-import flightbook.entity.flight.FrequentFlightMapper;
+import flightbook.entity.flight.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -75,7 +72,7 @@ public class FlightDao implements IFlightDao {
 	public List<FrequentFlight> getFrequentFlight() {
 
 		String sql = "SELECT COUNT(distinct RP.ResrNo) AS ResrCount, I.FlightNo, I.AirlineId\n" +
-				"FROM ReservationPassenger RP, Includes I\n" +
+				"FROM reservationpassenger RP, Includes I\n" +
 				"WHERE I.ResrNo = RP.ResrNo\n" +
 				"GROUP By I.FlightNo\n" +
 				"ORDER By ResrCount DESC\n" +
@@ -89,7 +86,7 @@ public class FlightDao implements IFlightDao {
 	@Override
 	public List<CustomerOnFlight> getCustomerOnFlight(String airlineId, int flightNo) {
 		String sql = "SELECT DISTINCT r.AccountNo, p.FirstName, p.LastName, r.ResrNo, rp.SeatNo, rp.Class, rp.Meal\n" +
-				"FROM Person p, Reservation r, Passenger pass, ReservationPassenger rp, Includes i\n" +
+				"FROM Person p, Reservation r, Passenger pass, reservationpassenger rp, Includes i\n" +
 				"WHERE p.Id = rp.Id\n" +
 				"\tAND r.ResrNo = rp.ResrNo\n" +
 				"\tAND i.ResrNo = rp.ResrNo\n" +
@@ -108,6 +105,30 @@ public class FlightDao implements IFlightDao {
 
 		RowMapper<Flight> rowMapper = new FlightRowMapper();
 		return this.jdbcTemplate.query(sql,rowMapper);
+	}
+
+	@Override
+	public List<Flight> getOnTimeFlights() {
+		String sql = "SELECT *\n" +
+				"FROM Flight f\n" +
+				"WHERE f.IsDelayed = FALSE;\n";
+
+		RowMapper<Flight> rowMapper = new FlightRowMapper();
+		return this.jdbcTemplate.query(sql, rowMapper);
+	}
+
+	@Override
+	public List<BestSoldFlight> getBestSoldFlights() {
+		String sql ="SELECT F.FlightNo, SUM(R.BookingFee) AS BookingFee, SUM(TotalFare) AS TotalFare\n" +
+				"FROM Flight F, Reservation R, Includes I\n" +
+				"WHERE F.FlightNo = I.FlightNo\n" +
+				"AND I.ResrNo = R.ResrNo\n" +
+				"GROUP BY F.FlightNo\n" +
+				"ORDER BY BookingFee DESC\n" +
+				"LIMIT 5";
+
+		RowMapper<BestSoldFlight> rowMapper = new BestSoldFlightMapper();
+		return this.jdbcTemplate.query(sql, rowMapper);
 	}
 
 	@Override

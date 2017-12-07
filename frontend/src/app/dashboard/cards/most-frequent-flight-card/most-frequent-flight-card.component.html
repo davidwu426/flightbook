@@ -1,0 +1,23 @@
+<div class="card">
+    <div class="card-header">
+      Most Frequent Flights
+    </div>
+    <div class="card-body">
+      <table class="table table-hover table-sm table-responsive-sm">
+        <thead>
+          <tr>
+            <th>Flight No</th>
+            <th>Airline ID</th>
+            <th>Count</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of frequentFlights">
+            <td>{{d.flightNo}}</td>
+            <td>{{d.airlineId}}</td>
+            <td>{{d.count}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>

@@ -2,8 +2,10 @@ package flightbook.service.reservation;
 
 import flightbook.Role;
 import flightbook.entity.include.Include;
+import flightbook.entity.reservation.BookRequest;
 import flightbook.entity.reservation.Reservation;
 import flightbook.entity.reservation.ReservationDetails;
+import flightbook.entity.reservationpassenger.ReservationPassenger;
 import org.springframework.security.access.annotation.Secured;
 
 import java.util.List;
@@ -68,4 +70,21 @@ public interface IReservationService {
 	 */
 	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
 	void deleteReservation(int resrNo);
+
+	/**
+	 * Book oneway flight
+	 *
+	 * @return	True if successful, false otherwise
+	 */
+	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	boolean bookOneWay(BookRequest b);
+
+	/**
+	 * Book multiple flights
+	 *
+	 * @param b	List of flights to book
+	 * @return True if successful, false otherwise
+	 */
+	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	boolean bookMultiple(List<BookRequest> b);
 }

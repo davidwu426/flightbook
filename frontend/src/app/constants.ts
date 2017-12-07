@@ -62,10 +62,19 @@ export class Constants {
   public static API_REVENUE_URL = Constants.API_URL + '/revenue';
   public static API_REVENUE_BEST_REP_URL = Constants.API_REVENUE_URL + '/bestRep';
   public static API_REVENUE_BEST_CUST_URL = Constants.API_REVENUE_URL + '/bestCust';
+  public static API_REVENUE_BY_FLIGHT = Constants.API_REVENUE_URL + '/flight';
+  public static API_REVENUE_BY_CITY = Constants.API_REVENUE_URL + '/city';
+  public static API_REVENUE_BY_ACCOUNTNO = Constants.API_REVENUE_URL + '/customer';
 
   public static API_DELAYED_FLIGHTS_URL = Constants.API_FLIGHTS_URL +"/delayed";
   public static API_FLIGHTS_BY_AIRPORT_URL = Constants.API_FLIGHTS_URL + '/airport';
 
-  public static API_CUSTOMER_ON_FLIGHT = Constants.API_FLIGHTS_URL+ "/customeronflight"
+  public static API_CUSTOMER_ON_FLIGHT_URL = Constants.API_FLIGHTS_URL+ "/customeronflight"
   public static API_AUCTIONS_URL = Constants.API_CUSTOMERS_URL + '/auctions';
+
+  public static API_FREQUENT_FLIGHT_URL = Constants.API_FLIGHTS_URL +"/frequent";
+
+  public static API_ON_TIME_FLIGHTS_URL = Constants.API_FLIGHTS_URL +"/ontime";
+
+  public static API_BEST_SOLD_FLIGHT_URL = Constants.API_FLIGHTS_URL +"/bestsoldflight";
 }

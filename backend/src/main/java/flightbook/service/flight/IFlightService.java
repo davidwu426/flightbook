@@ -2,6 +2,7 @@ package flightbook.service.flight;
 
 import flightbook.Role;
 import flightbook.entity.customer.CustomerOnFlight;
+import flightbook.entity.flight.BestSoldFlight;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.flight.FrequentFlight;
 import org.springframework.security.access.annotation.Secured;
@@ -58,6 +59,18 @@ public interface IFlightService {
 	 * @return return the flights that are delayed
 	 */
 	List<Flight> getDelayedFlights();
+
+	/**
+	 *
+	 * @return List of flights that are on time
+	 */
+	List<Flight> getOnTimeFlight();
+
+	/**
+	 *
+	 * @return list of flights that generate the most money
+	 */
+	List<BestSoldFlight> getBestSoldFlights();
 	/**
 	 * Inserts a flight
 	 *

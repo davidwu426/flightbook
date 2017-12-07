@@ -1,7 +1,7 @@
 package flightbook.dao.reservation;
 
 import flightbook.entity.reservation.Reservation;
-import flightbook.entity.totalBookingFee.TotalBookingFee;
+import flightbook.entity.totalbookingfee.TotalBookingFee;
 
 import java.util.List;
 

@@ -1,6 +1,7 @@
 package flightbook.controller;
 
 import flightbook.entity.include.Include;
+import flightbook.entity.reservation.BookRequest;
 import flightbook.entity.reservation.Reservation;
 import flightbook.entity.reservation.ReservationDetails;
 import flightbook.service.reservation.IReservationService;
@@ -80,4 +81,13 @@ public class ReservationController {
 		}
 	}
 
+	@RequestMapping(method = RequestMethod.POST, value="/book/oneway")
+	public ResponseEntity<Boolean> bookOneWay(@RequestBody BookRequest bookRequest) {
+		return new ResponseEntity<>(reservationService.bookOneWay(bookRequest), HttpStatus.OK);
+	}
+
+	@RequestMapping(method = RequestMethod.POST, value="/book/multiple")
+	public ResponseEntity<Boolean> bookRoundTrip(@RequestBody List<BookRequest> bookRequests) {
+		return new ResponseEntity<>(reservationService.bookMultiple(bookRequests), HttpStatus.OK);
+	}
 }

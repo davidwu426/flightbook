@@ -2,6 +2,7 @@ package flightbook.service.flight;
 
 import flightbook.dao.flight.IFlightDao;
 import flightbook.entity.customer.CustomerOnFlight;
+import flightbook.entity.flight.BestSoldFlight;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.flight.FrequentFlight;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,17 @@ public class FlightService implements IFlightService {
 	public List<FrequentFlight> getFrequentFlight()
 	{
 		return flightDao.getFrequentFlight();
+	}
+
+	@Override
+	public List<Flight> getOnTimeFlight()
+	{
+		return flightDao.getOnTimeFlights();
+	}
+
+	@Override
+	public List<BestSoldFlight> getBestSoldFlights() {
+		return flightDao.getBestSoldFlights();
 	}
 
 	@Override
