@@ -83,9 +83,11 @@ import { MostFrequentFlightCardComponent } from './dashboard/cards/most-frequent
 import { OnTimeFlightCardComponent } from './dashboard/cards/on-time-flight-card/on-time-flight-card.component';
 import { CustomerOnFlightCardComponent } from './dashboard/cards/customer-on-flight-card/customer-on-flight-card.component';
 import { HelpMenuComponent } from './help-menu/help-menu.component';
+import { DelayedFlightsCardComponent } from './dashboard/cards/delayed-flights-card/delayed-flights-card.component';
 
 @NgModule({
   declarations: [
+    DelayedFlightsCardComponent,
     AppComponent,
     MessagesComponent,
     HomeComponent,
