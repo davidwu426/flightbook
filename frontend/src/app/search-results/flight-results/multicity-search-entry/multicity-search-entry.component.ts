@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SearchEntry } from '../../../models/search-entry';
 import { Airport } from '../../../models/airport';
 import { SearchService } from '../../../services/search/search.service';
@@ -13,6 +13,8 @@ export class MulticitySearchEntryComponent implements OnInit {
   searchEntries: SearchEntry[];
   @Input()
   searchEntryIndex: number;
+  @Output()
+  onBook: EventEmitter<SearchEntry[]> = new EventEmitter();
 
   tripDuration: number;
   tripDurationHours: number;
@@ -30,5 +32,9 @@ export class MulticitySearchEntryComponent implements OnInit {
     for (let i = 0; i < this.searchEntries.length; i++) {
       this.totalPrice += this.searchEntries[i].price;
     }
+  }
+
+  triggerBook() {
+    this.onBook.emit(this.searchEntries);
   }
 }

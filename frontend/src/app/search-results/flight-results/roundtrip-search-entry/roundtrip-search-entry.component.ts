@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SearchEntry } from '../../../models/search-entry';
 import { Airport } from '../../../models/airport';
 
@@ -16,6 +16,8 @@ export class RoundtripSearchEntryComponent implements OnInit {
   from: Airport;
   @Input()
   searchEntryIndex: number;
+  @Output()
+  onBook: EventEmitter<SearchEntry[]> = new EventEmitter();
 
   tripDuration: number;
   tripDurationHours: number;
@@ -38,5 +40,9 @@ export class RoundtripSearchEntryComponent implements OnInit {
       this.tripDurationHours = (tripDuration0 + tripDuration1) / 1000 / 60 / 60;
       this.tripDurationMinutes = (tripDuration0 + tripDuration1) / 1000 % 60;
     }
+  }
+
+  triggerBook() {
+    this.onBook.emit(this.searchEntries);
   }
 }

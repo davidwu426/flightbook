@@ -57,11 +57,11 @@ export class ReservationService {
     return this.http.delete<Reservation>(url, Constants.HTTP_OPTIONS);
   }
 
-  bookOneWay(bookRequest: BookRequest) {
-    return this.http.post(Constants.API_BOOK_ONEWAY_URL, bookRequest, Constants.HTTP_OPTIONS);
+  bookOneWay(bookRequest: BookRequest): Observable<boolean> {
+    return this.http.post<boolean>(Constants.API_BOOK_ONEWAY_URL, bookRequest, Constants.HTTP_OPTIONS);
   }
 
-  bookMulti(bookRequests: BookRequest[]) {
-    return this.http.post(Constants.API_BOOK_MULTI_URL, bookRequests, Constants.HTTP_OPTIONS);
+  bookMulti(bookRequests: BookRequest[]): Observable<boolean> {
+    return this.http.post<boolean>(Constants.API_BOOK_MULTI_URL, bookRequests, Constants.HTTP_OPTIONS);
   }
 }

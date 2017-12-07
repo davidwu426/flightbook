@@ -78,7 +78,7 @@ export class Constants {
 
   public static API_BEST_SOLD_FLIGHT_URL = Constants.API_FLIGHTS_URL + '/bestsoldflight';
 
-  public static API_BOOK_URL = Constants.API_URL + '/book';
+  public static API_BOOK_URL = Constants.API_RESERVATIONS_URL + '/book';
   public static API_BOOK_ONEWAY_URL = Constants.API_BOOK_URL + '/oneway';
   public static API_BOOK_MULTI_URL = Constants.API_BOOK_URL + '/multiple';
 }

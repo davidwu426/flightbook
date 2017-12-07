@@ -17,7 +17,7 @@ public class RevenueService implements  IRevenueService{
 
     @Override
     public double getReservationByMonth(int month,int year) {
-        return reservationDao.getReservationByMonth(month,year).get(0).getBookingFee();
+        return reservationDao.getReservationByMonth(month, year);
     }
 
     @Override

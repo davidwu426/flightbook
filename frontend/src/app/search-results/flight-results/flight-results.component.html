@@ -1,14 +1,18 @@
 <h1>Flight Search Results</h1>
 
 <p class="mb-3">
-  Searching for flights from <b>{{fromAirport}}</b> to <b>{{toAirport}}</b>
+  Searching for flights from
+  <b>{{fromAirport}}</b> to
+  <b>{{toAirport}}</b>
   departing on {{depDate | date:'MM/dd/yy'}}.
 </p>
 
 <hr>
 
 <div *ngIf="!searchResults?.length" class="text-center text-muted">
-  <h1><i class="fa fa-frown-o" aria-hidden="true"></i></h1>
+  <h1>
+    <i class="fa fa-frown-o" aria-hidden="true"></i>
+  </h1>
   <h2>No flights found</h2>
   <p>
     No flights found matching specified criteria.
@@ -18,28 +22,67 @@
 <ng-container *ngIf="searchResults?.length">
   <ng-container *ngIf="type === 'oneway'">
     <div *ngFor="let s of searchResults[0]; let i = index;" class="mb-3">
-      <app-oneway-search-entry [searchEntry]="s"
-      [from]="searchService.searchCriteria[0].fromAirport"
-      [to]="searchService.searchCriteria[0].toAirport"
-      [searchEntryIndex]="i">
+      <app-oneway-search-entry (onBook)="checkout($event)" [searchEntry]="s" [from]="searchService.searchCriteria[0].fromAirport"
+        [to]="searchService.searchCriteria[0].toAirport" [searchEntryIndex]="i">
       </app-oneway-search-entry>
     </div>
   </ng-container>
   <ng-container *ngIf="type === 'roundtrip'">
     <div *ngFor="let s of searchResults; let i = index;" class="mb-3">
-      <app-roundtrip-search-entry [searchEntries]="s"
-      [from]="searchService.searchCriteria[0].fromAirport"
-      [to]="searchService.searchCriteria[0].toAirport"
-      [searchEntryIndex]="i">
+      <app-roundtrip-search-entry (onBook)="checkout($event)" [searchEntries]="s" [from]="searchService.searchCriteria[0].fromAirport"
+        [to]="searchService.searchCriteria[0].toAirport" [searchEntryIndex]="i">
       </app-roundtrip-search-entry>
     </div>
   </ng-container>
   <ng-container *ngIf="type === 'multicity'">
     <div *ngFor="let s of searchResults; let i = index;" class="mb-3">
-      <app-multicity-search-entry
-      [searchEntries]="s"
-      [searchEntryIndex]="i">
+      <app-multicity-search-entry (onBook)="checkout($event)" [searchEntries]="s" [searchEntryIndex]="i">
       </app-multicity-search-entry>
     </div>
   </ng-container>
 </ng-container>
+
+<ng-template #bookFlight let-d="dismiss">
+  <div class="modal-header">
+    <i class="fa fa-book"></i> Book Flight
+    <button class="close" type="button" (click)="d()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <form (ngSubmit)="book()" ngNativeValidate>
+
+    <div class="modal-body">
+      <h4>Select your preferences:</h4>
+      <hr>
+      <div class="form-group">
+        <label class="font-weight-bold">Seat Number:</label>
+        <input type="number" class="form-control" [(ngModel)]="seat" name="seat" required>
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Meal:</label>
+        <input type="text" class="form-control" [(ngModel)]="meal" name="meal" required>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-6">
+          <b>Flight Ticket:</b> {{totalFare | currency}}
+        </div>
+        <div class="col-6 text-right">
+          Total Price:
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6">
+          <b>Booking Fee:</b> {{totalFare / 10 | currency}}
+        </div>
+        <div class="col-6 text-right">
+          <h3>{{totalFare * 1.1 | currency}}</h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Book Flight</button>
+    </div>
+  </form>
+</ng-template>

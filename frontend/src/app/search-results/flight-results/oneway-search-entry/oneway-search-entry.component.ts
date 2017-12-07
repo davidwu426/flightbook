@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SearchEntry } from '../../../models/search-entry';
 import { SearchService } from '../../../services/search/search.service';
 import { TripLeg } from '../../../models/trip-leg';
@@ -21,10 +21,14 @@ export class OnewaySearchEntryComponent implements OnInit {
   from: Airport;
   @Input()
   searchEntryIndex: number;
+  @Output()
+  onBook: EventEmitter<SearchEntry[]> = new EventEmitter();
 
   tripDuration: number;
   tripDurationHours: number;
   tripDurationMinutes: number;
+
+  searchEntryAsList: SearchEntry[];
 
   constructor(
     private searchService: SearchService,
@@ -37,29 +41,12 @@ export class OnewaySearchEntryComponent implements OnInit {
       new Date(this.searchEntry.tripDepTime).getTime();
     this.tripDurationHours = tripDuration / 1000 / 60 / 60;
     this.tripDurationMinutes = tripDuration / 1000 % 60;
+
+    this.searchEntryAsList = [];
+    this.searchEntryAsList.push(this.searchEntry);
   }
 
-  book() {
-    this.authService.getCustomer().subscribe(c => {
-      const accountNo = c.accountNo;
-      const totalFare = this.searchEntry.price;
-      const bookingFee = totalFare / 10;
-      const flightClass = this.searchEntry.flightClass;
-      const meal = 'meal';
-      const seatNo = '32A';
-      const legs = this.searchEntry.tripLegs;
-      const fromLegNo = this.searchEntry.fromFlightNo;
-
-      const bookRequest = new BookRequest(accountNo,
-        totalFare,
-        bookingFee,
-        flightClass,
-        meal,
-        seatNo,
-        legs,
-        fromLegNo);
-
-      this.reservationService.bookOneWay(bookRequest);
-    });
+  triggerBook() {
+    this.onBook.emit([this.searchEntry]);
   }
 }
