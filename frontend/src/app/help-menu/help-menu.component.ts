@@ -113,6 +113,12 @@ export class HelpMenuComponent implements OnInit {
             "3. Input password",
             "4. Press log in"
           ]
+        },{
+          title: "Record a Reservation For a Customer",
+          content: [
+            "1. Go through the flight searching process",
+            "2. Click Reserve for Customer at the checkout screen"
+          ]
         }, {
           title: "Observe Listing of All Flights",
           content: [
@@ -154,17 +160,30 @@ export class HelpMenuComponent implements OnInit {
         }, { 
           title: "List of Most Active Flights",
           content:[
-            "asd"
+            "1. Go to Flights Tab",
+            "2. Scroll down to Most Frequent Flights"
           ]
-        }
-      ]
-    }, {
-      title: "Admin",
-      chapters: [
-        {
-          title: "Add a flight",
+        }, {
+          title: "Find Flights by Airport",
           content: [
-            "1. Press add"
+            "1. Go to FLights Tab",
+            "2. Scroll down to Find Flights by Airport",
+            "3. Enter Airport Id and get Flights"
+          ]
+        }, {
+          title: "Observe Customer on Flight",
+          content: [
+            "1. Go to Flights Tab",
+            "2. Scroll down to Customer on Flight",
+            "3. Enter Flight No and Airline Id press Get Customer",
+            "4. Observe customers on flight"
+          ]
+        }, {
+          title: "Filter Reservation by Reservation Number, Flight, Account Number and Name",
+          content: [
+            "1. Go to Reservations Tab",
+            "2. Select what you want to filter by",
+            "3. Submit information and see the queried Reservations"
           ]
         }
       ]
