@@ -9,6 +9,7 @@ import { AuthedGuard } from './auth/authed.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HelpMenuComponent } from './help-menu/help-menu.component';
+import { SuccessPageComponent } from './success-page/success-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'search-results', component: SearchResultsComponent },
-  { path: 'help-menu', component: HelpMenuComponent }
+  { path: 'help-menu', component: HelpMenuComponent },
+  { path: 'success', component: SuccessPageComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

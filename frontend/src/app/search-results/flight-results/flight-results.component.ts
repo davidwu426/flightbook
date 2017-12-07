@@ -11,6 +11,8 @@ import { ReservationService } from '../../services/reservation/reservation.servi
 import { BookRequest } from '../../models/book-request';
 import { Router } from '@angular/router';
 import { NotificationService } from '../../services/notification/notification.service';
+import { Role } from '../../models/role';
+import { Constants } from '../../constants';
 
 @Component({
   selector: 'app-flight-results',
@@ -37,7 +39,11 @@ export class FlightResultsComponent implements OnInit, OnChanges {
   flightsToBook: SearchEntry[];
   meal: string;
   seat: string;
+  customerId: number;
+
   totalFare: number;
+
+  role: Role;
 
   constructor(
     private searchService: SearchService,
@@ -50,6 +56,15 @@ export class FlightResultsComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.reSearch();
+
+    if (localStorage.getItem(Constants.CURRENT_USER_KEY) === null) {
+      this.role = null;
+    } else {
+      this.authService.getRole().subscribe(
+        r => this.role = r,
+        e => this.role = null
+      );
+    }
   }
 
   ngOnChanges() {
@@ -95,45 +110,56 @@ export class FlightResultsComponent implements OnInit, OnChanges {
 
   book() {
     if (this.flightsToBook.length > 0) {
-      this.authService.getCustomer().subscribe(c => {
-        const requests = new Array<BookRequest>();
-
-        for (let i = 0; i < this.flightsToBook.length; i++) {
-          const flight = this.flightsToBook[i];
-          const accountNo = c.accountNo;
-          const totalFare = this.totalFare;
-          const bookingFee = totalFare / 10;
-          const flightClass = flight.flightClass;
-          const meal = this.meal;
-          const seatNo = this.seat;
-          const legs = flight.tripLegs;
-          const fromLegNo = flight.fromFlightNo;
-
-          const bookRequest = new BookRequest(
-            accountNo,
-            totalFare,
-            bookingFee,
-            flightClass,
-            meal,
-            seatNo,
-            legs,
-            fromLegNo);
-
-            requests.push(bookRequest);
-        }
-
-        this.reservationService.bookMulti(requests).subscribe(b => {
-          if (b) {
-            this.notificationService.success('Successfully booked flight');
-            this.modalRef.close();
-            this.router.navigateByUrl('/');
-          } else {
-            this.notificationService.warning('Error occured attempting to book flight');
-            this.modalRef.close();
-            this.router.navigateByUrl('/');
-          }
+      if (this.role === Role.CUSTOMER) {
+        this.authService.getCustomer().subscribe(c => {
+          this.completeBook(c.accountNo);
         });
-      });
+      } else if (this.role !== null) {
+        this.completeBook(this.customerId;
+      } else {
+        this.modalRef.close();
+        this.notificationService.error('You must be logged in to book a flight');
+      }
     }
+  }
+
+  completeBook(accountId: number) {
+    const requests = new Array<BookRequest>();
+
+    for (let i = 0; i < this.flightsToBook.length; i++) {
+      const flight = this.flightsToBook[i];
+      const accountNo = accountId;
+      const totalFare = this.totalFare;
+      const bookingFee = totalFare / 10;
+      const flightClass = flight.flightClass;
+      const meal = this.meal;
+      const seatNo = this.seat;
+      const legs = flight.tripLegs;
+      const fromLegNo = flight.fromFlightNo;
+
+      const bookRequest = new BookRequest(
+        accountNo,
+        totalFare,
+        bookingFee,
+        flightClass,
+        meal,
+        seatNo,
+        legs,
+        fromLegNo);
+
+      requests.push(bookRequest);
+    }
+
+    this.reservationService.bookMulti(requests).subscribe(b => {
+      if (b) {
+        this.notificationService.success('Successfully booked flight');
+        this.modalRef.close();
+        this.router.navigateByUrl('/success');
+      } else {
+        this.notificationService.warning('Error occured attempting to book flight');
+        this.modalRef.close();
+        this.router.navigateByUrl('/');
+      }
+    });
   }
 }

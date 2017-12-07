@@ -82,7 +82,18 @@
     </div>
 
     <div class="modal-footer">
-      <button type="submit" class="btn btn-success">Book Flight</button>
+      <div class="text-center text-muted" *ngIf="role === null">
+        You must be logged in to book flights
+      </div>
+      <button type="submit" *ngIf="role === 'ROLE_CUSTOMER'" class="btn btn-success">Book Flight</button>
+      <ng-container *ngIf="role !== 'ROLE_CUSTOMER' && role !== null">
+        <div class="input-group">
+          <input type="number" class="form-control" placeholder="Customer Account ID" [(ngModel)]="customerId" name="customer-id" required>
+          <span class="input-group-btn">
+            <button type="submit"class="btn btn-success">Book for Customer</button>
+          </span>
+        </div>
+      </ng-container>
     </div>
   </form>
 </ng-template>

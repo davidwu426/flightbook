@@ -88,6 +88,7 @@ import { CustomerOnFlightCardComponent } from './dashboard/cards/customer-on-fli
 import { HelpMenuComponent } from './help-menu/help-menu.component';
 import { DelayedFlightsCardComponent } from './dashboard/cards/delayed-flights-card/delayed-flights-card.component';
 import { BestSoldFlightsCardComponent } from './dashboard/cards/best-sold-flights-card/best-sold-flights-card.component';
+import { SuccessPageComponent } from './success-page/success-page.component';
 
 @NgModule({
   declarations: [
@@ -149,7 +150,8 @@ import { BestSoldFlightsCardComponent } from './dashboard/cards/best-sold-flight
     MostFrequentFlightCardComponent,
     OnTimeFlightCardComponent,
     DelayedFlightsCardComponent,
-    BestSoldFlightsCardComponent
+    BestSoldFlightsCardComponent,
+    SuccessPageComponent
   ],
   imports: [
     BrowserModule,
