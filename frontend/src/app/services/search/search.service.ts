@@ -48,4 +48,12 @@ export class SearchService {
 
     return this.http.get<SearchEntry[][]>(Constants.API_SEARCH_ROUNDTRIP, { params: params });
   }
+
+  searchMultiCity(searchCriteria: SearchCriteria[], flightClass: string): Observable<SearchEntry[][]> {
+    let params = new HttpParams();
+    params = params.append('searchCriteria', JSON.stringify(searchCriteria));
+    params = params.append('flightClass', flightClass);
+
+    return this.http.get<SearchEntry[][]>(Constants.API_SEARCH_MULTICITY, { params: params });
+  }
 }

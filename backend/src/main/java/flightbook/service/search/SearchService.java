@@ -9,6 +9,7 @@ import flightbook.entity.fare.FareType;
 import flightbook.entity.flight.Flight;
 import flightbook.entity.leg.Leg;
 import flightbook.entity.leg.TripLeg;
+import flightbook.entity.search.SearchCriteria;
 import flightbook.entity.search.SearchEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -147,6 +148,52 @@ public class SearchService implements ISearchService {
 		}
 
 		return roundTrips;
+	}
+
+	@Override
+	public List<List<SearchEntry>> getMultiCityTripResults(List<SearchCriteria> searchCriteria, String flightClass) {
+    	List<List<SearchEntry>> tripsForEachLeg = new ArrayList<>();
+
+		for (SearchCriteria sc : searchCriteria) {
+			List<SearchEntry> trips = getOneWayResults(sc.getFromAirport(), sc.getToAirport(),
+					sc.getDepartureDate().getTime() + "", flightClass);
+
+			// no flights for this city
+			if (trips.size() == 0) {
+				return new ArrayList<>();
+			}
+
+			tripsForEachLeg.add(trips);
+		}
+
+		// get all combinations of flights
+		List<List<SearchEntry>> results = getTripCombinations(tripsForEachLeg.get(0), tripsForEachLeg.subList(1, tripsForEachLeg.size()));
+
+		return results;
+	}
+
+	private List<List<SearchEntry>> getTripCombinations(List<SearchEntry> firstLeg, List<List<SearchEntry>> nextLegs) {
+    	List<List<SearchEntry>> combinations = new ArrayList<>();
+
+    	for (SearchEntry s : firstLeg) {
+		    List<SearchEntry> combination = new ArrayList<>();
+		    combination.add(s);
+
+		    if (nextLegs.size() == 0) {
+			    for (List<SearchEntry> lastLegs : nextLegs) {
+				    combination.addAll(lastLegs);
+			    }
+		    } else {
+			    List<List<SearchEntry>> recursiveLegs = getTripCombinations(nextLegs.get(0), nextLegs.subList(1, nextLegs.size()));
+			    for (List<SearchEntry> otherLegs : recursiveLegs) {
+				    combination.addAll(otherLegs);
+			    }
+		    }
+
+		    combinations.add(combination);
+	    }
+
+	    return combinations;
 	}
 
 	/**

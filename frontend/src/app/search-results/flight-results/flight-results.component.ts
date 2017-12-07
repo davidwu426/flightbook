@@ -58,7 +58,9 @@ export class FlightResultsComponent implements OnInit, OnChanges {
         .subscribe(s => this.searchResults = s);
         break;
       case 'multicity':
-        this.searchResults = null;
+        this.searchService.searchMultiCity(this.searchService.searchCriteria,
+          `${this.searchService.flightClass}`)
+        .subscribe(s => this.searchResults = s);
         break;
     }
   }

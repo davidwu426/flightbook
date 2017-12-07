@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
 import { Flight } from '../../models/flight';
 import { Constants } from '../../constants';
-import { CustomerOnFlight } from '../../models/customer-on-flight';
+// import { CustomerOnFlight } from '../../models/customer-on-flight';
 
 
 @Injectable()
@@ -14,16 +14,15 @@ export class FlightService {
     return this.http.get<Flight[]>(Constants.API_FLIGHTS_URL);
   }
 
-  getDelayedFights(): Observable<Flight[]>
-  {
+  getDelayedFights(): Observable<Flight[]> {
     return this.http.get<Flight[]>(Constants.API_DELAYED_FLIGHTS_URL);
   }
 
-  getCustomerOnFlight(airlineId : string , flightNo : number) : Observable<CustomerOnFlight[]>
-  {
-    const url = `${Constants.API_CUSTOMER_ON_FLIGHT}/${airlineId}/${flightNo}`;
-    return this.http.get<CustomerOnFlight[]>(url, Constants.HTTP_OPTIONS);
-  }
+  // getCustomerOnFlight(airlineId: string, flightNo: number): Observable<CustomerOnFlight[]> {
+  //   const url = `${Constants.API_CUSTOMER_ON_FLIGHT}/${airlineId}/${flightNo}`;
+
+  //   return this.http.get<CustomerOnFlight[]>(url, Constants.HTTP_OPTIONS);
+  // }
 
   addFlight(flight: Flight): Observable<Flight> {
     return this.http.post<Flight>(Constants.API_FLIGHTS_URL, flight, Constants.HTTP_OPTIONS);

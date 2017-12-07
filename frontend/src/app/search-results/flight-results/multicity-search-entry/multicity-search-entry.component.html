@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="card-body">
+      <div class="card-title">
+        <h4>
+          Flights to <b>{{searchEntry.length}}</b> cities
+          <p class="text-success pull-right">
+            {{totalPrice | currency}}
+          </p>
+        </h4>
+        <hr>
+      </div>
+  
+      <div class="row">
+        <div class="col-6">
+          <div>
+            <b>Airlines:</b>
+            <ng-container *ngFor="let city of searchEntries; let j = index;">
+              {{city.airlineId}}
+              <ng-container *ngIf="j != searchEntries.length - 1;"><i class="fa fa-arrow-right"></i> </ng-container>
+            </ng-container>
+          </div>
+        </div>
+        <div class="col-6 text-right">
+          <p *ngIf="searchEntry.flightClass === 'Economy'" class="text-success">Economy Class</p>
+          <p *ngIf="searchEntry.flightClass === 'First'" class="text-primary">First Class</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-footer">
+      <div class="row">
+          <div class="col-6">
+            <button class="btn btn-primary" data-toggle="collapse" [attr.data-target]="'#details-cities-' + searchEntryIndex">
+              <i class="fa fa-info-circle"></i> View Details
+            </button>
+          </div>
+          <div class="col-6 text-right">
+            <button class="btn btn-success">
+              <i class="fa fa-book"></i> Book Flight
+            </button>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="collapse ml-4" [attr.id]="'details-cities-' + searchEntryIndex">
+  <div *ngFor="let city of searchEntries; let i = index;" class="mb-3">
+    <div class="card-header">
+      City {{i+1}}
+    </div>
+    <app-oneway-search-entry
+      [searchEntry]="city"
+      [from]="searchService.searchCriteria[0].fromAirport"
+      [to]="searchService.searchCriteria[0].toAirport"
+      [searchEntryIndex]="i">
+    </app-oneway-search-entry>
+  </div>
+</div>

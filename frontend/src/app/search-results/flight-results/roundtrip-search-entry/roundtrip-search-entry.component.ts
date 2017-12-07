@@ -14,6 +14,8 @@ export class RoundtripSearchEntryComponent implements OnInit {
   to: Airport;
   @Input()
   from: Airport;
+  @Input()
+  searchEntryIndex: number;
 
   tripDuration: number;
   tripDurationHours: number;

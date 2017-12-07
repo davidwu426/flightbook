@@ -40,7 +40,7 @@
   <div class="card-footer">
     <div class="row">
       <div class="col-6">
-        <button class="btn btn-primary" data-toggle="collapse" data-target="#details">
+        <button class="btn btn-primary" data-toggle="collapse" [attr.data-target]="'#details-' + searchEntryIndex">
           <i class="fa fa-info-circle"></i> View Details
         </button>
       </div>
@@ -53,7 +53,7 @@
   </div>
 </div>
 
-<div class="collapse ml-4" id="details">
+<div class="collapse ml-4" [attr.id]="'details-' + searchEntryIndex">
   <ng-container *ngFor="let l of searchEntry.tripLegs; let i = index;">
     <app-leg-detail [index]="i" [searchEntry]="searchEntry" [tripLeg]="l" [to]="to"></app-leg-detail>
   </ng-container>
