@@ -1,4 +1,4 @@
-package flightbook.entity.totalBookingFee;
+package flightbook.entity.totalbookingfee;
 
 
 import org.springframework.jdbc.core.RowMapper;

@@ -2,8 +2,8 @@ package flightbook.dao.reservation;
 
 import flightbook.entity.reservation.Reservation;
 import flightbook.entity.reservation.ReservationRowMapper;
-import flightbook.entity.totalBookingFee.TotalBookingFee;
-import flightbook.entity.totalBookingFee.TotalBookingFeeRowMapper;
+import flightbook.entity.totalbookingfee.TotalBookingFee;
+import flightbook.entity.totalbookingfee.TotalBookingFeeRowMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
