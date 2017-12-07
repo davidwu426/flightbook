@@ -104,4 +104,19 @@ public class ReservationService implements IReservationService {
 			return false;
 		}
 	}
+
+	@Override
+	@Transactional
+	public boolean bookMultiple(List<BookRequest> bs) {
+		try {
+			for (BookRequest br : bs) {
+				bookOneWay(br);
+			}
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

@@ -74,8 +74,17 @@ public interface IReservationService {
 	/**
 	 * Book oneway flight
 	 *
-	 * @return	True if success, false otherwise
+	 * @return	True if successful, false otherwise
 	 */
 	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
 	boolean bookOneWay(BookRequest b);
+
+	/**
+	 * Book multiple flights
+	 *
+	 * @param b	List of flights to book
+	 * @return True if successful, false otherwise
+	 */
+	@Secured({Role.CUSTOMER, Role.EMPLOYEE, Role.MANAGER, Role.ADMIN})
+	boolean bookMultiple(List<BookRequest> b);
 }
