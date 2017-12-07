@@ -7,6 +7,9 @@
     <a href="#reservations" class="nav-link" data-toggle="tab" role="tab">Reservations</a>
   </li>
   <li class="nav-item">
+    <a href="#flights" class="nav-link" data-toggle="tab" role="tab">Flights</a>
+  </li>
+  <li class="nav-item">
     <a href="#bids" class="nav-link" data-toggle="tab" role="tab">Bids</a>
   </li>
   <li class="nav-item">
@@ -20,6 +23,15 @@
     <div class="row mb-3">
       <div class="col-12">
         <app-customer-reservation-card></app-customer-reservation-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- flights -->
+  <div class="tab-pane fade show" id="flights" role="tabpanel">
+    <div class="row mb-3">
+      <div class="col-12">
+        <app-best-sold-flights-card></app-best-sold-flights-card>
       </div>
     </div>
   </div>
