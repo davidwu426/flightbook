@@ -84,6 +84,7 @@ import { OnTimeFlightCardComponent } from './dashboard/cards/on-time-flight-card
 import { CustomerOnFlightCardComponent } from './dashboard/cards/customer-on-flight-card/customer-on-flight-card.component';
 import { HelpMenuComponent } from './help-menu/help-menu.component';
 import { DelayedFlightsCardComponent } from './dashboard/cards/delayed-flights-card/delayed-flights-card.component';
+import { BestSoldFlightsCardComponent } from './dashboard/cards/best-sold-flights-card/best-sold-flights-card.component';
 
 @NgModule({
   declarations: [
@@ -138,9 +139,11 @@ import { DelayedFlightsCardComponent } from './dashboard/cards/delayed-flights-c
     RevenueByCustomerCardComponent,
     CustomerAuctionsCardComponent,
     AuctionCardComponent,
+    HelpMenuComponent,
     MostFrequentFlightCardComponent,
     OnTimeFlightCardComponent,
-    HelpMenuComponent
+    DelayedFlightsCardComponent,
+    BestSoldFlightsCardComponent
   ],
   imports: [
     BrowserModule,

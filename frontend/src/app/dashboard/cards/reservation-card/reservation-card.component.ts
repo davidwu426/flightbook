@@ -29,8 +29,9 @@ export class ReservationCardComponent implements OnInit {
   filtered = false;
 
   constructor(
-    private reservationService: ReservationService,
-  ) { }
+    private reservationService: ReservationService
+  ) {
+  }
 
   ngOnInit() {
     this.reservationService.getReservations().subscribe(r => this.reservations = r);

@@ -75,4 +75,6 @@ export class Constants {
   public static API_FREQUENT_FLIGHT_URL = Constants.API_FLIGHTS_URL +"/frequent";
 
   public static API_ON_TIME_FLIGHTS_URL = Constants.API_FLIGHTS_URL +"/ontime";
+
+  public static API_BEST_SOLD_FLIGHT_URL = Constants.API_FLIGHTS_URL +"/bestsoldflight";
 }
