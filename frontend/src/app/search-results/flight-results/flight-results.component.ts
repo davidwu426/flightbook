@@ -115,7 +115,7 @@ export class FlightResultsComponent implements OnInit, OnChanges {
           this.completeBook(c.accountNo);
         });
       } else if (this.role !== null) {
-        this.completeBook(this.customerId;
+        this.completeBook(this.customerId);
       } else {
         this.modalRef.close();
         this.notificationService.error('You must be logged in to book a flight');

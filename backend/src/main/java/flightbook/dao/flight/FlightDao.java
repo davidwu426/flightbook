@@ -72,7 +72,7 @@ public class FlightDao implements IFlightDao {
 	public List<FrequentFlight> getFrequentFlight() {
 
 		String sql = "SELECT COUNT(distinct RP.ResrNo) AS ResrCount, I.FlightNo, I.AirlineId\n" +
-				"FROM reservationpassenger RP, Includes I\n" +
+				"FROM ReservationPassenger RP, Includes I\n" +
 				"WHERE I.ResrNo = RP.ResrNo\n" +
 				"GROUP By I.FlightNo\n" +
 				"ORDER By ResrCount DESC\n" +
@@ -86,7 +86,7 @@ public class FlightDao implements IFlightDao {
 	@Override
 	public List<CustomerOnFlight> getCustomerOnFlight(String airlineId, int flightNo) {
 		String sql = "SELECT DISTINCT r.AccountNo, p.FirstName, p.LastName, r.ResrNo, rp.SeatNo, rp.Class, rp.Meal\n" +
-				"FROM Person p, Reservation r, Passenger pass, reservationpassenger rp, Includes i\n" +
+				"FROM Person p, Reservation r, Passenger pass, ReservationPassenger rp, Includes i\n" +
 				"WHERE p.Id = rp.Id\n" +
 				"\tAND r.ResrNo = rp.ResrNo\n" +
 				"\tAND i.ResrNo = rp.ResrNo\n" +
