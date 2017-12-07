@@ -1,7 +1,6 @@
 package flightbook.dao.reservation;
 
 import flightbook.entity.reservation.Reservation;
-import flightbook.entity.totalbookingfee.TotalBookingFee;
 
 import java.util.List;
 
@@ -20,11 +19,13 @@ public interface IReservationDao {
 
 	void deleteReservation(int resrNo);
 
-	List<TotalBookingFee> getReservationByMonth(int month, int year);
+	double getReservationByMonth(int month, int year);
 
 	double getRevenueByFlight(String airlineId, int flightNo);
 
 	double getRevenueByCity(String city);
 
 	double getRevenueByAccountNo(int AccountNo);
+
+	int getNewReservationNo();
 }

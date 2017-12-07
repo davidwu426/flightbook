@@ -2,8 +2,6 @@ package flightbook.dao.reservation;
 
 import flightbook.entity.reservation.Reservation;
 import flightbook.entity.reservation.ReservationRowMapper;
-import flightbook.entity.totalbookingfee.TotalBookingFee;
-import flightbook.entity.totalbookingfee.TotalBookingFeeRowMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -92,13 +90,13 @@ public class ReservationDao implements IReservationDao {
 	}
 
 	@Override
-	public List<TotalBookingFee> getReservationByMonth(int month,int year) {
+	public double getReservationByMonth(int month,int year) {
 		String sql = "SELECT SUM(BookingFee) AS BookingFee\n" +
 				"FROM Reservation\n" +
 				"WHERE MONTH(ResrDate) = ?\n" +
 				"AND YEAR(ResrDate) = ?;";
-		RowMapper<TotalBookingFee> rowMapper = new TotalBookingFeeRowMapper();
-		return this.jdbcTemplate.query(sql,rowMapper,month,year);
+		Double revenue = this.jdbcTemplate.queryForObject(sql, Double.class, month, year);
+		return revenue;
 	}
 
 	@Override
@@ -136,5 +134,13 @@ public class ReservationDao implements IReservationDao {
 
 		Double revenue = this.jdbcTemplate.queryForObject(sql, Double.class, accountNo);
 		return revenue;
+	}
+
+	@Override
+	public int getNewReservationNo() {
+		String sql = "SELECT ResrNo FROM Reservation ORDER BY ResrNo DESC LIMIT 1";
+
+		Integer max = this.jdbcTemplate.queryForObject(sql, Integer.class);
+		return max + 1;
 	}
 }

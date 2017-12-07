@@ -5,6 +5,7 @@ import { Reservation } from '../../models/reservation';
 import { Constants } from '../../constants';
 import { ReservationDetails } from '../../models/reservation-details';
 import { Include } from '../../models/include';
+import { BookRequest } from '../../models/book-request';
 
 @Injectable()
 export class ReservationService {
@@ -54,5 +55,13 @@ export class ReservationService {
     const url = `${Constants.API_RESERVATIONS_URL}/${resrNo}`;
 
     return this.http.delete<Reservation>(url, Constants.HTTP_OPTIONS);
+  }
+
+  bookOneWay(bookRequest: BookRequest) {
+    return this.http.post(Constants.API_BOOK_ONEWAY_URL, bookRequest, Constants.HTTP_OPTIONS);
+  }
+
+  bookMulti(bookRequests: BookRequest[]) {
+    return this.http.post(Constants.API_BOOK_MULTI_URL, bookRequests, Constants.HTTP_OPTIONS);
   }
 }

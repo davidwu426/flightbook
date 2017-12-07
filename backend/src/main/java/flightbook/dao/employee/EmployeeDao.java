@@ -88,4 +88,13 @@ public class EmployeeDao implements IEmployeeDao {
 
 		this.jdbcTemplate.update(sql, ssn);
 	}
+
+	@Override
+	public int getRepresentativeSSNToAssign() {
+		String sql = "SELECT SSN FROM Employee WHERE IsManager = 0\n" +
+				"ORDER BY RAND() LIMIT 1;";
+
+		int ssn = this.jdbcTemplate.queryForObject(sql, Integer.class);
+		return ssn;
+	}
 }

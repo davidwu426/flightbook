@@ -163,7 +163,7 @@ public class CustomerDao implements ICustomerDao {
 
 	@Override
 	public int getNewAccountNo() {
-		String sql = "SELECT AccountNo FROM Customer ORDER BY Id DESC LIMIT 1";
+		String sql = "SELECT AccountNo FROM Customer ORDER BY AccountNo DESC LIMIT 1";
 
 		Integer max = this.jdbcTemplate.queryForObject(sql, Integer.class);
 		return max + 1;

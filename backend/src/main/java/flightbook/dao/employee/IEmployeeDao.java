@@ -18,4 +18,6 @@ public interface IEmployeeDao {
 	void updateEmployee(Employee employee);
 
 	void deleteEmployee(int ssn);
+
+	int getRepresentativeSSNToAssign();
 }
