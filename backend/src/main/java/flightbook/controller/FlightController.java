@@ -1,6 +1,5 @@
 package flightbook.controller;
 
-import com.sun.org.apache.regexp.internal.RE;
 import flightbook.entity.customer.CustomerOnFlight;
 import flightbook.entity.flight.BestSoldFlight;
 import flightbook.entity.flight.Flight;
@@ -14,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.xml.ws.Response;
 import java.util.List;
 
 @RestController

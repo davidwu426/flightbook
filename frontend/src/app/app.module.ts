@@ -83,11 +83,24 @@ import { MostFrequentFlightCardComponent } from './dashboard/cards/most-frequent
 import { OnTimeFlightCardComponent } from './dashboard/cards/on-time-flight-card/on-time-flight-card.component';
 import { CustomerOnFlightCardComponent } from './dashboard/cards/customer-on-flight-card/customer-on-flight-card.component';
 import { HelpMenuComponent } from './help-menu/help-menu.component';
+<<<<<<< HEAD
 import { DelayedFlightsCardComponent } from './dashboard/cards/delayed-flights-card/delayed-flights-card.component';
 import { BestSoldFlightsCardComponent } from './dashboard/cards/best-sold-flights-card/best-sold-flights-card.component';
+=======
+<<<<<<< HEAD
+import { HelpManagerCardComponent } from './dashboard/cards/help-manager-card/help-manager-card.component';
+import { HelpAdminCardComponent } from './dashboard/cards/help-admin-card/help-admin-card.component';
+import { HelpEmployeeCardComponent } from './dashboard/cards/help-employee-card/help-employee-card.component';
+import { HelpCustomerCardComponent } from './dashboard/cards/help-customer-card/help-customer-card.component';
+
+=======
+import { DelayedFlightsCardComponent } from './dashboard/cards/delayed-flights-card/delayed-flights-card.component';
+>>>>>>> b809575984980b699a7f7e1753b1e635ff7c05a4
+>>>>>>> a0dd0e67ca1e83196c9b0e4e6c61ede036f6e264
 
 @NgModule({
   declarations: [
+    DelayedFlightsCardComponent,
     AppComponent,
     MessagesComponent,
     HomeComponent,
@@ -138,11 +151,23 @@ import { BestSoldFlightsCardComponent } from './dashboard/cards/best-sold-flight
     RevenueByCustomerCardComponent,
     CustomerAuctionsCardComponent,
     AuctionCardComponent,
+<<<<<<< HEAD
+    HelpMenuComponent,
+    HelpCustomerCardComponent,
+    HelpManagerCardComponent,
+    HelpAdminCardComponent,
+    HelpEmployeeCardComponent
+=======
     MostFrequentFlightCardComponent,
     OnTimeFlightCardComponent,
+<<<<<<< HEAD
     HelpMenuComponent,
     DelayedFlightsCardComponent,
     BestSoldFlightsCardComponent
+=======
+    HelpMenuComponent
+>>>>>>> b809575984980b699a7f7e1753b1e635ff7c05a4
+>>>>>>> a0dd0e67ca1e83196c9b0e4e6c61ede036f6e264
   ],
   imports: [
     BrowserModule,
