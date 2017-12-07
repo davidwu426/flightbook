@@ -14,8 +14,8 @@
     <tbody>
       <tr *ngFor="let l of legs">
         <td>
-          <button type="button" class="close float-left" (click)="open(editLeg, l.airlineId, l.flightNo, l.legNo)"
-            data-toggle="modal" data-target="#edit-leg-modal">
+          <button type="button" class="close float-left" (click)="open(editLeg, l.airlineId, l.flightNo, l.legNo)" data-toggle="modal"
+            data-target="#edit-leg-modal">
             <i class="fa fa-pencil"></i>
           </button>
         </td>
@@ -42,29 +42,29 @@
   <tfoot>
     <tr>
       <td colspan="6">
-          <form class="form" (ngSubmit)="addLeg()" ngNativeValidate>
-            <div class="row mb-3">
-              <div class="col-4">
-                <input class="form-control" type="text" placeholder="Leg Number" [(ngModel)]="leg.legNo" name="add-leg-no" required>
-              </div>
-              <div class="col-4">
-                <input class="form-control" type="text" placeholder="Departing Airport ID" [(ngModel)]="leg.depAirportId" name="add-dep-airport" required>
-              </div>
-              <div class="col-4">
-                <input class="form-control" type="text" placeholder="Arriving Airport ID" [(ngModel)]="leg.arrAirportId" name="add-arr-airport" required>
-              </div>
+        <form class="form" (ngSubmit)="addLeg()" ngNativeValidate>
+          <div class="row mb-3">
+            <div class="col-4">
+              <input class="form-control" type="text" placeholder="Leg Number" [(ngModel)]="leg.legNo" name="add-leg-no" required>
             </div>
-            <div class="row mb-3">
-              <div class="col-6">
-                <input class="form-control" type="date" placeholder="Arrival Time" [(ngModel)]="leg.arrTime" name="add-arr-time" required>
-              </div>
-              <div class="col-6">
-                <input class="form-control" type="date" placeholder="Departure Time" [(ngModel)]="leg.depTime" name="add-dep-time" required>
-              </div>
+            <div class="col-4">
+              <app-airport-select [(ngModel)]="leg.depAirportId" name="add-dep-airport"></app-airport-select>
             </div>
-            <button class="btn btn-success btn-block" type="submit">Add Leg</button>
-          </form>
-        </td>
+            <div class="col-4">
+              <app-airport-select [(ngModel)]="leg.arrAirportId" name="add-arr-airport"></app-airport-select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-6">
+              <input class="form-control" type="date" placeholder="Arrival Time" [(ngModel)]="leg.arrTime" name="add-arr-time" required>
+            </div>
+            <div class="col-6">
+              <input class="form-control" type="date" placeholder="Departure Time" [(ngModel)]="leg.depTime" name="add-dep-time" required>
+            </div>
+          </div>
+          <button class="btn btn-success btn-block" type="submit">Add Leg</button>
+        </form>
+      </td>
     </tr>
   </tfoot>
 </table>
@@ -72,45 +72,44 @@
 
 
 <ng-template #editLeg let-d="dismiss">
-    <div class="modal-header">
-      Edit Leg
-      <button class="close" type="button" (click)="d()">
-        <span>&times;</span>
-      </button>
-    </div>
-    <form (ngSubmit)="updateLeg(editingLeg)" ngNativeValidate>
+  <div class="modal-header">
+    Edit Leg
+    <button class="close" type="button" (click)="d()">
+      <span>&times;</span>
+    </button>
+  </div>
+  <form (ngSubmit)="updateLeg(editingLeg)" ngNativeValidate>
 
-      <div class="modal-body">
-        <div class="mb-3">
-          <b>Airline ID:</b> {{editingLeg.airlineId}}
-        </div>
-        <div class="mb-3">
-          <b>Flight Number:</b> {{editingLeg.flightNo}}
-        </div>
-        <div class="mb-3">
-          <b>Leg Number:</b> {{editingLeg.legNo}}
-        </div>
-        <div class="form-group">
-          <label class="font-weight-bold">Departing Airport:</label>
-          <app-airport-select [(ngModel)]="editingLeg.depAirportId" name="edit-dep-airport"></app-airport-select>
-        </div>
-        <div class="form-group">
-          <label class="font-weight-bold">Arriving Airport:</label>
-          <app-airport-select [(ngModel)]="editingLeg.arrAirportId" name="edit-arr-airport"></app-airport-select>
-        </div>
-        <div class="form-group">
-          <label class="font-weight-bold">Arrival Time:</label>
-          <input type="date" class="form-control" [(ngModel)]="editingLeg.arrTime" name="edit-arr-time" required>
-        </div>
-        <div class="form-group">
-          <label class="font-weight-bold">Departure Time:</label>
-          <input type="date" class="form-control" [(ngModel)]="editingLeg.depTime" name="edit-dep-time" required>
-        </div>
+    <div class="modal-body">
+      <div class="mb-3">
+        <b>Airline ID:</b> {{editingLeg.airlineId}}
       </div>
-        
-      <div class="modal-footer">
-        <button type="submit" class="btn btn-success">Update Leg</button>
+      <div class="mb-3">
+        <b>Flight Number:</b> {{editingLeg.flightNo}}
       </div>
-    </form>
-  </ng-template>
-  
+      <div class="mb-3">
+        <b>Leg Number:</b> {{editingLeg.legNo}}
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Departing Airport:</label>
+        <app-airport-select [(ngModel)]="editingLeg.depAirportId" name="edit-dep-airport"></app-airport-select>
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Arriving Airport:</label>
+        <app-airport-select [(ngModel)]="editingLeg.arrAirportId" name="edit-arr-airport"></app-airport-select>
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Arrival Time:</label>
+        <input type="date" class="form-control" [(ngModel)]="editingLeg.arrTime" name="edit-arr-time" required>
+      </div>
+      <div class="form-group">
+        <label class="font-weight-bold">Departure Time:</label>
+        <input type="date" class="form-control" [(ngModel)]="editingLeg.depTime" name="edit-dep-time" required>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button type="submit" class="btn btn-success">Update Leg</button>
+    </div>
+  </form>
+</ng-template>
